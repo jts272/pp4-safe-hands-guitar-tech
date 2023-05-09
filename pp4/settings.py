@@ -11,7 +11,7 @@ https://docs.djangoproject.com/en/3.2/ref/settings/
 """
 
 from pathlib import Path
-# Get file for environment variables if present in parent project dir
+# Get file for environment variables if present in root dir
 import os
 if os.path.isfile('env.py'):
     import env  # noqa
