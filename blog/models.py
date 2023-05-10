@@ -48,13 +48,13 @@ class Post(models.Model):
         # Order posts by creation date, descending
         ordering = ['-created_on']
 
-        # String representation of the object in human-readable form
-        def __str__(self):
-            return self.title
+    # String representation of the object in human-readable form
+    def __str__(self):
+        return self.title
 
-        # Return the number of likes the given post has
-        def number_of_likes(self):
-            return self.likes.count()
+    # Return the number of likes the given post has
+    def number_of_likes(self):
+        return self.likes.count()
 
 
 class Comment(models.Model):
