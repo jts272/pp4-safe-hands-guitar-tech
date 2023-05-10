@@ -55,3 +55,33 @@ class Post(models.Model):
         # Return the number of likes the given post has
         def number_of_likes(self):
             return self.likes.count()
+
+
+class Comment(models.Model):
+    """Table for comments, which are associated with blog posts
+
+    Reference: https://youtu.be/X7cdN0SQrX0?t=336
+    """
+    # 1:n relationship to Post, which can have many comments
+    post = models.ForeignKey(
+        Post, on_delete=models.CASCADE, related_name='comments')
+    # Name of the commenter
+    name = models.CharField(max_length=80)
+    # Commenter's email address
+    email = models.EmailField()
+    # The body text of the comment
+    body = models.TextField()
+    # A timestamp for the creation of the post
+    # Information on date field arguments:
+    # https://docs.djangoproject.com/en/3.2/ref/models/fields/#datefield
+    created_on = models.DateTimeField(auto_now_add=True)
+    # A boolean to approve the post for display, set by site admin
+    approved = models.BooleanField(default=False)
+
+    class Meta:
+        # Oldest posts first, on order to follow the conversation flow
+        ordering = ['created_on']
+
+    def __str__(self):
+        # A string identifier for the comment and commenter
+        return f"Comment {self.body} by {self.name}"
