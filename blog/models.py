@@ -3,6 +3,8 @@ from django.db import models
 from django.contrib.auth.models import User
 # Allow use of Cloudinary fields in the models
 from cloudinary.models import CloudinaryField
+# WYSIWYG editor
+from tinymce.models import HTMLField
 
 # Create your models here.
 
@@ -32,7 +34,7 @@ class Post(models.Model):
     # Has a default placeholder when none is specified
     featured_image = CloudinaryField('image', default='placeholder')
     # The text content of the blog post
-    content = models.TextField()
+    content = HTMLField()
     # The text viewable from paginated blog post display
     excerpt = models.TextField(blank=True)
     # The status of the blog post
