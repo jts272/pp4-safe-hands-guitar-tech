@@ -79,7 +79,7 @@ class Comment(models.Model):
     approved = models.BooleanField(default=False)
 
     class Meta:
-        # Oldest posts first, on order to follow the conversation flow
+        # Oldest posts first, in order to follow the conversation flow
         ordering = ['created_on']
 
     def __str__(self):
