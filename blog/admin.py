@@ -31,3 +31,10 @@ class CommentAdmin(admin.ModelAdmin):
     list_display = ('name', 'body', 'post', 'created_on', 'approved')
     list_filter = ('approved', 'created_on')
     search_fields = ('name', 'email', 'body')
+    # Add ability to approve comments from the admin panel
+    # Reference: https://youtu.be/JGt1p8JhPyY?t=313
+    actions = ['approve_comments']
+
+    def approve_comments(self, request, queryset):
+        # Change the default bool of the approved field to True
+        queryset.update(approved=True)
