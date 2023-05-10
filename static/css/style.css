@@ -1,3 +1,7 @@
-body {
-  background: red;
+.navbar-override {
+  background-color: #390f18;
+}
+
+.footer-override {
+  background-color: black;
 }
