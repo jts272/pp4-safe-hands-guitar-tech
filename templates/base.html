@@ -41,7 +41,26 @@
         <li class="nav-item">
           <a class="nav-link disabled">Disabled</a>
         </li>
+        <!-- Authentication controls -->
+        <!-- Reference: https://github.com/Code-Institute-Solutions/Django3blog/blob/master/08_authorisation/templates/base.html -->
       </ul>
+      {% if user.is_authenticated %}
+      <ul class="navbar-nav ml-auto">
+        <li class="nav-item">
+          <a class="nav-link" href="{% url 'account_logout' %}">Logout</a>
+        </li>
+      </ul>
+      {% else %}
+      <ul class="navbar-nav ml-auto">
+        <li class="nav-item">
+          <a class="nav-link" href="{% url 'account_signup' %}">Register</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="{% url 'account_login' %}">Login</a>
+        </li>
+      </ul>
+      {% endif %}
+    </div>
     </div>
   </nav>
   <!-- Main -->
