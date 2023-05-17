@@ -52,17 +52,22 @@
     </div>
     <!-- Comment form -->
     <!-- Reference: https://youtu.be/dm1MToEiXuw?t=264-->
-    {% if user.is_authenticated %}
-      <div class="card">
-        <h4>Post a comment:</h4>
-        <div class="card-body">
-          <form method="post">
-            {{ comment_form|crispy }}
-            {% csrf_token %}
-            <button type="submit" class="btn btn-success btn-lg">Submit</button>
-          </form>
+    <!-- Comment pending approval notification -->
+    {% if commented %}
+      <div class="alert alert-success" role="alert">Your comment is pending approval!</div>
+    {% else %}
+      {% if user.is_authenticated %}
+        <div class="card">
+          <h4>Post a comment:</h4>
+          <div class="card-body">
+            <form method="post">
+              {{ comment_form|crispy }}
+              {% csrf_token %}
+              <button type="submit" class="btn btn-success btn-lg">Submit</button>
+            </form>
+          </div>
         </div>
-      </div>
+      {% endif %}
     {% endif %}
   </div>
 {% endblock content %}

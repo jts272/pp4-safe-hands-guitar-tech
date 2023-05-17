@@ -53,6 +53,50 @@ class PostDetail(View):
             {
                 'post': post,
                 'comments': comments,
+                # Bool to track that there is no pending post comment
+                'commented': False,
+                'liked': liked,
+                'comment_form': CommentForm,
+            }
+        )
+
+    # HTTP post method handling for comment submission
+    # Reference: https://youtu.be/K200vsthNQU
+    def post(self, request, slug, *args, **kwargs):
+        queryset = Post.objects.filter(status=1)
+        post = get_object_or_404(queryset, slug=slug)
+        comments = post.comments.filter(approved=True).order_by('created_on')
+        liked = False
+        if post.likes.filter(id=self.request.user.id).exists():
+            liked = True
+
+        # Get the data from the posted form
+        comment_form = CommentForm(data=request.POST)
+
+        # Use Django's form validation
+        if comment_form.is_valid():
+            # Get poster's data for the model from the request object
+            comment_form.instance.name = request.user.username
+            comment_form.instance.email = request.user.email
+            # Save the form, without submitting to the database
+            comment = comment_form.save(commit=False)
+            # Get the post that the comment was submitted to
+            comment.post = post
+            # Save now all data is collected
+            comment.save()
+        else:
+            # Return empty form instance if not valid
+            comment_form = CommentForm()
+
+        # Return request object, template and context object to use
+        return render(
+            request,
+            'post_detail.html',
+            {
+                'post': post,
+                'comments': comments,
+                # Set bool to mark pending status for post approval
+                'commented': True,
                 'liked': liked,
                 'comment_form': CommentForm,
             }
