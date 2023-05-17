@@ -3,6 +3,8 @@ from django.shortcuts import render, get_object_or_404
 from django.views import generic, View
 # Import the models that the views are based upon
 from .models import Post
+# Import the form required for posting comments
+from .forms import CommentForm
 
 # Create your views here.
 
@@ -51,6 +53,7 @@ class PostDetail(View):
             {
                 'post': post,
                 'comments': comments,
-                'liked': liked
+                'liked': liked,
+                'comment_form': CommentForm,
             }
         )

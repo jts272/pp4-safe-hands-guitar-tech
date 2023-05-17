@@ -1,58 +1,68 @@
 {% extends "base.html" %}
-
+{% load crispy_forms_tags %}
 {% block content %}
-
-<!-- Detailed post view with comments section -->
-<!-- Reference: https://github.com/Code-Institute-Solutions/django-blog-starter-files/blob/master/templates/post_detail.html-->
-<div class="container">
-
-  <div class="row">
-    <div class="col">
-      <!-- Post heading -->
-      <h2>{{ post.title }}</h2>
-      <!-- Post author and creation date-->
-      <p>{{ post.author }} | {{ post.created_on }}</p>
-      <!-- Featured image-->
-      <div class="d-none d-md-block">
-        {% if "placholder" in post.featured_image.url %}
-        <img
-          src="https://images.pexels.com/photos/5749829/pexels-photo-5749829.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
-          alt="A red guitar" width="100%">
-        {% else %}
-        <img src="{{ post.featured_image.url }}" alt="" width="100%">
-        {% endif %}
+  <!-- Detailed post view with comments section -->
+  <!-- Reference: https://github.com/Code-Institute-Solutions/django-blog-starter-files/blob/master/templates/post_detail.html-->
+  <div class="container">
+    <div class="row">
+      <div class="col">
+        <!-- Post heading -->
+        <h2>{{ post.title }}</h2>
+        <!-- Post author and creation date-->
+        <p>{{ post.author }} | {{ post.created_on }}</p>
+        <!-- Featured image-->
+        <div class="d-none d-md-block">
+          {% if "placholder" in post.featured_image.url %}
+            <img src="https://images.pexels.com/photos/5749829/pexels-photo-5749829.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
+                 alt="A red guitar"
+                 width="100%">
+          {% else %}
+            <img src="{{ post.featured_image.url }}" alt="" width="100%">
+          {% endif %}
+        </div>
+        <!-- Post body -->
+        <div class="card">
+          <div class="card-body">
+            <p class="card-text">{{ post.content|safe }}</p>
+          </div>
+        </div>
+        <!-- Comments and Likes counts -->
+        <div class="row">
+          <div class="col-1">
+            <strong class="text-secondary"><i class="far fa-heart"></i> {{ post.number_of_likes }}</strong>
+          </div>
+          <div class="col-1">
+            <strong class="text-secondary"><i class="far fa-comments"></i> {{ post.comments.count }}</strong>
+          </div>
+        </div>
       </div>
-      <!-- Post body -->
+    </div>
+    <!-- Comments section -->
+    <div class="card">
+      <h3>Comments:</h3>
+      <div class="card-body">
+        {% for comment in comments %}
+          <div>
+            <p>{{ comment.name }} on {{ comment.created_on }} said:</p>
+            <p>{{ comment.body }}</p>
+            <hr>
+          </div>
+        {% endfor %}
+      </div>
+    </div>
+    <!-- Comment form -->
+    <!-- Reference: https://youtu.be/dm1MToEiXuw?t=264-->
+    {% if user.is_authenticated %}
       <div class="card">
+        <h4>Post a comment:</h4>
         <div class="card-body">
-          <p class="card-text">{{ post.content|safe }}</p>
+          <form method="post">
+            {{ comment_form|crispy }}
+            {% csrf_token %}
+            <button type="submit" class="btn btn-success btn-lg">Submit</button>
+          </form>
         </div>
       </div>
-      <!-- Comments and Likes counts -->
-      <div class="row">
-        <div class="col-1">
-          <strong class="text-secondary"><i class="far fa-heart"></i> {{ post.number_of_likes }}</strong>
-        </div>
-        <div class="col-1">
-          <strong class="text-secondary"><i class="far fa-comments"></i> {{ post.comments.count }}</strong>
-        </div>
-      </div>
-    </div>
+    {% endif %}
   </div>
-  <!-- Comments section -->
-  <div class="card">
-    <h3>Comments:</h3>
-    <div class="card-body">
-      {% for comment in comments %}
-      <div>
-        <p>{{ comment.name }} on {{ comment.created_on }} said:</p>
-        <p>{{ comment.body }}</p>
-        <hr>
-      </div>
-      {% endfor %}
-    </div>
-  </div>
-
-</div>
-
 {% endblock content %}
