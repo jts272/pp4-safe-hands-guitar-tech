@@ -90,7 +90,7 @@
                 <strong>{{ comment.name }}</strong> on {{ comment.created_on }}
                 said:
               </p>
-              <p>{{ comment.body }}</p>
+              <p>{{ comment.body|safe }}</p>
               <!-- Separation between posts, except the last one -->
               {% if not forloop.last %}
               <hr />
