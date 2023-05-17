@@ -1,0 +1,11 @@
+{% if latest_blog_posts %}
+<ul>
+  {% for post in latest_blog_posts %}
+  <li>
+    <a href="/blog/{{ post.slug }}/">{{ post.title }}</a>
+  </li>
+  {% endfor %}
+</ul>
+{% else %}
+<p>There are no blog posts yet!</p>
+{% endif %}
