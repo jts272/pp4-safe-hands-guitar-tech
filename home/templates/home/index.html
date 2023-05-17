@@ -2,7 +2,7 @@
 <ul>
   {% for post in latest_blog_posts %}
   <li>
-    <a href="/blog/{{ post.slug }}/">{{ post.title }}</a>
+    <a href="{% url 'post_detail' post.slug %}">{{ post.title }}</a>
   </li>
   {% endfor %}
 </ul>
