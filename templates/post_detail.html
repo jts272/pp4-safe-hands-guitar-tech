@@ -1,75 +1,134 @@
-{% extends "base.html" %}
-{% load crispy_forms_tags %}
-{% block content %}
-  <!-- Detailed post view with comments section -->
-  <!-- Reference: https://github.com/Code-Institute-Solutions/django-blog-starter-files/blob/master/templates/post_detail.html-->
-  <div class="container">
-    <div class="row">
-      <div class="col">
-        <!-- Post heading -->
-        <h2>{{ post.title }}</h2>
-        <!-- Post author and creation date-->
-        <p>{{ post.author }} | {{ post.created_on }}</p>
-        <!-- Featured image-->
-        <div class="d-none d-md-block">
-          {% if "placholder" in post.featured_image.url %}
-            <img src="https://images.pexels.com/photos/5749829/pexels-photo-5749829.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
-                 alt="A red guitar"
-                 width="100%">
-          {% else %}
-            <img src="{{ post.featured_image.url }}" alt="" width="100%">
-          {% endif %}
-        </div>
-        <!-- Post body -->
-        <div class="card">
-          <div class="card-body">
-            <p class="card-text">{{ post.content|safe }}</p>
-          </div>
-        </div>
-        <!-- Comments and Likes counts -->
-        <div class="row">
-          <div class="col-1">
-            <strong class="text-secondary"><i class="far fa-heart"></i> {{ post.number_of_likes }}</strong>
-          </div>
-          <div class="col-1">
-            <strong class="text-secondary"><i class="far fa-comments"></i> {{ post.comments.count }}</strong>
-          </div>
+{% extends "base.html" %} {% load crispy_forms_tags %} {% block content %}
+<!-- Detailed post view with comments section -->
+<!-- Reference: https://github.com/Code-Institute-Solutions/django-blog-starter-files/blob/master/templates/post_detail.html-->
+<div class="container">
+  <!-- Blog Post -->
+  <div class="row">
+    <div class="col">
+      <!-- Post heading -->
+      <h2>{{ post.title }}</h2>
+      <!-- Post author and creation date-->
+      <p>{{ post.author }} | {{ post.created_on }}</p>
+      <!-- Featured image-->
+      <div class="d-none d-md-block">
+        {% if "placholder" in post.featured_image.url %}
+        <img
+          src="https://images.pexels.com/photos/5749829/pexels-photo-5749829.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
+          alt="A red guitar"
+          width="100%" />
+        {% else %}
+        <img src="{{ post.featured_image.url }}" alt="" width="100%" />
+        {% endif %}
+      </div>
+      <!-- Post body -->
+      <div class="card">
+        <div class="card-body">
+          <p class="card-text">{{ post.content|safe }}</p>
         </div>
       </div>
     </div>
-    <!-- Comments section -->
-    <div class="card">
-      <h3>Comments:</h3>
-      <div class="card-body">
-        {% for comment in comments %}
-          <div>
-            <p>{{ comment.name }} on {{ comment.created_on }} said:</p>
-            <p>{{ comment.body }}</p>
-            <hr>
-          </div>
-        {% endfor %}
-      </div>
+  </div>
+  <!-- Comments and Likes counts -->
+  <!-- Reference: https://youtu.be/bNqsrk8x1TI?t=259 -->
+  <div class="row justify-content-around my-3">
+    <!-- Logged in like form-->
+    {% if user.is_authenticated %}
+    <div class="col-2">
+      <!-- Handle likes input with a form -->
+      <form action="{% url 'post_like' post.slug %}" method="post">
+        {% csrf_token %} {% if liked %}
+        <!-- Solid red heart if liked -->
+        <button
+          type="submit"
+          name="blogpost_id"
+          value="{{ post.slug }}"
+          class="btn-like">
+          <i class="fas fa-heart"></i>
+        </button>
+        {% else %}
+        <!-- Outline heart if not liked -->
+        <button
+          type="submit"
+          name="blogpost_id"
+          value="{{ post.slug }}"
+          class="btn-like">
+          <i class="far fa-heart"></i>
+        </button>
+        {% endif %}
+        <strong class="text-secondary">{{ post.number_of_likes }}</strong>
+      </form>
     </div>
-    <!-- Comment form -->
-    <!-- Reference: https://youtu.be/dm1MToEiXuw?t=264-->
-    <!-- Comment pending approval notification -->
-    {% if commented %}
-      <div class="alert alert-success" role="alert">
-        Your comment is pending approval! Check out the other <a href="{% url 'blog' %}">blog posts!</a>
-      </div>
+    <div class="col-2">
+      <strong class="text-secondary">
+        <i class="far fa-comments"></i> {{ post.comments.count }}
+      </strong>
+    </div>
     {% else %}
-      {% if user.is_authenticated %}
-        <div class="card">
-          <h4>Post a comment:</h4>
+    <!-- For non logged in users -->
+    <div class="col-2">
+      <strong class="text-secondary">
+        <i class="far fa-heart"></i> {{ post.number_of_likes }}
+      </strong>
+    </div>
+    <div class="col-2">
+      <strong class="text-secondary">
+        <i class="far fa-comments"></i> {{ post.comments.count }}
+      </strong>
+    </div>
+    {% endif %}
+  </div>
+  <!-- Comments section -->
+  <div class="row mb-3">
+    <div class="col">
+      <div class="card">
+        <div class="card-body">
+          <h3 class="card-title">Comments:</h3>
+          <div class="card-text">
+            {% for comment in comments %}
+            <div>
+              <p>
+                <strong>{{ comment.name }}</strong> on {{ comment.created_on }}
+                said:
+              </p>
+              <p>{{ comment.body }}</p>
+              <!-- Separation between posts, except the last one -->
+              {% if not forloop.last %}
+              <hr />
+              {% endif %}
+            </div>
+            {% endfor %}
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- Comment form -->
+  <!-- Reference: https://youtu.be/dm1MToEiXuw?t=264-->
+  <!-- Comment pending approval notification -->
+  <div class="row mb-3">
+    <div class="col">
+      {% if commented %}
+      <div class="alert alert-success" role="alert">
+        Your comment is pending approval! Check out the other
+        <a href="{% url 'blog' %}">blog posts!</a>
+      </div>
+      <!-- Comment form for registered users -->
+      {% else %} {% if user.is_authenticated %}
+      <div class="card">
+        <div class="card-body">
+          <h4 class="card-title">Post a comment:</h4>
           <div class="card-body">
             <form method="post">
-              {{ comment_form|crispy }}
-              {% csrf_token %}
-              <button type="submit" class="btn btn-success btn-lg">Submit</button>
+              {{ comment_form|crispy }} {% csrf_token %}
+              <button type="submit" class="btn btn-success btn-lg">
+                Submit
+              </button>
             </form>
           </div>
         </div>
-      {% endif %}
-    {% endif %}
+      </div>
+      {% endif %} {% endif %}
+    </div>
   </div>
+</div>
 {% endblock content %}

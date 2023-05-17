@@ -20,3 +20,16 @@
   margin: 4px;
   text-transform: uppercase;
 }
+
+.btn-like {
+  color: #e84610;
+  border: none;
+  background: transparent;
+}
+
+.btn-like:hover,
+.btn-like:active {
+  color: #e84610;
+  background: transparent;
+  border: none;
+}

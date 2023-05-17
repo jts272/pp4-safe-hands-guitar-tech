@@ -106,7 +106,7 @@ class PostDetail(View):
         )
 
 
-class PostLike(generic.View):
+class PostLike(View):
     """This view handles the like functionality on blog posts."""
 
     def post(self, request, slug):
