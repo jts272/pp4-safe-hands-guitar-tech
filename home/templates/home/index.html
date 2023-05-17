@@ -9,7 +9,7 @@
   </div>
   <!-- Main content -->
   <div class="row">
-    <div class="col-lg-8">
+    <div class="col-lg-8 mt-3">
       Lorem ipsum dolor sit amet consectetur adipisicing elit. Mollitia itaque
       qui dolorem animi odit, rem placeat suscipit. Quo, perspiciatis nihil quod
       repellat explicabo incidunt officiis voluptatem eveniet nemo laboriosam
@@ -22,13 +22,18 @@
       aperiam est. Repellat velit iste quaerat, rem facilis praesentium
       voluptatum optio et dicta assumenda, porro mollitia?
     </div>
-    <div class="col-lg-4">
+    <div class="col-lg-4 mt-3">
       <!-- Recent blog post previews -->
+      <h3>Recent blog topics:</h3>
       {% if latest_blog_posts %}
-      <ul>
+      <ul class="list-unstyled">
         {% for post in latest_blog_posts %}
         <li>
-          <a href="{% url 'post_detail' post.slug %}">{{ post.title }}</a>
+          <p class="text-muted">
+            <a href="{% url 'post_detail' post.slug %}">{{ post.title }}</a>
+            - {{ post.updated_on }}
+          </p>
+          <p>{{ post.excerpt }}</p>
         </li>
         {% endfor %}
       </ul>
