@@ -22,4 +22,6 @@ urlpatterns = [
     path('summernote/', include('django_summernote.urls')),
     path('accounts/', include('allauth.urls')),
     path('blog/', include('blog.urls')),
+    # URLs from the home app function as the site's index page
+    path('', include('home.urls')),
 ]
