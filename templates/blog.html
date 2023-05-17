@@ -1,60 +1,67 @@
-{% extends "base.html" %}
-{% block content %}
-  <div class="col">
-    <h2>Test content block</h2>
-  </div>
-  <!-- Blog entries column -->
-  <!-- Reference: https://youtu.be/62vzUj7OmgM-->
-  <div class="container">
-    <div class="row">
-      {% for post in post_list %}
-        <!-- Individual blog posts -->
-        <div class="col-md-6">
-          <div class="card mb-4">
-            <div class="card-body">
-              <!-- Card content for blog posts -->
-              {% if "placeholder" in post.featured_image.url %}
-                <img src="https://images.pexels.com/photos/5749829/pexels-photo-5749829.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
-                     alt="A red guitar and lead"
-                     class="card-img-top">
-              {% else %}
-                <img src="{{ post.featured_image.url }}" alt="" class="card-img-top">
-              {% endif %}
-              <div class="image-flash">
-                <p class="author">Author: {{ post.author }}</p>
-              </div>
-              <a href="{% url 'post_detail' post.slug %}" class="post-link">
-                <h2 class="card-title">{{ post.title }}</h2>
-                <p class="card-text">{{ post.excerpt }}</p>
-              </a>
-              <hr>
-              <p class="card-text text-muted h6">
-                {{ post.created_on }}
-                <i class="far fa-heart">{{ post.number_of_likes }}</i>
-              </p>
-            </div>
+{% extends "base.html" %} {% block content %}
+<div class="col">
+  <h2>Test content block</h2>
+</div>
+<!-- Blog entries column -->
+<!-- Reference: https://youtu.be/62vzUj7OmgM-->
+<div class="container">
+  <div class="row">
+    {% for post in post_list %}
+    <!-- Individual blog posts -->
+    <div class="col-md-6">
+      <div class="card mb-4">
+        <div class="card-body">
+          <!-- Card content for blog posts -->
+          {% if "placeholder" in post.featured_image.url %}
+          <img
+            src="https://images.pexels.com/photos/5749829/pexels-photo-5749829.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
+            alt="A red guitar and lead"
+            class="card-img-top" />
+          {% else %}
+          <img
+            src="{{ post.featured_image.url }}"
+            alt=""
+            class="card-img-top" />
+          {% endif %}
+          <div class="image-flash">
+            <p class="author">Author: {{ post.author }}</p>
           </div>
+          <a
+            href="{% url 'post_detail' post.slug %}"
+            class="post-link stretched-link">
+            <h2 class="card-title">{{ post.title }}</h2>
+            <p class="card-text">{{ post.excerpt }}</p>
+          </a>
+          <hr />
+          <p class="card-text text-muted h6">
+            {{ post.created_on }}
+            <i class="far fa-heart">{{ post.number_of_likes }}</i>
+          </p>
         </div>
-        {% if forloop.counter|divisibleby:3 %}
-        </div>
-        <div class="row">
-        {% endif %}
-      {% endfor %}
+      </div>
     </div>
-    <!-- Pagination-->
-    <!-- Reference: https://developer.mozilla.org/en-US/docs/Learn/Server-side/Django/Generic_views#templates-->
-    {% block pagination %}
-      {% if is_paginated %}
-        <div class="pagination">
-          <span class="page-links">
-            {% if page_obj.has_previous %}
-              <a href="{{ request.path }}?page={{ page_obj.previous_page_number }}">previous</a>
-            {% endif %}
-            <span class="page-current">Page {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}.</span>
-            {% if page_obj.has_next %}<a href="{{ request.path }}?page={{ page_obj.next_page_number }}">next</a>{% endif %}
-          </span>
-        </div>
-      {% endif %}
-    {% endblock pagination %}
+    {% if forloop.counter|divisibleby:2 %}
   </div>
+  <div class="row">{% endif %} {% endfor %}</div>
+  <!-- Pagination-->
+  <!-- Reference: https://developer.mozilla.org/en-US/docs/Learn/Server-side/Django/Generic_views#templates-->
+  {% block pagination %} {% if is_paginated %}
+  <div class="pagination">
+    <span class="page-links">
+      {% if page_obj.has_previous %}
+      <a href="{{ request.path }}?page={{ page_obj.previous_page_number }}"
+        >previous</a
+      >
+      {% endif %}
+      <span class="page-current"
+        >Page {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}.</span
+      >
+      {% if page_obj.has_next %}<a
+        href="{{ request.path }}?page={{ page_obj.next_page_number }}"
+        >next</a
+      >{% endif %}
+    </span>
+  </div>
+  {% endif %} {% endblock pagination %}
+</div>
 {% endblock content %}
