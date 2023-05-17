@@ -1,7 +1,7 @@
-# Import the view  that the URLs route to
-from . import views
 from django.urls import path
 
+# Import the view  that the URLs route to
+from . import views
 
 urlpatterns = [
     path('', views.PostList.as_view(), name='blog'),
