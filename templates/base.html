@@ -57,6 +57,10 @@
         </ul>
         {% if user.is_authenticated %}
         <ul class="navbar-nav ml-auto">
+          <li class="nav-item nav-link btn-light rounded-pill text-dark">
+            Browsing as:
+            <span class="font-weight-bold">{{ user.username }}</span>
+          </li>
           <li class="nav-item">
             <a class="nav-link" href="{% url 'account_logout' %}">Logout</a>
           </li>
