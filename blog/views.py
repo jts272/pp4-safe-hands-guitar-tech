@@ -1,10 +1,13 @@
-from django.shortcuts import render, get_object_or_404
+# Import for redirection upon post liking
+from django.http import HttpResponseRedirect
+from django.shortcuts import get_object_or_404, render, reverse
 # Utilize Django's generic class-based views
-from django.views import generic, View
-# Import the models that the views are based upon
-from .models import Post
+from django.views import View, generic
+
 # Import the form required for posting comments
 from .forms import CommentForm
+# Import the models that the views are based upon
+from .models import Post
 
 # Create your views here.
 
@@ -101,3 +104,21 @@ class PostDetail(View):
                 'comment_form': CommentForm,
             }
         )
+
+
+class PostLike(generic.View):
+    """This view handles the like functionality on blog posts."""
+
+    def post(self, request, slug):
+        # Get the post in question by slug
+        post = get_object_or_404(Post, slug=slug)
+
+        # Remove logged in user from post like field if present
+        if post.likes.filter(id=request.user.id).exists():
+            post.likes.remove(request.user)
+        else:
+            # Add the current user to the like field
+            post.likes.add(request.user)
+
+        # Redirect to the current page
+        return HttpResponseRedirect(reverse('post_detail', args=[slug]))

@@ -54,7 +54,9 @@
     <!-- Reference: https://youtu.be/dm1MToEiXuw?t=264-->
     <!-- Comment pending approval notification -->
     {% if commented %}
-      <div class="alert alert-success" role="alert">Your comment is pending approval!</div>
+      <div class="alert alert-success" role="alert">
+        Your comment is pending approval! Check out the other <a href="{% url 'blog' %}">blog posts!</a>
+      </div>
     {% else %}
       {% if user.is_authenticated %}
         <div class="card">
