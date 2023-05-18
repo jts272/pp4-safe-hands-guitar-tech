@@ -59,6 +59,7 @@ INSTALLED_APPS = [
     'crispy_bootstrap4',
     'blog',
     'home.apps.HomeConfig',
+    'services.apps.ServicesConfig',
 ]
 
 # Allauth setup reference: https://youtu.be/HlocBbrss04
