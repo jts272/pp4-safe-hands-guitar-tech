@@ -47,6 +47,7 @@
 
 .brand {
   font-family: "Satisfy", cursive;
+  text-shadow: 3px 3px black;
   /* font-weight: bold; */
   font-size: 2em;
 }
