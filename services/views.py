@@ -13,3 +13,8 @@ class ServiceListView(ListView):
     Reference: https://docs.djangoproject.com/en/3.2/topics/class-based-views/generic-display/
     """
     model = Service
+    # Specify template to use. Django looks for '<app>/<model>_list.html
+    # by default with generic class-based views
+    # Namespace convention is followed by dir named after the app within
+    # the app's templates dir
+    template_name = 'services/services.html'
