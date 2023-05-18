@@ -18,3 +18,8 @@ class ServiceListView(ListView):
     # Namespace convention is followed by dir named after the app within
     # the app's templates dir
     template_name = 'services/services.html'
+    # A 'friendly' name to address the model in loops
+    # Django defaults this to '<model>_list'
+    # Alternatively, 'object_list' is always available to represent the
+    # model in templates
+    context_object_name = 'services'

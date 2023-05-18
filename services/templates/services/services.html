@@ -1,5 +1,16 @@
 {% extends 'base.html' %} {% load static %} {% block content %}
 
-<h2>Hello from the services page!</h2>
-
-{% endblock content %}
+<div class="container">
+  {% if services %} {% for service in services %}
+  <div class="row">
+    <div class="col">{{ service.name }}</div>
+  </div>
+  {% endfor %}
+</div>
+{% else %}
+<div class="row">
+  <div class="col">
+    <h2>No service information is currently available</h2>
+  </div>
+</div>
+{% endif %} {% endblock content %}
