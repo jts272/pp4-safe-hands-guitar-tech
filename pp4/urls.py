@@ -24,4 +24,6 @@ urlpatterns = [
     path('blog/', include('blog.urls')),
     # URLs from the home app function as the site's index page
     path('', include('home.urls')),
+    # URLs from services app
+    path('services/', include('services.urls')),
 ]
