@@ -5,7 +5,10 @@ from django.db import models
 # Create your models here.
 class Service(models.Model):
     """This model represents the services that customers can choose from
-    along with their corresponding prices."""
+    along with their corresponding prices.
+
+    Reference: https://developer.mozilla.org/en-US/docs/Learn/Server-side/Django/Admin_site
+    """
     # Name of the service to be carried out
     name = models.CharField(max_length=80)
     # Price of the service, with no upper limit or fractional digits
