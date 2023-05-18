@@ -1,4 +1,5 @@
 @import url("https://fonts.googleapis.com/css2?family=Satisfy&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Amiri&display=swap");
 
 .navbar-override {
   background-color: #390f18;
@@ -58,4 +59,9 @@
   border-radius: 25px;
   color: black;
   padding: 0.5em;
+}
+
+body {
+  font-family: "Amiri", sans-serif;
+  font-size: 1.4rem;
 }

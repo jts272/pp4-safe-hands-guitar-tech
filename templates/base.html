@@ -58,15 +58,12 @@
             <a class="nav-link" href="{% url 'blog' %}">Blog</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="{% url 'services:services' %}"
-              >Services</a
-            >
+            <a class="nav-link" href="{% url 'services:services' %}">
+              Services
+            </a>
+            <!-- Authentication controls -->
+            <!-- Reference: https://github.com/Code-Institute-Solutions/Django3blog/blob/master/08_authorisation/templates/base.html -->
           </li>
-          <li class="nav-item">
-            <a class="nav-link disabled">Disabled</a>
-          </li>
-          <!-- Authentication controls -->
-          <!-- Reference: https://github.com/Code-Institute-Solutions/Django3blog/blob/master/08_authorisation/templates/base.html -->
         </ul>
         {% if user.is_authenticated %}
         <ul class="navbar-nav ml-auto">
