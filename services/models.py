@@ -9,7 +9,7 @@ class Service(models.Model):
     # Name of the service to be carried out
     name = models.CharField(max_length=80)
     # Price of the service, with no upper limit or fractional digits
-    price = models.DecimalField(max_digits=0, decimal_places=0)
+    price = models.DecimalField(max_digits=4, decimal_places=0)
     # An overview of the work to be done in more detail
     description = models.TextField()
     # An image to associate with the service
