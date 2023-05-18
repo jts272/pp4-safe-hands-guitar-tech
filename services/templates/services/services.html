@@ -3,6 +3,11 @@
 <div class="container">
   {% if services %} {% for service in services %}
   <div class="row">
+    <div class="col">
+      <img
+        src="{{ service.featured_image }}"
+        alt="{{ service.featured_image_alt }}" />
+    </div>
     <div class="col">{{ service.name }}</div>
   </div>
   {% endfor %}
