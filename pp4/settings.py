@@ -60,6 +60,7 @@ INSTALLED_APPS = [
     'blog',
     'home.apps.HomeConfig',
     'services.apps.ServicesConfig',
+    'setups.apps.SetupsConfig',
 ]
 
 # Allauth authentication setup
@@ -89,6 +90,9 @@ ACCOUNT_EMAIL_VERIFICATION = 'none'
 ACCOUNT_EMAIL_REQUIRED = True
 # Verify users by username, not email at the login screen
 ACCOUNT_AUTHENTICATION_METHOD = 'username'
+# Turn off unique email requirement for debugging
+# Note: will redirect to yellow pages but account is made in admin
+ACCOUNT_UNIQUE_EMAIL = False
 
 
 MIDDLEWARE = [
