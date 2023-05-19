@@ -62,6 +62,16 @@ INSTALLED_APPS = [
     'services.apps.ServicesConfig',
 ]
 
+# Allauth authentication setup
+# Reference: https://django-allauth.readthedocs.io/en/latest/installation.html
+AUTHENTICATION_BACKENDS = [
+    # Needed to login by username in Django admin, regardless of `allauth`
+    'django.contrib.auth.backends.ModelBackend',
+
+    # `allauth` specific authentication methods, such as login by e-mail
+    'allauth.account.auth_backends.AuthenticationBackend',
+]
+
 # Allauth setup reference: https://youtu.be/HlocBbrss04
 
 # Specify a site id for Django/allauth
@@ -73,6 +83,12 @@ LOGOUT_REDIRECT_URL = '/'
 
 # Disable allauth email verification
 ACCOUNT_EMAIL_VERIFICATION = 'none'
+# ACCOUNT_EMAIL_VERIFICATION = 'optional'
+# Make submitting an email address required when signing up
+# Reference: https://django-allauth.readthedocs.io/en/latest/configuration.html
+ACCOUNT_EMAIL_REQUIRED = True
+# Verify users by username, not email at the login screen
+ACCOUNT_AUTHENTICATION_METHOD = 'username'
 
 
 MIDDLEWARE = [
