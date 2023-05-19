@@ -43,4 +43,12 @@
   <button class="primaryAction" type="submit">{% trans "Sign In" %}</button>
 </form>
 
+<!-- Remove 'Forgot Password?' allauth link - no email backed configuration -->
+<script>
+  (() => {
+    const forgotPassword = document.getElementsByClassName("secondaryAction")
+    forgotPassword[0].remove()
+  })()
+</script>
+
 {% endblock %}
