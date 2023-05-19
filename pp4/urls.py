@@ -14,10 +14,16 @@ Including another URLconf
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
 from django.contrib import admin
+# Import include method to use urls from other files
 from django.urls import path, include
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('summernote/', include('django_summernote.urls')),
-    path('', include('blog.urls'), name='blog_urls')
+    path('accounts/', include('allauth.urls')),
+    path('blog/', include('blog.urls')),
+    # URLs from the home app function as the site's index page
+    path('', include('home.urls')),
+    # URLs from services app
+    path('services/', include('services.urls')),
 ]

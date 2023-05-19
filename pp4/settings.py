@@ -30,7 +30,10 @@ SECRET_KEY = os.environ.get('SECRET_KEY')
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['pp4-safe-hands-guitar-tech.herokuapp.com', 'localhost']
+ALLOWED_HOSTS = [
+    'pp4-safe-hands-guitar-tech.herokuapp.com',
+    '127.0.0.1',
+    'localhost']
 
 
 # Application definition
@@ -41,12 +44,53 @@ INSTALLED_APPS = [
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
+    'django.contrib.sites',
+    'allauth',
+    'allauth.account',
+    'allauth.socialaccount',
     'cloudinary_storage',
     'django.contrib.staticfiles',
     'cloudinary',
     'django_summernote',
+    'crispy_forms',
+    'crispy_bootstrap4',
     'blog',
+    'home.apps.HomeConfig',
+    'services.apps.ServicesConfig',
+    'setups.apps.SetupsConfig',
 ]
+
+# Allauth authentication setup
+# Reference: https://django-allauth.readthedocs.io/en/latest/installation.html
+AUTHENTICATION_BACKENDS = [
+    # Needed to login by username in Django admin, regardless of `allauth`
+    'django.contrib.auth.backends.ModelBackend',
+
+    # `allauth` specific authentication methods, such as login by e-mail
+    'allauth.account.auth_backends.AuthenticationBackend',
+]
+
+# Allauth setup reference: https://youtu.be/HlocBbrss04
+
+# Specify a site id for Django/allauth
+SITE_ID = 1
+
+# Allauth redirects on login/logout
+LOGIN_REDIRECT_URL = '/'
+LOGOUT_REDIRECT_URL = '/'
+
+# Disable allauth email verification
+ACCOUNT_EMAIL_VERIFICATION = 'none'
+# ACCOUNT_EMAIL_VERIFICATION = 'optional'
+# Make submitting an email address required when signing up
+# Reference: https://django-allauth.readthedocs.io/en/latest/configuration.html
+ACCOUNT_EMAIL_REQUIRED = True
+# Verify users by username, not email at the login screen
+ACCOUNT_AUTHENTICATION_METHOD = 'username'
+# Turn off unique email requirement for debugging
+# Note: will redirect to yellow pages but account is made in admin
+ACCOUNT_UNIQUE_EMAIL = False
+
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
@@ -118,7 +162,7 @@ AUTH_PASSWORD_VALIDATORS = [
 
 LANGUAGE_CODE = 'en-us'
 
-TIME_ZONE = 'UTC'
+TIME_ZONE = 'Europe/London'
 
 USE_I18N = True
 
@@ -137,6 +181,10 @@ STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 
 MEDIA_URL = '/media/'
 DEFAULT_FILE_STORAGE = 'cloudinary_storage.storage.MediaCloudinaryStorage'
+
+# Bootstrap classes for crispy-forms
+CRISPY_ALLOWED_TEMPLATE_PACKS = 'bootstrap4'
+CRISPY_TEMPLATE_PACK = 'bootstrap4'
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/3.2/ref/settings/#default-auto-field

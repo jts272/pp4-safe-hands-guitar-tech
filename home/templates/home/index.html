@@ -1,0 +1,46 @@
+{% extends 'base.html' %} {% load static %} {% block content %}
+
+<div class="container">
+  <!-- Hero Image-->
+  <div class="row">
+    <div class="col">
+      <img src="{% static 'images/fender-hero.png' %}" alt="" class="hero" />
+    </div>
+  </div>
+  <!-- Main content -->
+  <div class="row">
+    <div class="col-lg-8 mt-3">
+      Lorem ipsum dolor sit amet consectetur adipisicing elit. Mollitia itaque
+      qui dolorem animi odit, rem placeat suscipit. Quo, perspiciatis nihil quod
+      repellat explicabo incidunt officiis voluptatem eveniet nemo laboriosam
+      iusto, laudantium iure accusamus. Facere, corporis unde et quisquam maxime
+      expedita natus commodi eligendi aut aliquid! Inventore in facere sed
+      nesciunt doloremque nisi explicabo nihil fuga mollitia impedit
+      perspiciatis, tempore molestias magnam pariatur quas. Nesciunt at,
+      reprehenderit nihil odio quaerat iusto laudantium temporibus repellendus,
+      vel neque qui veniam repellat odit! Illum neque consequatur saepe qui
+      aperiam est. Repellat velit iste quaerat, rem facilis praesentium
+      voluptatum optio et dicta assumenda, porro mollitia?
+    </div>
+    <div class="col-lg-4 mt-3">
+      <!-- Recent blog post previews -->
+      <h3>Recent blog topics:</h3>
+      {% if latest_blog_posts %}
+      <ul class="list-unstyled">
+        {% for post in latest_blog_posts %}
+        <li>
+          <p class="text-muted">
+            <a href="{% url 'post_detail' post.slug %}">{{ post.title }}</a>
+            - {{ post.updated_on }}
+          </p>
+          <p>{{ post.excerpt }}</p>
+        </li>
+        {% endfor %}
+      </ul>
+      {% else %}
+      <p>There are no blog posts yet!</p>
+      {% endif %}
+    </div>
+  </div>
+  {% endblock content %}
+</div>

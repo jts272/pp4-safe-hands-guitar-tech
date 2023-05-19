@@ -1,0 +1,67 @@
+@import url("https://fonts.googleapis.com/css2?family=Satisfy&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Amiri&display=swap");
+
+.navbar-override {
+  background-color: #390f18;
+  min-height: 3rem;
+}
+
+.footer-override {
+  background-color: black;
+}
+
+/* Reference classes - https://github.com/Code-Institute-Solutions/Django3blog/blob/master/06_creating_our_first_view/static/css/style.css */
+.image-flash {
+  position: absolute;
+  bottom: 5%;
+  min-width: 30%;
+  left: -2px;
+  background-color: #23bbbb;
+}
+
+.author {
+  color: white;
+  margin: 4px;
+  text-transform: uppercase;
+}
+
+.btn-like {
+  color: #e84610;
+  border: none;
+  background: transparent;
+}
+
+.btn-like:hover,
+.btn-like:active {
+  color: #e84610;
+  background: transparent;
+  border: none;
+}
+
+/* index.html */
+
+.hero {
+  width: 100%;
+  max-height: 30vh;
+  object-fit: cover;
+}
+
+.brand {
+  font-family: "Satisfy", cursive;
+  text-shadow: 3px 3px black;
+  /* font-weight: bold; */
+  font-size: 2em;
+}
+
+.auth-status {
+  background-color: #f8f9fa;
+  /* border: 1px solid #6c757d; */
+  border-radius: 25px;
+  color: black;
+  padding: 0.5em;
+}
+
+body {
+  font-family: "Amiri", sans-serif;
+  font-size: 1.4rem;
+}
