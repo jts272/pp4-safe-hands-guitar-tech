@@ -1,5 +1,17 @@
-{% extends 'base.html' %} {% block content %} {% if job_list %}
-<h2>Jobs are available!</h2>
+{% extends 'base.html' %}
+
+{% block content %}
+
+{% if job_list %}
+<ul>
+  {% for job in job_list %}
+  <li>
+    <a href="#">{{ job }}</a>
+  </li>
+  {% endfor %}
+</ul>
 {% else %}
 <h2>There are no jobs lists</h2>
-{% endif %} {% endblock content %}
+{% endif %}
+
+{% endblock content %}
