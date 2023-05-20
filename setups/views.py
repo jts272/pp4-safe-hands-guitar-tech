@@ -23,3 +23,7 @@ class JobListView(generic.ListView):
     https://docs.djangoproject.com/en/3.2/topics/db/queries/#field-lookups
     """
     model = Job
+
+
+class JobDetailView(generic.DetailView):
+    model = Job

@@ -56,7 +56,8 @@ class Job(models.Model):
 
     def get_absolute_url(self):
         # Return to the detail page of the model instance
-        return reverse("job_detail", kwargs={"pk": self.pk})
+        # App namespace must be included if declared in the URLconf
+        return reverse('setups:job_detail', args=[str(self.id)])
 
 
 # --------------------------------------------------------------------------- #

@@ -1,0 +1,13 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<h1>Job detail page!</h1>
+
+<p>{{ job.user }}</p>
+<p>{{ job.instrument }}</p>
+<p>{{ job.date_in }}</p>
+<p>{{ job.job_status }}</p>
+<img src="{{ job.image.url }}" alt="The customer's guitar - {{ job.instrument }}" height="540px" width="360px">
+
+{% endblock content %}

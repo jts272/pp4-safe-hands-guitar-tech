@@ -6,7 +6,7 @@
 <ul>
   {% for job in job_list %}
   <li>
-    <a href="#">{{ job }}</a>
+    <a href="{{ job.get_absolute_url }}">{{ job }}</a>
   </li>
   {% endfor %}
 </ul>
