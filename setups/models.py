@@ -18,7 +18,7 @@ class Job(models.Model):
     user = models.ForeignKey(
         User, on_delete=models.CASCADE, null=True, blank=True)
     # The user's instrument that the job will be performed on
-    instrument = models.models.CharField(max_length=80, null=True, blank=True)
+    instrument = models.CharField(max_length=80, null=True, blank=True)
     # Date the instrument was taken in for service
     date_in = models.DateField(default=timezone.now, null=True, blank=True)
     # Status of the job
@@ -40,8 +40,10 @@ class Job(models.Model):
     PAYMENT_METHOD = ((0, 'Cash'), (1, 'Bank Transfer'),
                       (2, 'PayPal'), (3, 'Other'))
     PAYMENT_STATUS = ((0, 'Unpaid'), (1, 'Paid'))
-    payement_method = models.IntegerField(choices=PAYMENT_METHOD, default=0)
-    payement_status = models.IntegerField(choices=PAYMENT_STATUS, default=0)
+    payment_method = models.IntegerField(
+        choices=PAYMENT_METHOD, default=0, null=True, blank=True)
+    payment_status = models.IntegerField(
+        choices=PAYMENT_STATUS, default=0, null=True, blank=True)
     # Date the instrument was returned to the customer
     date_out = models.DateField(default=timezone.now, null=True, blank=True)
 
