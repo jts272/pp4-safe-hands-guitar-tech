@@ -50,6 +50,13 @@ class Job(models.Model):
     class Meta:
         # Newest entries shown first
         ordering = ['-date_in']
+        # Permissions for delegating model CRUD functionality
+        # Reference: https://developer.mozilla.org/en-US/docs/Learn/Server-side/Django/Authentication#permissions
+        permissions = (
+            ('can_create_job', 'Create a job'),
+            ('can_update_job', 'Update a job'),
+            ('can_delete_job', 'Delete a job'),
+        )
 
     def __str__(self):
         return f"{self.user}'s {self.instrument} - Booked in on {self.date_in}"
