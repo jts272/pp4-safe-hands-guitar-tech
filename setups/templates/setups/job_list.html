@@ -6,6 +6,7 @@
 <ul>
   {% for job in job_list %}
   <li>
+    <img src="{{ job.image.url }}" alt="The customer's {{ job.instrument }}">
     <a href="{{ job.get_absolute_url }}">{{ job }}</a>
     <a href="{% url 'setups:job_update' pk=job.id %}">
       <button>Update Job</button>

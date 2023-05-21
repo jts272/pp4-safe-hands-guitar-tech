@@ -35,7 +35,8 @@ class JobAdmin(admin.ModelAdmin):
 
     fieldsets = (
         (None, {
-            'fields': (('user', 'instrument'), ('date_in', 'job_status'))
+            'fields': (
+                'image', ('user', 'instrument'), ('date_in', 'job_status'))
         }),
         ('Initial specification', {
             'fields': ('pre_strings',)

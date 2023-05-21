@@ -5,7 +5,9 @@
 <h1>Job Create/Update page!</h1>
 
 <!-- Reference: https://developer.mozilla.org/en-US/docs/Learn/Server-side/Django/Forms#templates-->
-<form action="" method="post">
+<!-- Form enctype attribute required for file upload of images -->
+<!-- Reference: https://stackoverflow.com/questions/43579909/image-is-not-uploaded-via-django-form -->
+<form action="" method="post" enctype="multipart/form-data">
   {% csrf_token %}
   <table>
     {{ form.as_table }}
