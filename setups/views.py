@@ -55,8 +55,8 @@ class JobUpdateView(generic.UpdateView):
     Note that use of '__all__' will render any new fields added to the
     model.
 
-    As with the Create view, this class looks for a template named:
-    '<model_name>_form.html, if not altered with the template_name_suffix
+    As with the Create view, this class looks for a template named
+    '<model_name>_form.html', if not altered with the template_name_suffix
     attribute.
 
     Reference: https://docs.djangoproject.com/en/3.2/ref/class-based-views/generic-editing/#updateview
@@ -70,6 +70,10 @@ class JobDeleteView(generic.DeleteView):
     it does not require any form fields to be displayed.
 
     A success url is declared as Django has no obvious default for this.
+
+    This view uses a template suffix name of '_confirm_delete' by default.
+
+    Reference: https://docs.djangoproject.com/en/3.2/ref/class-based-views/generic-editing/#deleteview
     """
     model = Job
     # Redirect to the list view upon deletion of a record

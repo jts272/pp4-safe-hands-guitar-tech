@@ -1,0 +1,16 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<h1>Job Create/Update page!</h1>
+
+<!-- Reference: https://developer.mozilla.org/en-US/docs/Learn/Server-side/Django/Forms#templates-->
+<form action="" method="post">
+  {% csrf_token %}
+  <table>
+    {{ form.as_table }}
+  </table>
+  <input type="submit" value="Submit" />
+</form>
+
+{% endblock content %}
