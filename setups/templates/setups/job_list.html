@@ -8,20 +8,29 @@
   <li>
     <img src="{{ job.image.url }}" alt="The customer's {{ job.instrument }}">
     <a href="{{ job.get_absolute_url }}">{{ job }}</a>
+    <!-- Permission check to update job -->
+    {% if perms.setups.can_update_job %}
     <a href="{% url 'setups:job_update' pk=job.id %}">
       <button>Update Job</button>
     </a>
+    {% endif %}
+    <!-- Permission check to delete job -->
+    {% if perms.setups.can_delete_job %}
     <a href="{% url 'setups:job_delete' pk=job.id %}">
       <button>Delete Job</button>
     </a>
+    {% endif %}
   </li>
   {% endfor %}
 </ul>
 {% else %}
 <h2>There are no jobs lists</h2>
 {% endif %}
+<!-- Permission check to create job -->
+{% if perms.setups.can_create_job %}
 <a href="{% url 'setups:job_create' %}">
   <button>Create a new Job</button>
 </a>
+{% endif %}
 
 {% endblock content %}

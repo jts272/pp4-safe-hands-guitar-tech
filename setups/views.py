@@ -1,3 +1,4 @@
+from django.contrib.auth.mixins import PermissionRequiredMixin
 from django.shortcuts import render
 from django.urls import reverse_lazy
 from django.views import generic
@@ -7,7 +8,7 @@ from .models import Job
 # Create your views here.
 
 
-class JobListView(generic.ListView):
+class JobListView(generic.ListView, PermissionRequiredMixin):
     """Generic list view to display jobs in the database.
 
     This generic class-based view will be looking for the following path:
@@ -25,6 +26,12 @@ class JobListView(generic.ListView):
     https://docs.djangoproject.com/en/3.2/topics/db/queries/#field-lookups
     """
     model = Job
+    # Test for permissions required as set in admin
+    # Reference: https://developer.mozilla.org/en-US/docs/Learn/Server-side/Django/Authentication#views
+    permission_required = (
+        'setups.can_create_job',
+        'setups.can_update_job',
+        'setups.can_delete_job')
 
 
 class JobDetailView(generic.DetailView):
