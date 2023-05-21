@@ -7,11 +7,20 @@
   {% for job in job_list %}
   <li>
     <a href="{{ job.get_absolute_url }}">{{ job }}</a>
+    <a href="{% url 'setups:job_update' pk=job.id %}">
+      <button>Update Job</button>
+    </a>
+    <a href="{% url 'setups:job_delete' pk=job.id %}">
+      <button>Delete Job</button>
+    </a>
   </li>
   {% endfor %}
 </ul>
 {% else %}
 <h2>There are no jobs lists</h2>
 {% endif %}
+<a href="{% url 'setups:job_create' %}">
+  <button>Create a new Job</button>
+</a>
 
 {% endblock content %}
