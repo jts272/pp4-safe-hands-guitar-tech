@@ -65,3 +65,9 @@ body {
   font-family: "Amiri", sans-serif;
   font-size: 1.4rem;
 }
+
+/* Accordion */
+
+.btn-accordion-override {
+  font-size: 1.4rem;
+}
