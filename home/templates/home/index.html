@@ -10,17 +10,71 @@
   <!-- Main content -->
   <div class="row">
     <div class="col-lg-8 mt-3">
-      Lorem ipsum dolor sit amet consectetur adipisicing elit. Mollitia itaque
-      qui dolorem animi odit, rem placeat suscipit. Quo, perspiciatis nihil quod
-      repellat explicabo incidunt officiis voluptatem eveniet nemo laboriosam
-      iusto, laudantium iure accusamus. Facere, corporis unde et quisquam maxime
-      expedita natus commodi eligendi aut aliquid! Inventore in facere sed
-      nesciunt doloremque nisi explicabo nihil fuga mollitia impedit
-      perspiciatis, tempore molestias magnam pariatur quas. Nesciunt at,
-      reprehenderit nihil odio quaerat iusto laudantium temporibus repellendus,
-      vel neque qui veniam repellat odit! Illum neque consequatur saepe qui
-      aperiam est. Repellat velit iste quaerat, rem facilis praesentium
-      voluptatum optio et dicta assumenda, porro mollitia?
+      <p>
+        Lorem ipsum dolor sit amet consectetur adipisicing elit. Mollitia itaque
+        qui dolorem animi odit, rem placeat suscipit. Quo, perspiciatis nihil quod
+        repellat explicabo incidunt officiis voluptatem eveniet nemo laboriosam
+        iusto, laudantium iure accusamus. Facere, corporis unde et quisquam maxime
+        expedita natus commodi eligendi aut aliquid! Inventore in facere sed
+        nesciunt doloremque nisi explicabo nihil fuga mollitia impedit
+        perspiciatis, tempore molestias magnam pariatur quas. Nesciunt at,
+        reprehenderit nihil odio quaerat iusto laudantium temporibus repellendus,
+        vel neque qui veniam repellat odit! Illum neque consequatur saepe qui
+        aperiam est. Repellat velit iste quaerat, rem facilis praesentium
+        voluptatum optio et dicta assumenda, porro mollitia?
+      </p>
+      <!-- Accordion with rotating arrows -->
+      <!-- Reference: https://www.tutorialrepublic.com/codelab.php?topic=bootstrap&file=accordion-with-arrow-icon -->
+      <div class="bs-example">
+        <div class="accordion" id="accordionExample">
+          <div class="card">
+            <div class="card-header" id="headingOne">
+              <h2 class="mb-0">
+                <button type="button" class="btn btn-link" data-toggle="collapse" data-target="#collapseOne"><i
+                    class="fa fa-angle-right"></i> What is HTML?</button>
+              </h2>
+            </div>
+            <div id="collapseOne" class="collapse" aria-labelledby="headingOne" data-parent="#accordionExample">
+              <div class="card-body">
+                <p>HTML stands for HyperText Markup Language. HTML is the standard markup language for describing the
+                  structure of web pages. <a href="https://www.tutorialrepublic.com/html-tutorial/"
+                    target="_blank">Learn more.</a></p>
+              </div>
+            </div>
+          </div>
+          <div class="card">
+            <div class="card-header" id="headingTwo">
+              <h2 class="mb-0">
+                <button type="button" class="btn btn-link collapsed" data-toggle="collapse"
+                  data-target="#collapseTwo"><i class="fa fa-angle-down"></i> What is Bootstrap?</button>
+              </h2>
+            </div>
+            <div id="collapseTwo" class="collapse show" aria-labelledby="headingTwo" data-parent="#accordionExample">
+              <div class="card-body">
+                <p>Bootstrap is a sleek, intuitive, and powerful front-end framework for faster and easier web
+                  development. It is a collection of CSS and HTML conventions. <a
+                    href="https://www.tutorialrepublic.com/twitter-bootstrap-tutorial/" target="_blank">Learn more.</a>
+                </p>
+              </div>
+            </div>
+          </div>
+          <div class="card">
+            <div class="card-header" id="headingThree">
+              <h2 class="mb-0">
+                <button type="button" class="btn btn-link collapsed" data-toggle="collapse"
+                  data-target="#collapseThree"><i class="fa fa-angle-right"></i> What is CSS?</button>
+              </h2>
+            </div>
+            <div id="collapseThree" class="collapse" aria-labelledby="headingThree" data-parent="#accordionExample">
+              <div class="card-body">
+                <p>CSS stands for Cascading Style Sheet. CSS allows you to specify various style properties for a given
+                  HTML element such as colors, backgrounds, fonts etc. <a
+                    href="https://www.tutorialrepublic.com/css-tutorial/" target="_blank">Learn more.</a></p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
     <div class="col-lg-4 mt-3">
       <!-- Recent blog post previews -->
@@ -44,3 +98,22 @@
   </div>
   {% endblock content %}
 </div>
+{% block scripts %}
+<script>
+  // Reference: https://www.tutorialrepublic.com/codelab.php?topic=bootstrap&file=accordion-with-arrow-icon
+  $(document).ready(function () {
+    // Add down arrow icon for collapse element which is open by default
+    $(".collapse.show").each(function () {
+      $(this).prev(".card-header").find(".fa").addClass("fa-angle-down").removeClass("fa-angle-right");
+    });
+
+    // Toggle right and down arrow icon on show hide of collapse element
+    $(".collapse").on('show.bs.collapse', function () {
+      $(this).prev(".card-header").find(".fa").removeClass("fa-angle-right").addClass("fa-angle-down");
+    }).on('hide.bs.collapse', function () {
+      $(this).prev(".card-header").find(".fa").removeClass("fa-angle-down").addClass("fa-angle-right");
+    });
+  });
+</script>
+
+{% endblock scripts %}
