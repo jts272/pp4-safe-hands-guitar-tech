@@ -42,6 +42,7 @@
 
 .hero {
   width: 100%;
+  height: auto;
   max-height: 33vh;
   object-fit: cover;
 }
@@ -49,21 +50,14 @@
 .brand {
   font-family: "Satisfy", cursive;
   text-shadow: 3px 3px black;
-  /* font-weight: bold; */
   font-size: 2em;
 }
-
-/* .auth-status {
-  color: white;
-} */
 
 body {
   font-family: "Amiri", sans-serif;
   font-size: 1.4rem;
 }
 
-/* Accordion */
-
-/* .btn-accordion-override {
-  font-size: 1.4rem;
-} */
+a {
+  color: #0071eb;
+}
