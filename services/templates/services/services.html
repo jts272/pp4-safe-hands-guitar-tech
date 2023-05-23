@@ -3,9 +3,9 @@
 {% block title %}
 <title>Safe Hands Guitar Tech | Services</title>
 {% endblock title %}
-<div class="container">
+<div class="container-fluid">
   <div class="row">
-    <div class="col">
+    <div class="col col-lg-10 offset-lg-1 p-3">
       <!-- General service overview -->
       <h2 class="my-2 mx-2">Services and Pricing</h2>
       <p class="my-2 mx-2">
@@ -20,74 +20,78 @@
         very different to that of an electric, the principles remain the same.
       </p>
     </div>
-  </div>
-  <!-- Service detail loop -->
-  <!-- Bootstrap horizontal card: https://getbootstrap.com/docs/4.6/components/card/#horizontal-->
-  {% if services %} {% for service in services reversed %}
-  <!-- Left-side card image for first iteration -->
-  {% if forloop.first %}
-  <div class="card mb-3">
-    <div class="row no-gutters">
-      <div class="col-md-4 d-flex">
-        <img
-          class="img-fluid img-thumbnail align-self-center"
-          src="{{ service.featured_image.url }}"
-          alt="{{ service.featured_image_alt }}" />
+    <!-- Service detail loop -->
+    <!-- Bootstrap horizontal card: https://getbootstrap.com/docs/4.6/components/card/#horizontal-->
+    {% if services %} {% for service in services reversed %}
+    {% if forloop.first %}
+    <div class="row">
+      <div class="col col-lg-10 offset-lg-1 p-3">
+        <!-- Left-side card image for first iteration -->
+        <div class="card mb-3">
+          <div class="row no-gutters">
+            <div class="col-md-4 d-flex">
+              <img class="img-fluid img-thumbnail align-self-center"
+                src="{{ service.featured_image.url }}"
+                alt="{{ service.featured_image_alt }}" />
+            </div>
+            <div class="col-md-8">
+              <div class="card-body">
+                <h3 class="card-title">{{ service.name }}</h3>
+                <p class="card-text">{{ service.description|safe }}</p>
+                <strong class="card-text">Price: from
+                  £{{ service.price }}</strong>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- Reverse the horizontal card format for even iterations -->
+        {% elif forloop.counter|divisibleby:2 %}
+        <div class="card mb-3">
+          <div class="row no-gutters">
+            <div class="col-md-8">
+              <div class="card-body">
+                <h3 class="card-title">{{ service.name }}</h3>
+                <p class="card-text">{{ service.description|safe }}</p>
+                <strong class="card-text">Price: from
+                  £{{ service.price }}</strong>
+              </div>
+            </div>
+            <div class="col-md-4 d-flex">
+              <img class="img-fluid img-thumbnail align-self-center"
+                src="{{ service.featured_image.url }}"
+                alt="{{ service.featured_image_alt }}" />
+            </div>
+          </div>
+        </div>
+        <!-- Back to left-side card image for odd iterations-->
+        {% else %}
+        <div class="card mb-3">
+          <div class="row no-gutters">
+            <div class="col-md-4 d-flex">
+              <img class="img-fluid img-thumbnail align-self-center"
+                src="{{ service.featured_image.url }}"
+                alt="{{ service.featured_image_alt }}" />
+            </div>
+            <div class="col-md-8">
+              <div class="card-body">
+                <h3 class="card-title">{{ service.name }}</h3>
+                <p class="card-text">{{ service.description|safe }}</p>
+                <strong class="card-text">Price: from
+                  £{{ service.price }}</strong>
+              </div>
+            </div>
+          </div>
+        </div>
+        {% endif %} {% endfor %}
       </div>
-      <div class="col-md-8">
-        <div class="card-body">
-          <h3 class="card-title">{{ service.name }}</h3>
-          <p class="card-text">{{ service.description|safe }}</p>
-          <strong class="card-text">Price: from £{{ service.price }}</strong>
+      <!-- Defensive clause for no access to Service model -->
+      {% else %}
+      <div class="row">
+        <div class="col">
+          <h2>No service information is currently available</h2>
         </div>
       </div>
     </div>
-  </div>
-  <!-- Reverse the horizontal card format for even iterations -->
-  {% elif forloop.counter|divisibleby:2 %}
-  <div class="card mb-3">
-    <div class="row no-gutters">
-      <div class="col-md-8">
-        <div class="card-body">
-          <h3 class="card-title">{{ service.name }}</h3>
-          <p class="card-text">{{ service.description|safe }}</p>
-          <strong class="card-text">Price: from £{{ service.price }}</strong>
-        </div>
-      </div>
-      <div class="col-md-4 d-flex">
-        <img
-          class="img-fluid img-thumbnail align-self-center"
-          src="{{ service.featured_image.url }}"
-          alt="{{ service.featured_image_alt }}" />
-      </div>
-    </div>
-  </div>
-  <!-- Back to left-side card image for odd iterations-->
-  {% else %}
-  <div class="card mb-3">
-    <div class="row no-gutters">
-      <div class="col-md-4 d-flex">
-        <img
-          class="img-fluid img-thumbnail align-self-center"
-          src="{{ service.featured_image.url }}"
-          alt="{{ service.featured_image_alt }}" />
-      </div>
-      <div class="col-md-8">
-        <div class="card-body">
-          <h3 class="card-title">{{ service.name }}</h3>
-          <p class="card-text">{{ service.description|safe }}</p>
-          <strong class="card-text">Price: from £{{ service.price }}</strong>
-        </div>
-      </div>
-    </div>
-  </div>
-  {% endif %} {% endfor %}
-</div>
-<!-- Defensive clause for no access to Service model -->
-{% else %}
-<div class="row">
-  <div class="col">
-    <h2>No service information is currently available</h2>
   </div>
 </div>
 {% endif %} {% endblock content %}
