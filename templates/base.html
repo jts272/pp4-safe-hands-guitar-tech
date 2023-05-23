@@ -65,8 +65,10 @@
       <ul class="navbar-nav ml-auto">
         <li class="nav-item nav-link">
           <span class="auth-status">
-            Browsing as:
-            <span class="font-weight-bold">{{ user.username }}</span>
+            <i class="fa-solid fa-user" aria-hidden="true"></i>
+            :
+            <span class="sr-only">Logged in as</span>
+            {{ user.username }}
           </span>
         </li>
         <li class="nav-item justify-content-center">
