@@ -2,25 +2,25 @@
 {% load static %}
 <!-- Template title -->
 {% block title %}
-<title>Safe Hands Guitar Tech | Blog</title>
+  <title>Safe Hands Guitar Tech | Blog</title>
 {% endblock title %}
 {% block content %}
-<div class="container-fluid">
-  <div class="row">
-    <div class="col col-lg-10 offset-lg-1 p-3">
-      <!-- Post list overview -->
-      <h2 class="my-2 mx-2">Blog Posts</h2>
-      <p class="my-2 mx-2">
-        Follow the conversation with the latest know-how to get the most out of
-        your instruments! <a href="{% url 'account_signup' %}">Register</a>
-        with us to add comments and likes. Post comments will display after they
-        have been approved by the author. Join in and share you opinion!
-      </p>
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col col-lg-10 offset-lg-1 p-3">
+        <!-- Post list overview -->
+        <h2 class="my-2 mx-2">Blog Posts</h2>
+        <p class="my-2 mx-2">
+          Follow the conversation with the latest know-how to get the most out of
+          your instruments! <a href="{% url 'account_signup' %}">Register</a>
+          with us to add comments and likes. Post comments will display after they
+          have been approved by the author. Join in and share you opinion!
+        </p>
+      </div>
     </div>
-  </div>
-  <!-- Blog entries column -->
-  <!-- Reference: https://youtu.be/62vzUj7OmgM-->
-  {% comment %} <div class="container">
+    <!-- Blog entries column -->
+    <!-- Reference: https://youtu.be/62vzUj7OmgM-->
+    {% comment %} <div class="container">
     <div class="row">
       {% for post in post_list %}
       <!-- Individual blog posts -->
@@ -29,17 +29,14 @@
           <div class="card-body">
             <!-- Card content for blog posts -->
             {% if "placeholder" in post.featured_image.url %}
-            <img src="{% static 'images/red-335.jpeg' %}"
-              alt="A red ES-335 type guitar" class="card-img-top" />
+            <img src="{% static 'images/red-335.jpeg' %}" alt="A red ES-335 type guitar" class="card-img-top" />
             {% else %}
-            <img src="{{ post.featured_image.url }}" alt=""
-              class="card-img-top" />
+            <img src="{{ post.featured_image.url }}" alt="" class="card-img-top" />
             {% endif %}
             <div class="image-flash">
               <p class="author">Author: {{ post.author }}</p>
             </div>
-            <a href="{% url 'post_detail' post.slug %}"
-              class="post-link stretched-link">
+            <a href="{% url 'post_detail' post.slug %}" class="post-link stretched-link">
               <h2 class="card-title">{{ post.title }}</h2>
               <p class="card-text">{{ post.excerpt }}</p>
             </a>
@@ -55,63 +52,64 @@
     </div>
     <div class="row">{% endif %} {% endfor %}</div>
 
-  </div> {% endcomment %}
-
-  {% if post_list %}
-  <div class="row">
-    <div class="col col-lg-10 offset-lg-1 p-3">
-      {% for post in post_list %}
-      <div class="card mb-3">
-        <div class="row no-gutters">
-          <div class="col-md-4 d-flex">
-            {% if "placeholder" in post.featured_image.url %}
-            <a href="{% url 'post_detail' post.slug %}">
-              <img class="img-fluid img-thumbnail align-self-center"
-                src="{% static 'images/red-335.jpeg' %}"
-                alt="A red ES-335 type guitar" />
-            </a>
-            {% else %}
-            <a href="{% url 'post_detail' post.slug %}">
-              <img class="img-fluid img-thumbnail align-self-center"
-                src="{{ post.featured_image.url }}" alt="" />
-            </a>
-            {% endif %}
-          </div>
-          <div class="col-md-8">
-            <div class="card-body">
-              <h3 class="card-title">{{ post.title }}</h3>
-              <h4 class="card-title text-muted">Author: {{ post.author }} |
-                Posted on: {{ post.created_on }}
-              </h4>
-              <p class="card-text">{{ post.excerpt }}</p>
-              <a href="{% url 'post_detail' post.slug %}"
-                class="stretched-link">Read more...</a>
+    </div> {% endcomment %}
+    {% if post_list %}
+      <div class="row">
+        <div class="col col-lg-10 offset-lg-1 p-3">
+          {% for post in post_list %}
+            <div class="card mb-3">
+              <div class="row no-gutters">
+                <div class="col-md-4 d-flex">
+                  {% if "placeholder" in post.featured_image.url %}
+                    <a href="{% url 'post_detail' post.slug %}">
+                      <img class="img-fluid img-thumbnail align-self-center"
+                           src="{% static 'images/red-335.jpeg' %}"
+                           alt="A red ES-335 type guitar" />
+                    </a>
+                  {% else %}
+                    <a href="{% url 'post_detail' post.slug %}">
+                      <img class="img-fluid img-thumbnail align-self-center"
+                           src="{{ post.featured_image.url }}"
+                           alt="" />
+                    </a>
+                  {% endif %}
+                </div>
+                <hr />
+                <div class="col-md-8">
+                  <div class="card-body">
+                    <h3 class="card-title">{{ post.title }}</h3>
+                    <h4 class="card-title text-muted">
+                      Author: {{ post.author }} |
+                      Posted on: {{ post.created_on }}
+                    </h4>
+                    <p class="card-text">{{ post.excerpt }}</p>
+                    <a href="{% url 'post_detail' post.slug %}" class="stretched-link">Read more...</a>
+                  </div>
+                </div>
+              </div>
             </div>
-          </div>
+          {% endfor %}
+          <!-- Pagination-->
+          <!-- Reference: https://developer.mozilla.org/en-US/docs/Learn/Server-side/Django/Generic_views#templates-->
+          {% block pagination %}
+            {% if is_paginated %}
+              <div class="pagination">
+                <span class="page-links">
+                  {% if page_obj.has_previous %}
+                    <a href="{{ request.path }}?page={{ page_obj.previous_page_number }}">previous</a>
+                  {% endif %}
+                  <span class="page-current">Page {{ page_obj.number }} of
+                  {{ page_obj.paginator.num_pages }}.</span>
+                  {% if page_obj.has_next %}
+                    <a href="{{ request.path }}?page={{ page_obj.next_page_number }}">next</a>
+                  {% endif %}
+                </span>
+              </div>
+            {% endif %}
+          {% endblock pagination %}
         </div>
       </div>
-      {% endfor %}
-
-      <!-- Pagination-->
-      <!-- Reference: https://developer.mozilla.org/en-US/docs/Learn/Server-side/Django/Generic_views#templates-->
-      {% block pagination %} {% if is_paginated %}
-      <div class="pagination">
-        <span class="page-links">
-          {% if page_obj.has_previous %}
-          <a
-            href="{{ request.path }}?page={{ page_obj.previous_page_number }}">previous</a>
-          {% endif %}
-          <span class="page-current">Page {{ page_obj.number }} of
-            {{ page_obj.paginator.num_pages }}.</span>
-          {% if page_obj.has_next %}<a
-            href="{{ request.path }}?page={{ page_obj.next_page_number }}">next</a>{% endif %}
-        </span>
-      </div>
-      {% endif %} {% endblock pagination %}
-
-    </div>
-  </div>
-  {% else %}
-  <h2>There are no blog posts yet!</h2>
-  {% endif %}
+    {% else %}
+      <h2>There are no blog posts yet!</h2>
+    {% endif %}
   {% endblock content %}
