@@ -67,6 +67,10 @@ body {
   object-fit: cover;
 }
 
+.post-list {
+  min-height: 87vh;
+}
+
 /* Bootstrap Accessibility concerns */
 
 a {
