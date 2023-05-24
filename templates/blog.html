@@ -1,4 +1,5 @@
 {% extends "base.html" %} {% block content %}
+{% load static %}
 <!-- Template title -->
 {% block title %}
 <title>Safe Hands Guitar Tech | Blog</title>
@@ -17,21 +18,16 @@
         <div class="card-body">
           <!-- Card content for blog posts -->
           {% if "placeholder" in post.featured_image.url %}
-          <img
-            src="https://images.pexels.com/photos/5749829/pexels-photo-5749829.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
-            alt="A red guitar and lead"
-            class="card-img-top" />
+          <img src="{% static 'images/red-335.jpeg' %}"
+            alt="A red guitar and lead" class="card-img-top" />
           {% else %}
-          <img
-            src="{{ post.featured_image.url }}"
-            alt=""
+          <img src="{{ post.featured_image.url }}" alt=""
             class="card-img-top" />
           {% endif %}
           <div class="image-flash">
             <p class="author">Author: {{ post.author }}</p>
           </div>
-          <a
-            href="{% url 'post_detail' post.slug %}"
+          <a href="{% url 'post_detail' post.slug %}"
             class="post-link stretched-link">
             <h2 class="card-title">{{ post.title }}</h2>
             <p class="card-text">{{ post.excerpt }}</p>
@@ -53,17 +49,13 @@
   <div class="pagination">
     <span class="page-links">
       {% if page_obj.has_previous %}
-      <a href="{{ request.path }}?page={{ page_obj.previous_page_number }}"
-        >previous</a
-      >
+      <a
+        href="{{ request.path }}?page={{ page_obj.previous_page_number }}">previous</a>
       {% endif %}
-      <span class="page-current"
-        >Page {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}.</span
-      >
+      <span class="page-current">Page {{ page_obj.number }} of
+        {{ page_obj.paginator.num_pages }}.</span>
       {% if page_obj.has_next %}<a
-        href="{{ request.path }}?page={{ page_obj.next_page_number }}"
-        >next</a
-      >{% endif %}
+        href="{{ request.path }}?page={{ page_obj.next_page_number }}">next</a>{% endif %}
     </span>
   </div>
   {% endif %} {% endblock pagination %}
