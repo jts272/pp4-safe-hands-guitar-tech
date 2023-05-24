@@ -10,14 +10,17 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/3.2/ref/settings/
 """
 
-from pathlib import Path
 # Get file for environment variables if present in root dir
 import os
+from pathlib import Path
+
 if os.path.isfile('env.py'):
     import env  # noqa
 
 # For parsing our provisioned Postgres database URL
 import dj_database_url
+# Implement Django's messaging system for user feedback
+from django.contrib.messages import constants as messages
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -95,6 +98,16 @@ ACCOUNT_AUTHENTICATION_METHOD = 'username'
 # Turn off unique email requirement for debugging
 # Note: will redirect to yellow pages but account is made in admin
 ACCOUNT_UNIQUE_EMAIL = False
+
+# Apply Bootstrap styling to Django messages
+# Reference: https://github.com/Code-Institute-Solutions/Django3blog/blob/master/11_messages/codestar/settings.py
+MESSAGE_TAGS = {
+    messages.DEBUG: 'alert-info',
+    messages.INFO: 'alert-info',
+    messages.SUCCESS: 'alert-success',
+    messages.WARNING: 'alert-warning',
+    messages.ERROR: 'alert-danger',
+}
 
 
 MIDDLEWARE = [
