@@ -115,16 +115,28 @@
       {% endblock content %}
     </main>
     <!-- Footer -->
-    <footer class="footer-override d-flex text-light flex-wrap flex-column flex-md-row text-center p-3">
+    <footer class="footer-override d-flex text-light flex-wrap flex-column flex-md-row text-center p-3 align-items-center">
+      <!-- Site summary -->
       <div class="col">
-        <small><em>Safe Hands Guitar Tech -</em> The best place to get the sound you've always dreamed of</small>
+        <small>Safe Hands Guitar Tech - <em>The best place to get the sound you've always dreamed of</em></small>
       </div>
-      <div class="col align-items-end">
-        <small class="d-block">Stay in touch:</small>
-        <i class="fa-solid fa-envelope"></i>
-        <i class="fa-solid fa-phone-flip"></i>
-        <i class="fa-brands fa-github"></i>
-        <i class="fa-brands fa-linkedin"></i>
+      <hr class="d-md-none" />
+      <!-- Social contact icons -->
+      <div class="col">
+        <small class="d-block">Get in touch:</small>
+        <a href="mailto:jts272@outlook.com" target="_blank" class="text-white"><i class="fa-solid fa-envelope" title="Email"></i></a>
+        <a href="https://www.linkedin.com/in/joseph-smith-dev/"
+           target="_blank"
+           class="text-white"><i class="fa-brands fa-linkedin" title="LinkedIn"></i></a>
+        <a href="https://github.com/jts272" target="_blank" class="text-white"><i class="fa-brands fa-github" title="GitHub"></i></a>
+      </div>
+      <hr />
+      <!-- Copyright information -->
+      <div class="col">
+        <small>An educational production for  <a href="https://codeinstitute.net/"
+     target="_blank"
+     class="text-decoration-none">
+          <span id="ci">Code Institute</span></a> | 2023</small>
       </div>
     </footer>
     <!-- jQuery as Bootrap 4 dependency -->

@@ -1,5 +1,6 @@
 @import url("https://fonts.googleapis.com/css2?family=Satisfy&display=swap");
 @import url("https://fonts.googleapis.com/css2?family=Amiri&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Montserrat&display=swap");
 
 .navbar-override {
   background-color: #390f18;
@@ -80,4 +81,26 @@ a {
 .btn-primary {
   background-color: #0062cc;
   border-color: #0062cc;
+}
+
+/* Social Icons */
+
+footer i {
+  background-color: #555555;
+  padding: 0.5rem;
+  border-radius: 50%;
+}
+
+footer i:hover {
+  background-color: #777777;
+}
+
+#ci {
+  color: #ff6900;
+  font-family: "Montserrat", sans-serif;
+}
+
+#ci:hover {
+  color: #ff9900;
+  font-family: "Montserrat", sans-serif;
 }
