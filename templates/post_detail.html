@@ -16,7 +16,7 @@
       <p>{{ post.author }} | {{ post.created_on }}</p>
       <!-- Featured image-->
       <div class="d-none d-md-block">
-        {% if "placholder" in post.featured_image.url %}
+        {% if "placeholder" in post.featured_image.url %}
         <img src="{% static 'images/red-335.jpeg' %}" alt="A red guitar"
           width="100%" />
         {% else %}
