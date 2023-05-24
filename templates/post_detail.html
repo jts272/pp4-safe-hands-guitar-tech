@@ -7,28 +7,26 @@
 {% block content %}
   <!-- Detailed post view with comments section -->
   <!-- Reference: https://github.com/Code-Institute-Solutions/django-blog-starter-files/blob/master/templates/post_detail.html-->
-  <div class="container">
-    <!-- Blog Post -->
+  <div class="container-fluid">
     <div class="row">
-      <div class="col">
-        <!-- Post heading -->
-        <h2>{{ post.title }}</h2>
-        <!-- Post author and creation date-->
-        <p>{{ post.author }} | {{ post.created_on }}</p>
-        <!-- Featured image-->
-        <div>
-          {% if "placeholder" in post.featured_image.url %}
-            <img src="{% static 'images/red-335.jpeg' %}"
-                 alt="A red ES-335 type guitar"
-                 id="blog-detail-img" />
-          {% else %}
-            <img src="{{ post.featured_image.url }}"
-                 alt="{{ post.featured_image_alt }}" />
-          {% endif %}
-        </div>
-        <!-- Post body -->
+      <div class="col col-lg-10 offset-lg-1 pt-3">
         <div class="card">
+          <!-- Post heading -->
           <div class="card-body">
+            <h3 class="card-title">{{ post.title }}</h3>
+            <p class="text-muted">By {{ post.author }} on {{ post.created_on }}</p>
+            <!-- Post image -->
+            <div class="img-fluid img-thumbnail">
+              {% if "placeholder" in post.featured_image.url %}
+                <img src="{% static 'images/red-335.jpeg' %}"
+                     alt="A red ES-335 type guitar"
+                     id="blog-detail-img" />
+              {% else %}
+                <img src="{{ post.featured_image.url }}"
+                     alt="{{ post.featured_image_alt }}" />
+              {% endif %}
+            </div>
+            <!-- Post content -->
             <div class="card-text">{{ post.content|safe }}</div>
           </div>
         </div>
@@ -135,7 +133,7 @@
     </div>
     <!-- Navigation back to post list -->
     <div class="row">
-      <div class="col d-flex justify-content-center mb-3">
+      <div class="col d-flex justify-content-center">
         <a href="{% url 'blog' %}" class="btn btn-lg btn-primary">Back to post list</a>
       </div>
     </div>
