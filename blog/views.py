@@ -26,7 +26,7 @@ class PostList(generic.ListView):
     template_name = 'blog.html'
     # Set the maximum number of posts to appear on one page
     # Navigation will be added automatically when the number is exceeded
-    paginate_by = 4
+    paginate_by = 2
 
 
 class PostDetail(View):
