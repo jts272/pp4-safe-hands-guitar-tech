@@ -98,7 +98,7 @@
         <!-- Reference: https://getbootstrap.com/docs/4.6/components/alerts/#dismissing -->
         {% for message in messages %}
         <div class="alert {{ message.tags }} alert-dismissible fade show mt-3"
-          role="alert">
+          role="alert" id="msg">
           {{ message|safe }}
           <button type="button" class="close" data-dismiss="alert"
             aria-label="Close">
@@ -134,6 +134,15 @@
     integrity="sha384-Fy6S3B9q64WdZWQUiU+q4/2Lc9npb8tCaSX9FK7E8HnRr0Jz8D6OP9dO5Vg3Q9ct"
     crossorigin="anonymous">
   </script>
+  <!-- Messages auto dismiss after four seconds -->
+  <script>
+    // Reference: https://github.com/Code-Institute-Solutions/Django3blog/blob/master/11_messages/templates/base.html
+    // Reference: https://getbootstrap.com/docs/4.6/components/alerts/#methods
+    setTimeout(() => {
+      $('#msg').alert('close')
+    }, 4000);
+  </script>
+
   <!-- Additional per-page script block -->
   {% block scripts %}
   <!-- Additional custom scripts here if required -->
