@@ -1,68 +1,65 @@
 {% extends 'base.html' %}
 {% load static %}
 {% block title %}
-<title>Safe Hands Guitar Tech | Setups</title>
+  <title>Safe Hands Guitar Tech | Setups</title>
 {% endblock title %}
-
 {% block content %}
-<div class="container-fluid">
-  <div class="row">
-    <div class="col col-lg-10 offset-lg-1 p-3">
-      <!-- Setup list overview -->
-      <h2 class="my-2 mx-2">Setups Catalogue</h2>
-      <p class="my-2 mx-2">
-        Here we see a collection of setups performed for registered users.
-        The most recent jobs are shown first. Select one from the list to find
-        out more!
-      </p>
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col col-lg-10 offset-lg-1 p-3">
+        <!-- Setup list overview -->
+        <h2 class="my-2 mx-2">Setups Catalogue</h2>
+        <p class="my-2 mx-2">
+          Here we see a collection of setups performed for registered users.
+          The most recent jobs are shown first. Select one from the list to find
+          out more!
+        </p>
+      </div>
     </div>
-  </div>
-
-  {% if job_list %}
-  <div class="row">
-    <div class="col col-lg-10 offset-lg-1 p-3">
-
-      {% for job in job_list %}
-      <!-- Service copy -->
-      <div class="card mb-3">
-        <div class="row no-gutters">
-          <div class="col-md-4 d-flex">
-            <a href="{{ job.get_absolute_url }}">
-              <img class="img-fluid img-thumbnail align-self-center"
-                src="{{ job.image.url }}" alt="{{ job }}" />
-            </a>
-          </div>
-          <div class="col-md-8">
-            <div class="card-body">
-              <h3 class="card-title">{{ job.instrument }}</h3>
-              <h4 class="card-title text-muted">User: {{ job.user }} | Booked
-                in:
-                {{ job.date_in }}</h4>
-              <p class="card-text">{{ job.description }}</p>
-              <a href="{{ job.get_absolute_url }}">Full details...</a>
+    {% if job_list %}
+      <div class="row">
+        <div class="col col-lg-10 offset-lg-1 p-3">
+          {% for job in job_list %}
+            <!-- Service copy -->
+            <div class="card mb-3">
+              <div class="row no-gutters">
+                <div class="col-md-4 d-flex">
+                  <img class="img-fluid img-thumbnail align-self-center"
+                       src="{{ job.image.url }}"
+                       alt="{{ job }}" />
+                </div>
+                <div class="col-md-8">
+                  <div class="card-body">
+                    <h3 class="card-title">{{ job.instrument }}</h3>
+                    <h4 class="card-title text-muted">
+                      User: {{ job.user }} | Booked
+                      in:
+                      {{ job.date_in }}
+                    </h4>
+                    <p class="card-text">{{ job.description }}</p>
+                    <a href="{{ job.get_absolute_url }}">Full details...</a>
+                  </div>
+                </div>
+              </div>
             </div>
-          </div>
+          {% endfor %}
+        </div>
+      {% else %}
+        <h2>There are no jobs lists</h2>
+      {% endif %}
+    </div>
+    <!-- Permission check to create job -->
+    {% if perms.setups.can_create_job %}
+      <div class="row mb-4">
+        <div class="col d-flex justify-content-center">
+          <a href="{% url 'setups:job_create' %}">
+            <button class="btn btn-lg btn-success mr-2">Create a new Job</button>
+          </a>
+          <a href="{% url 'home:index' %}">
+            <button class="btn btn-lg btn-primary ml-2">Home</button>
+          </a>
         </div>
       </div>
-      {% endfor %}
-    </div>
-    {% else %}
-    <h2>There are no jobs lists</h2>
     {% endif %}
   </div>
-  <!-- Permission check to create job -->
-  {% if perms.setups.can_create_job %}
-  <div class="row mb-4">
-    <div class="col d-flex justify-content-center">
-      <a href="{% url 'setups:job_create' %}">
-        <button class="btn btn-lg btn-success mr-2">Create a new Job</button>
-      </a>
-      <a href="{% url 'home:index' %}">
-        <button class="btn btn-lg btn-primary ml-2">Home</button>
-      </a>
-    </div>
-  </div>
-  {% endif %}
-</div>
-
 {% endblock content %}

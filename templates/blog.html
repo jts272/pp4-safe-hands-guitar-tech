@@ -26,17 +26,13 @@
               <div class="row no-gutters">
                 <div class="col-md-4 d-flex">
                   {% if "placeholder" in post.featured_image.url %}
-                    <a href="{% url 'post_detail' post.slug %}" class="d-flex">
-                      <img class="img-fluid img-thumbnail align-self-center"
-                           src="{% static 'images/red-335.jpeg' %}"
-                           alt="A red ES-335 type guitar" />
-                    </a>
+                    <img class="img-fluid img-thumbnail align-self-center"
+                         src="{% static 'images/red-335.jpeg' %}"
+                         alt="A red ES-335 type guitar" />
                   {% else %}
-                    <a href="{% url 'post_detail' post.slug %}" class="d-flex">
-                      <img class="img-fluid img-thumbnail align-self-center"
-                           src="{{ post.featured_image.url }}"
-                           alt="" />
-                    </a>
+                    <img class="img-fluid img-thumbnail align-self-center"
+                         src="{{ post.featured_image.url }}"
+                         alt="" />
                   {% endif %}
                 </div>
                 <div class="col-md-8">
