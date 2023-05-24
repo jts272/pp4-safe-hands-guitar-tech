@@ -58,14 +58,26 @@ body {
   font-size: 1.4rem;
 }
 
-a {
-  color: #0071eb;
-}
-
 /* Blog */
 
 #blog-detail-img {
   aspect-ratio: 16 / 9;
   width: 100%;
   object-fit: cover;
+}
+
+/* Bootstrap Accessibility concerns */
+
+a {
+  color: #0071eb;
+}
+
+.btn-success {
+  background-color: #1e7e34;
+  border-color: #1e7e34;
+}
+
+.btn-primary {
+  background-color: #0062cc;
+  border-color: #0062cc;
 }
