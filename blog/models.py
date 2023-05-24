@@ -33,7 +33,10 @@ class Post(models.Model):
     featured_image = CloudinaryField(
         'image', default='placeholder', blank=True)
     # The text content of the blog post
-    content = models.TextField()
+    content = models.TextField(
+        help_text=(
+            'Please specify style="width:100%;" in the "Code View" option of'
+            ' the Summernote editor for any embedded images'))
     # The text viewable from paginated blog post display
     excerpt = models.TextField(blank=True)
     # The status of the blog post

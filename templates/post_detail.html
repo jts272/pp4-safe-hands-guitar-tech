@@ -15,18 +15,19 @@
       <!-- Post author and creation date-->
       <p>{{ post.author }} | {{ post.created_on }}</p>
       <!-- Featured image-->
-      <div class="d-none d-md-block">
+      <div class="">
         {% if "placeholder" in post.featured_image.url %}
-        <img src="{% static 'images/red-335.jpeg' %}" alt="A red guitar"
-          width="100%" />
+        <img src="{% static 'images/red-335.jpeg' %}"
+          alt="A red ES-335 type guitar" id="blog-detail-img" />
         {% else %}
-        <img src="{{ post.featured_image.url }}" alt="" width="100%" />
+        <img src="{{ post.featured_image.url }}"
+          alt="{{ post.featured_image_alt }}" />
         {% endif %}
       </div>
       <!-- Post body -->
       <div class="card">
         <div class="card-body">
-          <p class="card-text">{{ post.content|safe }}</p>
+          <div class="card-text">{{ post.content|safe }}</div>
         </div>
       </div>
     </div>
