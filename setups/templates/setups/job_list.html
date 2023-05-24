@@ -27,8 +27,10 @@
       <div class="card mb-3">
         <div class="row no-gutters">
           <div class="col-md-4 d-flex">
-            <img class="img-fluid img-thumbnail align-self-center"
-              src="{{ job.image.url }}" alt="{{ job }}" />
+            <a href="{{ job.get_absolute_url }}">
+              <img class="img-fluid img-thumbnail align-self-center"
+                src="{{ job.image.url }}" alt="{{ job }}" />
+            </a>
           </div>
           <div class="col-md-8">
             <div class="card-body">
