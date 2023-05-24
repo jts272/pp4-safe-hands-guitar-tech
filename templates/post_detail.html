@@ -23,45 +23,39 @@
                      id="blog-detail-img" />
               {% else %}
                 <img src="{{ post.featured_image.url }}"
-                     alt="{{ post.featured_image_alt }}" />
+                     alt="{{ post.featured_image_alt }}"
+                     id="blog-detail-img" />
               {% endif %}
             </div>
             <!-- Post content -->
-            <div class="card-text">{{ post.content|safe }}</div>
+            <div class="card-text mt-3">{{ post.content|safe }}</div>
           </div>
         </div>
       </div>
     </div>
     <!-- Comments and Likes counts -->
     <!-- Reference: https://youtu.be/bNqsrk8x1TI?t=259 -->
-    <div class="row justify-content-around my-3">
+    <div class="row">
       <!-- Logged in like form -->
-      {% if user.is_authenticated %}
-        <div class="col-2">
+      {% comment %} {% if user.is_authenticated %}
           <!-- Handle likes input with a form -->
           <form action="{% url 'post_like' post.slug %}" method="post">
             {% csrf_token %}
             {% if liked %}
               <!-- Solid red heart if liked -->
-              <button type="submit"
-                      name="blogpost_id"
-                      value="{{ post.slug }}"
-                      class="btn-like">
+              <button type="submit" name="blogpost_id" value="{{ post.slug }}" class="btn-like">
                 <i class="fas fa-heart"></i>
               </button>
             {% else %}
               <!-- Outline heart if not liked -->
-              <button type="submit"
-                      name="blogpost_id"
-                      value="{{ post.slug }}"
-                      class="btn-like">
+              <button type="submit" name="blogpost_id" value="{{ post.slug }}" class="btn-like">
                 <i class="far fa-heart"></i>
               </button>
             {% endif %}
             <strong class="text-secondary">{{ post.number_of_likes }}</strong>
           </form>
         </div>
-        <div class="col-2">
+        <div class="col">
           <strong class="text-secondary">
             <i class="far fa-comments"></i> {{ post.comments.count }}
           </strong>
@@ -78,24 +72,56 @@
             <i class="far fa-comments"></i> {{ post.comments.count }}
           </strong>
         </div>
-      {% endif %}
+      {% endif %} {% endcomment %}
+      <div class="col d-flex justify-content-around my-3">
+        <!-- Handle like functionality for logged in users with a form -->
+        {% if user.is_authenticated %}
+          <form action="{% url 'post_like' post.slug %}" method="post">
+            {% csrf_token %}
+            {% if liked %}
+              <!-- Solid red heart if liked -->
+              <button type="submit"
+                      name="blogpost_id"
+                      value="{{ post.slug }}"
+                      class="btn-like">
+                <i class="fas fa-heart"></i>
+              </button>
+              <span class="text-muted">{{ post.number_of_likes }}</span>
+            {% else %}
+              <!-- Outline heart if not liked -->
+              <button type="submit"
+                      name="blogpost_id"
+                      value="{{ post.slug }}"
+                      class="btn-like">
+                <i class="far fa-heart"></i>
+              </button>
+              <span class="text-muted">{{ post.number_of_likes }}</span>
+            {% endif %}
+          </form>
+        {% else %}
+          <!-- For non-logged in users -->
+          <span class="text-muted"><i class="far fa-heart"></i> {{ post.number_of_likes }}</span>
+        {% endif %}
+        <!-- Always show comment count regardless of login status -->
+        <span class="text-muted"><i class="far fa-comments"></i> {{ post.comments.count }}</span>
+      </div>
     </div>
-    <!-- Comments section -->
-    <div class="row mb-3">
-      <div class="col">
-        <div class="card">
-          <div class="card-body">
-            <h3 class="card-title">Comments:</h3>
-            <div class="card-text">
-              {% for comment in comments %}
-                <div>
-                  <p>
-                    <strong>{{ comment.name }}</strong> on {{ comment.created_on }}
-                    said:
-                  </p>
-                  <p>{{ comment.body|safe }}</p>
-                  <!-- Separation between posts, except the last one -->
-                  {% if not forloop.last %}<hr />{% endif %}
+    {% comment %} <!-- Comments section -->
+                                                                                                                  <div class="row mb-3">
+                                                                                                                    <div class="col">
+                                                                                                                      <div class="card">
+                                                                                                                        <div class="card-body">
+                                                                        <h3 class="card-title">Comments:</h3>
+                                                                        <div class="card-text">
+                                                                          {% for comment in comments %}
+                                                                            <div>
+                                                                              <p>
+                                                                                <strong>{{ comment.name }}</strong> on {{ comment.created_on }}
+                                                                                said:
+                            </p>
+                            <p>{{ comment.body|safe }}</p>
+                            <!-- Separation between posts, except the last one -->
+                            {% if not forloop.last %}<hr />{% endif %}
                 </div>
               {% endfor %}
             </div>
@@ -137,5 +163,5 @@
         <a href="{% url 'blog' %}" class="btn btn-lg btn-primary">Back to post list</a>
       </div>
     </div>
-  </div>
+</div> {% endcomment %}
 {% endblock content %}
