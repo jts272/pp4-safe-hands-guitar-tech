@@ -21,7 +21,9 @@ class Job(models.Model):
     # Cannot be blank as a job must have an associated instrument
     instrument = models.CharField(max_length=80)
     # Date the instrument was taken in for service
-    date_in = models.DateField(null=True, blank=True)
+    date_in = models.DateField(null=True, blank=True, help_text=(
+        'Date format is YYYY-MM-DD'
+    ), default=timezone.datetime.now)
     # Status of the job
     JOB_STATUS = ((0, 'Todo'), (1, 'In progress'), (2, 'Completed'))
     job_status = models.IntegerField(
@@ -152,7 +154,9 @@ class Job(models.Model):
     payment_status = models.IntegerField(
         choices=PAYMENT_STATUS, default=0, null=True, blank=True)
     # Date the instrument was returned to the customer
-    date_out = models.DateField(null=True, blank=True)
+    date_out = models.DateField(null=True, blank=True, help_text=(
+        'Date format is YYYY-MM-DD'
+    ), default=timezone.datetime.now)
 
     class Meta:
         # Newest entries shown first
