@@ -14,7 +14,10 @@
             <h3 class="card-title">{{ job.instrument }}</h3>
             <h4 class="card-title text-muted">
               User: {{ job.user }} | Booked in:
-              {{ job.date_in }} | Status: {{ job.job_status }}
+              {{ job.date_in }} |
+              <!-- Display choice value, not code -->
+              <!-- Reference: https://stackoverflow.com/questions/4320679/django-display-choice-value -->
+              Status: {{ job.get_job_status_display }}
             </h4>
             <hr />
             <p class="card-text">
