@@ -1,6 +1,9 @@
+/* Google Fonts imports */
 @import url("https://fonts.googleapis.com/css2?family=Satisfy&display=swap");
 @import url("https://fonts.googleapis.com/css2?family=Amiri&display=swap");
 @import url("https://fonts.googleapis.com/css2?family=Montserrat&display=swap");
+
+/* Header and Footer  */
 
 .navbar-override {
   background-color: #390f18;
@@ -11,47 +14,12 @@
   background-color: black;
 }
 
-/* Reference classes - https://github.com/Code-Institute-Solutions/Django3blog/blob/master/06_creating_our_first_view/static/css/style.css */
-.image-flash {
-  position: absolute;
-  bottom: 5%;
-  min-width: 30%;
-  left: -2px;
-  background-color: #23bbbb;
-}
-
-.author {
-  color: white;
-  margin: 4px;
-  text-transform: uppercase;
-}
-
-.btn-like {
-  color: #e84610;
-  border: none;
-  background: transparent;
-}
-
-.btn-like:hover,
-.btn-like:active {
-  color: #e84610;
-  background: transparent;
-  border: none;
-}
-
-/* index.html */
-
-.hero {
-  width: 100%;
-  height: auto;
-  max-height: 33vh;
-  object-fit: cover;
-}
+/* Base classes */
 
 .brand {
   font-family: "Satisfy", cursive;
-  text-shadow: 3px 3px black;
   font-size: 2em;
+  text-shadow: 3px 3px black;
 }
 
 body {
@@ -59,12 +27,35 @@ body {
   font-size: 1.4rem;
 }
 
+/* Hero Image */
+
+.hero {
+  object-fit: cover;
+  height: auto;
+  max-height: 33vh;
+  width: 100%;
+}
+
 /* Blog */
+/* Reference classes for like button - https://github.com/Code-Institute-Solutions/Django3blog/blob/master/06_creating_our_first_view/static/css/style.css */
+
+.btn-like {
+  background: transparent;
+  border: none;
+  color: #e84610;
+}
+
+.btn-like:hover,
+.btn-like:active {
+  background: transparent;
+  border: none;
+  color: #e84610;
+}
 
 #blog-detail-img {
   aspect-ratio: 16 / 9;
-  width: 100%;
   object-fit: cover;
+  width: 100%;
 }
 
 .post-list {
@@ -91,8 +82,8 @@ a {
 
 footer i {
   background-color: #555555;
-  padding: 0.5rem;
   border-radius: 50%;
+  padding: 0.5rem;
 }
 
 footer i:hover {
