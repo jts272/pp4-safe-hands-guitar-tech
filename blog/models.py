@@ -30,9 +30,13 @@ class Post(models.Model):
     updated_on = models.DateTimeField(auto_now=True)
     # The banner image associated with the current blog post
     # Has a default placeholder when none is specified
-    featured_image = CloudinaryField('image', default='placeholder')
+    featured_image = CloudinaryField(
+        'image', default='placeholder', blank=True)
     # The text content of the blog post
-    content = models.TextField()
+    content = models.TextField(
+        help_text=(
+            'Please specify style="width:100%;" in the "Code View" option of'
+            ' the Summernote editor for any embedded images'))
     # The text viewable from paginated blog post display
     excerpt = models.TextField(blank=True)
     # The status of the blog post

@@ -1,71 +1,81 @@
-{% extends "base.html" %} {% block content %}
+{% extends "base.html" %}
+{% load static %}
 <!-- Template title -->
 {% block title %}
-<title>Safe Hands Guitar Tech | Blog</title>
+  <title>Safe Hands Guitar Tech | Blog</title>
 {% endblock title %}
-<div class="col">
-  <h2>Test content block</h2>
-</div>
-<!-- Blog entries column -->
-<!-- Reference: https://youtu.be/62vzUj7OmgM-->
-<div class="container">
-  <div class="row">
-    {% for post in post_list %}
-    <!-- Individual blog posts -->
-    <div class="col-md-6">
-      <div class="card mb-4">
-        <div class="card-body">
-          <!-- Card content for blog posts -->
-          {% if "placeholder" in post.featured_image.url %}
-          <img
-            src="https://images.pexels.com/photos/5749829/pexels-photo-5749829.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
-            alt="A red guitar and lead"
-            class="card-img-top" />
-          {% else %}
-          <img
-            src="{{ post.featured_image.url }}"
-            alt=""
-            class="card-img-top" />
-          {% endif %}
-          <div class="image-flash">
-            <p class="author">Author: {{ post.author }}</p>
-          </div>
-          <a
-            href="{% url 'post_detail' post.slug %}"
-            class="post-link stretched-link">
-            <h2 class="card-title">{{ post.title }}</h2>
-            <p class="card-text">{{ post.excerpt }}</p>
-          </a>
-          <hr />
-          <p class="card-text text-muted h6">
-            {{ post.created_on }}
-            <i class="far fa-heart">{{ post.number_of_likes }}</i>
-          </p>
-        </div>
+{% block content %}
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col col-lg-10 offset-lg-1 p-3">
+        <!-- Post list overview -->
+        <h2 class="my-2 mx-2">Blog Posts</h2>
+        <p class="my-2 mx-2">
+          Follow the conversation with the latest know-how to get the most out of
+          your instruments! <a href="{% url 'account_signup' %}">Register</a>
+          with us to add comments and likes. Post comments will display after they
+          have been approved by the author. Join in and share you opinion!
+        </p>
       </div>
     </div>
-    {% if forloop.counter|divisibleby:2 %}
+    <div class="row post-list">
+      <div class="col col-lg-10 offset-lg-1 p-3">
+        {% if post_list %}
+          {% for post in post_list %}
+            <div class="card mb-3">
+              <div class="row no-gutters">
+                <div class="col-md-4 d-flex">
+                  {% if "placeholder" in post.featured_image.url %}
+                    <img class="img-fluid img-thumbnail align-self-center"
+                         src="{% static 'images/red-335.jpeg' %}"
+                         alt="A red ES-335 type guitar" />
+                  {% else %}
+                    <img class="img-fluid img-thumbnail align-self-center"
+                         src="{{ post.featured_image.url }}"
+                         alt="" />
+                  {% endif %}
+                </div>
+                <div class="col-md-8">
+                  <div class="card-body">
+                    <h3 class="card-title">{{ post.title }}</h3>
+                    <h4 class="card-title text-muted">
+                      Author: {{ post.author }} |
+                      Posted on: {{ post.created_on }}
+                    </h4>
+                    <p class="card-text">{{ post.excerpt }}</p>
+                    <!-- Pluralize like count -->
+                    <!-- Reference: https://docs.djangoproject.com/en/3.2/ref/templates/builtins/#pluralize -->
+                    <span class="card-text text-muted">{{ post.number_of_likes }} Like{{ post.number_of_likes|pluralize }} |</span>
+                    <!-- Get comment count from Comment model related name -->
+                    <span class="card-text text-muted">{{ post.comments.count }} Comments |</span>
+                    <a href="{% url 'post_detail' post.slug %}" class="stretched-link">Read more...</a>
+                  </div>
+                </div>
+              </div>
+            </div>
+          {% endfor %}
+        {% else %}
+          <h2>There are no blog posts yet!</h2>
+        {% endif %}
+        <!-- Pagination-->
+        <!-- Reference: https://developer.mozilla.org/en-US/docs/Learn/Server-side/Django/Generic_views#templates-->
+        {% block pagination %}
+          {% if is_paginated %}
+            <div class="pagination d-flex justify-content-center">
+              <span class="page-links">
+                {% if page_obj.has_previous %}
+                  <a href="{{ request.path }}?page={{ page_obj.previous_page_number }}"><i class="fa-solid fa-chevron-left" aria-hidden="true"></i> Back</a>
+                {% endif %}
+                <span class="page-current">Page {{ page_obj.number }} of
+                {{ page_obj.paginator.num_pages }}</span>
+                {% if page_obj.has_next %}
+                  <a href="{{ request.path }}?page={{ page_obj.next_page_number }}">Next <i class="fa-solid fa-chevron-right" aria-hidden="true"></i></a>
+                {% endif %}
+              </span>
+            </div>
+          {% endif %}
+        {% endblock pagination %}
+      </div>
+    </div>
   </div>
-  <div class="row">{% endif %} {% endfor %}</div>
-  <!-- Pagination-->
-  <!-- Reference: https://developer.mozilla.org/en-US/docs/Learn/Server-side/Django/Generic_views#templates-->
-  {% block pagination %} {% if is_paginated %}
-  <div class="pagination">
-    <span class="page-links">
-      {% if page_obj.has_previous %}
-      <a href="{{ request.path }}?page={{ page_obj.previous_page_number }}"
-        >previous</a
-      >
-      {% endif %}
-      <span class="page-current"
-        >Page {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}.</span
-      >
-      {% if page_obj.has_next %}<a
-        href="{{ request.path }}?page={{ page_obj.next_page_number }}"
-        >next</a
-      >{% endif %}
-    </span>
-  </div>
-  {% endif %} {% endblock pagination %}
-</div>
 {% endblock content %}

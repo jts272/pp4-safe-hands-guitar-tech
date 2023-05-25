@@ -1,0 +1,43 @@
+{% extends 'base.html' %}
+{% load crispy_forms_tags %}
+{% block title %}
+<title>Safe Hands Guitar Tech | Create and Update Job</title>
+{% endblock title %}
+{% block content %}
+
+<div class="container-fluid">
+  <!-- Page introduction -->
+  <div class="row">
+    <div class="col col-lg-10 offset-lg-1 pt-3">
+      <h2>Create/Update your job:</h2>
+      <p>Fill out the form with as much detail as possible about your customer's
+        request. Add images in landscape orientation where possible.
+      </p>
+    </div>
+  </div>
+  <hr>
+  <!-- Job model form -->
+  <div class="row">
+    <div class="col col-lg-10 offset-lg-1 p-3 form-actions">
+      <!-- Reference: https://developer.mozilla.org/en-US/docs/Learn/Server-side/Django/Forms#templates-->
+      <!-- Form enctype attribute required for file upload of images -->
+      <!-- Reference: https://stackoverflow.com/questions/43579909/image-is-not-uploaded-via-django-form -->
+      <form action="" method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+        {% crispy form %}
+        <input type="submit" value="Submit" />
+      </form>
+      <a href="{% url 'setups:jobs' %}">
+        <button class="btn btn-lg btn-primary ml-2">Return to Job List</button>
+      </a>
+    </div>
+  </div>
+</div>
+{% block scripts %}
+<!-- Add Bootstrap styling to form submit button -->
+<script>
+  $("input[type=submit]").addClass("btn btn-lg btn-success")
+</script>
+{% endblock scripts %}
+
+{% endblock content %}

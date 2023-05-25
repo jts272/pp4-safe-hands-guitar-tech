@@ -1,5 +1,6 @@
 @import url("https://fonts.googleapis.com/css2?family=Satisfy&display=swap");
 @import url("https://fonts.googleapis.com/css2?family=Amiri&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Montserrat&display=swap");
 
 .navbar-override {
   background-color: #390f18;
@@ -42,26 +43,68 @@
 
 .hero {
   width: 100%;
-  max-height: 30vh;
+  height: auto;
+  max-height: 33vh;
   object-fit: cover;
 }
 
 .brand {
   font-family: "Satisfy", cursive;
   text-shadow: 3px 3px black;
-  /* font-weight: bold; */
   font-size: 2em;
-}
-
-.auth-status {
-  background-color: #f8f9fa;
-  /* border: 1px solid #6c757d; */
-  border-radius: 25px;
-  color: black;
-  padding: 0.5em;
 }
 
 body {
   font-family: "Amiri", sans-serif;
   font-size: 1.4rem;
+}
+
+/* Blog */
+
+#blog-detail-img {
+  aspect-ratio: 16 / 9;
+  width: 100%;
+  object-fit: cover;
+}
+
+.post-list {
+  min-height: 87vh;
+}
+
+/* Bootstrap Accessibility concerns */
+
+a {
+  color: #0071eb;
+}
+
+.btn-success {
+  background-color: #1e7e34;
+  border-color: #1e7e34;
+}
+
+.btn-primary {
+  background-color: #0062cc;
+  border-color: #0062cc;
+}
+
+/* Social Icons */
+
+footer i {
+  background-color: #555555;
+  padding: 0.5rem;
+  border-radius: 50%;
+}
+
+footer i:hover {
+  background-color: #777777;
+}
+
+#ci {
+  color: #ff6900;
+  font-family: "Montserrat", sans-serif;
+}
+
+#ci:hover {
+  color: #ff9900;
+  font-family: "Montserrat", sans-serif;
 }

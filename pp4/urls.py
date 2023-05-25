@@ -26,4 +26,6 @@ urlpatterns = [
     path('', include('home.urls')),
     # URLs from services app
     path('services/', include('services.urls')),
+    # URLs from setups app
+    path('jobs/', include('setups.urls')),
 ]

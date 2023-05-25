@@ -5,51 +5,47 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta
-      name="description"
-      content="The place to bring your electric, acoustic
-    or bass guitar for a great playing experience! Follow the blog or view the
-    range of service prices." />
-    <meta
-      name="keywords"
-      content="guitar, tech, luthier, setup, bridge, strings" />
+    <meta name="description"
+          content="The place to bring your electric, acoustic or bass guitar for a great playing experience! Follow the blog or view the range of service prices." />
+    <meta name="keywords"
+          content="guitar, tech, luthier, setup, bridge, strings" />
     <!-- Template title -->
     {% block title %}
-    <title>Safe Hands Guitar Tech | Home</title>
+      <title>Safe Hands Guitar Tech | Home</title>
     {% endblock title %}
+    <!-- Favicon -->
+    <link rel="shortcut icon"
+          href="{% static 'images/favicon.ico' %}"
+          type="image/x-icon" />
     <!-- Bootstrap CSS-->
-    <link
-      rel="stylesheet"
-      href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css"
-      integrity="sha384-xOolHFLEh07PJGoPkLv1IbcEPTNtaed2xpHsD9ESMhqIYd0nLMwNLD69Npy4HI+N"
-      crossorigin="anonymous" />
+    <link rel="stylesheet"
+          href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css"
+          integrity="sha384-xOolHFLEh07PJGoPkLv1IbcEPTNtaed2xpHsD9ESMhqIYd0nLMwNLD69Npy4HI+N"
+          crossorigin="anonymous" />
     <!-- Font Awesome icons -->
-    <link
-      rel="stylesheet"
-      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
-      integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw=="
-      crossorigin="anonymous"
-      referrerpolicy="no-referrer" />
+    <link rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+          integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw=="
+          crossorigin="anonymous"
+          referrerpolicy="no-referrer" />
     <!-- Local stylesheet -->
     <link rel="stylesheet" href="{% static 'css/style.css' %}" />
   </head>
-
   <body>
     <!-- Bootstrap Navbar -->
     <!-- https://getbootstrap.com/docs/4.6/components/navbar/ -->
     <nav class="navbar navbar-expand-lg navbar-dark navbar-override">
       <a class="navbar-brand" href="{% url 'home:index' %}">
-        <span class="brand">Safe Hands </span>
+        <span class="brand">Safe Hands</span>
         <span class="brand d-none d-sm-inline-block">Guitar Tech</span>
       </a>
-      <button
-        class="navbar-toggler"
-        type="button"
-        data-toggle="collapse"
-        data-target="#navbarNav"
-        aria-controls="navbarNav"
-        aria-expanded="false"
-        aria-label="Toggle navigation">
+      <button class="navbar-toggler"
+              type="button"
+              data-toggle="collapse"
+              data-target="#navbarNav"
+              aria-controls="navbarNav"
+              aria-expanded="false"
+              aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>
       <div class="collapse navbar-collapse" id="navbarNav">
@@ -58,58 +54,116 @@
             <a class="nav-link" href="{% url 'blog' %}">Blog</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="{% url 'services:services' %}">
-              Services
-            </a>
+            <a class="nav-link" href="{% url 'services:services' %}">Services</a>
+          </li>
+          <!-- List view for Jobs -->
+          <li class="nav-item">
+            <a class="nav-link" href="{% url 'setups:jobs' %}">Setups</a>
             <!-- Authentication controls -->
             <!-- Reference: https://github.com/Code-Institute-Solutions/Django3blog/blob/master/08_authorisation/templates/base.html -->
           </li>
         </ul>
         {% if user.is_authenticated %}
-        <ul class="navbar-nav ml-auto">
-          <li class="nav-item nav-link">
-            <span class="auth-status">
-              Browsing as:
-              <span class="font-weight-bold">{{ user.username }}</span>
-            </span>
-          </li>
-          <li class="nav-item justify-content-center">
-            <a class="nav-link" href="{% url 'account_logout' %}">Logout</a>
-          </li>
-        </ul>
+          <ul class="navbar-nav ml-auto">
+            <li class="nav-item nav-link">
+              <span class="auth-status">
+                <i class="fa-solid fa-user" aria-hidden="true"></i>
+                :
+                <span class="sr-only">Logged in as</span>
+                {{ user.username }}
+              </span>
+            </li>
+            <li class="nav-item justify-content-center">
+              <a class="nav-link" href="{% url 'account_logout' %}">Logout</a>
+            </li>
+          </ul>
         {% else %}
-        <ul class="navbar-nav ml-auto">
-          <li class="nav-item">
-            <a class="nav-link" href="{% url 'account_signup' %}">Register</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="{% url 'account_login' %}">Login</a>
-          </li>
-        </ul>
+          <ul class="navbar-nav ml-auto">
+            <li class="nav-item nav-link">
+              <span class="auth-status">
+                <i class="fa-solid fa-user" aria-hidden="true"></i>
+                :
+                <span class="sr-only">Logged in as</span>
+                Not logged in
+              </span>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="{% url 'account_signup' %}">Register</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="{% url 'account_login' %}">Login</a>
+            </li>
+          </ul>
         {% endif %}
       </div>
     </nav>
+    <!-- Django messages -->
+    <div class="container-fluid">
+      <div class="row">
+        <div class="col-md-8 offset-md-2">
+          <!-- Reference: https://youtu.be/kCnfxIUKZoY -->
+          <!-- Reference: https://getbootstrap.com/docs/4.6/components/alerts/#dismissing -->
+          {% for message in messages %}
+            <div class="alert {{ message.tags }} alert-dismissible fade show mt-3"
+                 role="alert"
+                 id="msg">
+              {{ message|safe }}
+              <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                <span aria-hidden="true"><i class="fa-solid fa-xmark"></i></span>
+              </button>
+            </div>
+          {% endfor %}
+        </div>
+      </div>
+    </div>
     <!-- Main -->
     <main>
       {% block content %}
-      <!-- Insert content here -->
+        <!-- Insert content here -->
       {% endblock content %}
     </main>
     <!-- Footer -->
-    <footer class="footer-override">
-      <div class="col text-center text-light">
-        <p class="mb-0">Footer <i class="fa-brands fa-github"></i></p>
+    <footer class="footer-override d-flex text-light flex-wrap flex-column flex-md-row text-center p-3 align-items-center">
+      <!-- Site summary -->
+      <div class="col">
+        <small>Safe Hands Guitar Tech - <em>The best place to get the sound you've always dreamed of</em></small>
+      </div>
+      <hr class="d-md-none" />
+      <!-- Social contact icons -->
+      <div class="col">
+        <small class="d-block">Get in touch:</small>
+        <a href="mailto:jts272@outlook.com" target="_blank" class="text-white"><i class="fa-solid fa-envelope" title="Email"></i></a>
+        <a href="https://www.linkedin.com/in/joseph-smith-dev/"
+           target="_blank"
+           class="text-white"><i class="fa-brands fa-linkedin" title="LinkedIn"></i></a>
+        <a href="https://github.com/jts272" target="_blank" class="text-white"><i class="fa-brands fa-github" title="GitHub"></i></a>
+      </div>
+      <hr />
+      <!-- Copyright information -->
+      <div class="col">
+        <small>An educational production for  <a href="https://codeinstitute.net/"
+     target="_blank"
+     class="text-decoration-none">
+          <span id="ci">Code Institute</span></a> | 2023</small>
       </div>
     </footer>
     <!-- jQuery as Bootrap 4 dependency -->
-    <script
-      src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js"
-      integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
-      crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous">
+    </script>
     <!-- Bootstrap JavaScript Bundle -->
-    <script
-      src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js"
-      integrity="sha384-Fy6S3B9q64WdZWQUiU+q4/2Lc9npb8tCaSX9FK7E8HnRr0Jz8D6OP9dO5Vg3Q9ct"
-      crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-Fy6S3B9q64WdZWQUiU+q4/2Lc9npb8tCaSX9FK7E8HnRr0Jz8D6OP9dO5Vg3Q9ct" crossorigin="anonymous">
+    </script>
+    <!-- Messages auto dismiss after four seconds -->
+    <script>
+      // Reference: https://github.com/Code-Institute-Solutions/Django3blog/blob/masterx/11_messages/templates/base.html
+      // Reference: https://getbootstrap.com/docs/4.6/components/alerts/#methods
+      setTimeout(() => {
+        $('#msg').alert('close')
+      }, 4000);
+    </script>
+    <!-- Additional per-page script block -->
+    {% block scripts %}
+      <!-- Additional custom scripts here if required -->
+    {% endblock scripts %}
   </body>
 </html>
