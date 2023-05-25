@@ -4,13 +4,15 @@ from .models import Job
 
 
 class JobAdmin(admin.ModelAdmin):
-    list_display = ('pk', 'user', 'instrument', 'date_in', 'job_status')
-    list_filter = ('job_status',)
+    list_display = ('pk', 'user', 'instrument', 'date_in',
+                    'job_status', 'public_status')
+    list_filter = ('job_status', 'public_status')
 
     fieldsets = (
         (None, {
             'fields': (
-                'image', ('user', 'instrument'), ('date_in', 'job_status'))
+                'image', ('user', 'instrument'), ('date_in', 'job_status',),
+                'public_status')
         }),
         ('Initial specification', {
             'fields': ('pre_string_brand',

@@ -18,14 +18,14 @@
     <hr />
     <!-- Job model form -->
     <div class="row">
-      <div class="col col-lg-10 offset-lg-1 p-3 form-actions">
+      <div class="col-10 offset-1 col-lg-4 offset-lg-4 p-3 form-actions">
         <!-- Reference: https://developer.mozilla.org/en-US/docs/Learn/Server-side/Django/Forms#templates-->
         <!-- Form enctype attribute required for file upload of images -->
         <!-- Reference: https://stackoverflow.com/questions/43579909/image-is-not-uploaded-via-django-form -->
         <form action="" method="post" enctype="multipart/form-data">
           {% csrf_token %}
           {{ form|crispy }}
-          <input type="submit" value="Submit" />
+          <input type="submit" value="Create Job" />
         </form>
         <a href="{% url 'setups:jobs' %}">
           <button class="btn btn-lg btn-primary mt-3">Return to Job List</button>

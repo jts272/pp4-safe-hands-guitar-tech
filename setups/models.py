@@ -32,6 +32,10 @@ class Job(models.Model):
     description = models.TextField(null=True, blank=True)
     # An image of the instrument
     image = CloudinaryField('image', null=True, blank=True)
+    # Test if the listing is visible to the public
+    PUBLIC_STATUS = ((0, 'Hidden'), (1, 'Visible'))
+    public_status = models.IntegerField(
+        choices=PUBLIC_STATUS, default=1)
 
     # Pre-setup specifications
     pre_string_brand = models.CharField(max_length=80, null=True, blank=True)
