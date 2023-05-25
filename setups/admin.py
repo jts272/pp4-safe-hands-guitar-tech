@@ -55,5 +55,15 @@ class JobAdmin(admin.ModelAdmin):
         }),
     )
 
+    actions = ('set_visible', 'set_hidden')
+
+    def set_visible(self, request, queryset):
+        # Set Job status to visible
+        queryset.update(public_status=1)
+
+    def set_hidden(self, request, queryset):
+        # Set Job status to visible
+        queryset.update(public_status=0)
+
 
 admin.site.register(Job, JobAdmin)
