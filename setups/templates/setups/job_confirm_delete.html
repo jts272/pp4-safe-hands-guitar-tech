@@ -1,22 +1,22 @@
 {% extends 'base.html' %}
 {% block title %}
-<title>Safe Hands Guitar Tech | Delete Job</title>
+  <title>Safe Hands Guitar Tech | Delete Job</title>
 {% endblock title %}
-
 {% block content %}
-
-<h1>Job Delete page!</h1>
-
-<p>Are you sure you want to delete {{ job }}?</p>
-
-<!-- Reference: https://developer.mozilla.org/en-US/docs/Learn/Server-side/Django/Forms#templates-->
-<form action="" method="post">
-  {% csrf_token %}
-  <input type="submit" value="Yes, delete" />
-</form>
-
-<a href="{% url 'setups:jobs' %}">
-  <button>No, take me back</button>
-</a>
-
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-10 offset-1 col-md-4 offset-md-4 p-3 d-flex flex-column min-vh-100 text-center">
+        <h1>Job Delete page!</h1>
+        <p>Are you sure you want to delete {{ job }}?</p>
+        <!-- Reference: https://developer.mozilla.org/en-US/docs/Learn/Server-side/Django/Forms#templates-->
+        <form action="" method="post">
+          {% csrf_token %}
+          <input type="submit" class="btn btn-lg btn-danger mb-3" value="Yes, delete" />
+          <a href="{% url 'setups:jobs' %}" class="btn btn-lg btn-primary mb-3">
+            No, take me back
+          </a>
+        </form>
+      </div>
+    </div>
+  </div>
 {% endblock content %}
