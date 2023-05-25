@@ -16,9 +16,19 @@
         </p>
       </div>
     </div>
-    {% if job_list %}
-      <div class="row">
-        <div class="col col-lg-10 offset-lg-1 p-3">
+    <div class="row">
+      <div class="col col-lg-10 offset-lg-1 p-3">
+        <!-- Permission check to create job -->
+        {% if perms.setups.can_create_job %}
+          <div class="row mb-4">
+            <div class="col d-flex justify-content-center">
+              <a href="{% url 'setups:job_create' %}">
+                <button class="btn btn-lg btn-success mr-2">Create a new Job</button>
+              </a>
+            </div>
+          </div>
+        {% endif %}
+        {% if job_list %}
           {% for job in job_list %}
             <!-- Service copy -->
             <div class="card mb-3">
@@ -43,23 +53,18 @@
               </div>
             </div>
           {% endfor %}
-        </div>
-      {% else %}
-        <h2>There are no jobs lists</h2>
-      {% endif %}
-    </div>
-    <!-- Permission check to create job -->
-    {% if perms.setups.can_create_job %}
-      <div class="row mb-4">
-        <div class="col d-flex justify-content-center">
-          <a href="{% url 'setups:job_create' %}">
-            <button class="btn btn-lg btn-success mr-2">Create a new Job</button>
-          </a>
-          <a href="{% url 'home:index' %}">
-            <button class="btn btn-lg btn-primary ml-2">Home</button>
-          </a>
+        {% else %}
+          <h2 class="vh-100">There are no public jobs listed</h2>
+        {% endif %}
+        <!-- Link home -->
+        <div class="row">
+          <div class="col d-flex justify-content-center">
+            <a href="{% url 'home:index' %}">
+              <button class="btn btn-lg btn-primary">Home</button>
+            </a>
+          </div>
         </div>
       </div>
-    {% endif %}
+    </div>
   </div>
 {% endblock content %}
