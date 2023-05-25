@@ -25,7 +25,7 @@
         <form action="" method="post" enctype="multipart/form-data">
           {% csrf_token %}
           {{ form|crispy }}
-          <input type="submit" value="Create Job" />
+          <input type="submit" value="Create/Update Job" />
         </form>
         <a href="{% url 'setups:jobs' %}">
           <button class="btn btn-lg btn-primary mt-3">Return to Job List</button>
