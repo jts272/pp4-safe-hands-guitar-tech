@@ -18,7 +18,8 @@ class Job(models.Model):
     user = models.ForeignKey(
         User, on_delete=models.CASCADE, null=True, blank=True)
     # The user's instrument that the job will be performed on
-    instrument = models.CharField(max_length=80, null=True, blank=True)
+    # Cannot be blank as a job must have an associated instrument
+    instrument = models.CharField(max_length=80)
     # Date the instrument was taken in for service
     date_in = models.DateField(default=timezone.now, null=True, blank=True)
     # Status of the job
@@ -31,10 +32,110 @@ class Job(models.Model):
     image = CloudinaryField('image', null=True, blank=True)
 
     # Pre-setup specifications
-    pre_strings = models.CharField(max_length=80, null=True, blank=True)
+    pre_string_brand = models.CharField(max_length=80, null=True, blank=True)
+    pre_string_gauges = models.CharField(
+        max_length=80, null=True, blank=True, help_text=(
+            'Provide either the gauge of the set, e.g. 10-52 or each'
+            '  individual string, from first string to last string'
+        ))
+    pre_scale_length = models.CharField(max_length=80, null=True, blank=True)
+    pre_fretboard_radius = models.CharField(
+        max_length=80, null=True, blank=True)
+    pre_bridge_saddle_radius = models.CharField(
+        max_length=80, null=True, blank=True)
+    pre_fret_width_and_height = models.CharField(
+        max_length=80, null=True, blank=True)
+    pre_neck_relief = models.CharField(
+        max_length=80, null=True, blank=True, help_text=(
+            'Specify at which fret the measurement was taken'
+        ))
+    pre_nut_action = models.CharField(
+        max_length=80, null=True, blank=True, help_text=(
+            'Specify if the reading is open or fretted'
+        ))
+    pre_action_1 = models.CharField(
+        max_length=80, null=True, blank=True, help_text=(
+            'Specify at which fret the measurement was taken'
+        ))
+    pre_action_2 = models.CharField(
+        max_length=80, null=True, blank=True, help_text=(
+            'Specify at which fret the measurement was taken'
+        ))
+    pre_action_3 = models.CharField(
+        max_length=80, null=True, blank=True, help_text=(
+            'Specify at which fret the measurement was taken'
+        ))
+    pre_neck_pickup_height = models.CharField(
+        max_length=80, null=True, blank=True, help_text=(
+            'Provide values for polepiece height on bass and treble side, with'
+            ' the last fret fretted'
+        )
+    )
+    pre_middle_pickup_height = models.CharField(
+        max_length=80, null=True, blank=True, help_text=(
+            'Provide values for polepiece height on bass and treble side, with'
+            ' the last fret fretted'
+        )
+    )
+    pre_bridge_pickup_height = models.CharField(
+        max_length=80, null=True, blank=True, help_text=(
+            'Provide values for polepiece height on bass and treble side, with'
+            ' the last fret fretted'
+        )
+    )
 
     # Post-setup specifications
-    post_strings = models.CharField(max_length=80, null=True, blank=True)
+    post_string_brand = models.CharField(max_length=80, null=True, blank=True)
+    post_string_gauges = models.CharField(
+        max_length=80, null=True, blank=True, help_text=(
+            'Provide either the gauge of the set, e.g. 10-52 or each'
+            '  individual string, from first string to last string'
+        ))
+    post_scale_length = models.CharField(max_length=80, null=True, blank=True)
+    post_fretboard_radius = models.CharField(
+        max_length=80, null=True, blank=True)
+    post_bridge_saddle_radius = models.CharField(
+        max_length=80, null=True, blank=True)
+    post_fret_width_and_height = models.CharField(
+        max_length=80, null=True, blank=True)
+    post_neck_relief = models.CharField(
+        max_length=80, null=True, blank=True, help_text=(
+            'Specify at which fret the measurement was taken'
+        ))
+    post_nut_action = models.CharField(
+        max_length=80, null=True, blank=True, help_text=(
+            'Specify if the reading is open or fretted'
+        ))
+    post_action_1 = models.CharField(
+        max_length=80, null=True, blank=True, help_text=(
+            'Specify at which fret the measurement was taken'
+        ))
+    post_action_2 = models.CharField(
+        max_length=80, null=True, blank=True, help_text=(
+            'Specify at which fret the measurement was taken'
+        ))
+    post_action_3 = models.CharField(
+        max_length=80, null=True, blank=True, help_text=(
+            'Specify at which fret the measurement was taken'
+        ))
+    post_neck_pickup_height = models.CharField(
+        max_length=80, null=True, blank=True, help_text=(
+            'Provide values for polepiece height on bass and treble side, with'
+            ' the last fret fretted'
+        )
+    )
+    post_middle_pickup_height = models.CharField(
+        max_length=80, null=True, blank=True, help_text=(
+            'Provide values for polepiece height on bass and treble side, with'
+            ' the last fret fretted'
+        )
+    )
+    post_bridge_pickup_height = models.CharField(
+        max_length=80, null=True, blank=True, help_text=(
+            'Provide values for polepiece height on bass and treble side, with'
+            ' the last fret fretted'
+        )
+    )
 
     # Transactional information
     PAYMENT_METHOD = ((0, 'Cash'), (1, 'Bank Transfer'),
