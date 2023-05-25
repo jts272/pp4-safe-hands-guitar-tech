@@ -21,7 +21,7 @@ class Job(models.Model):
     # Cannot be blank as a job must have an associated instrument
     instrument = models.CharField(max_length=80)
     # Date the instrument was taken in for service
-    date_in = models.DateField(default=timezone.now, null=True, blank=True)
+    date_in = models.DateField(null=True, blank=True)
     # Status of the job
     JOB_STATUS = ((0, 'Todo'), (1, 'In progress'), (2, 'Completed'))
     job_status = models.IntegerField(
@@ -36,7 +36,7 @@ class Job(models.Model):
     pre_string_gauges = models.CharField(
         max_length=80, null=True, blank=True, help_text=(
             'Provide either the gauge of the set, e.g. 10-52 or each'
-            '  individual string, from first string to last string'
+            ' individual string, from first string to last string'
         ))
     pre_scale_length = models.CharField(max_length=80, null=True, blank=True)
     pre_fretboard_radius = models.CharField(
@@ -83,13 +83,16 @@ class Job(models.Model):
             ' the last fret fretted'
         )
     )
+    pre_notes = models.TextField(null=True, blank=True, help_text=(
+        'Provide any additional notes before job completion if required'
+    ))
 
     # Post-setup specifications
     post_string_brand = models.CharField(max_length=80, null=True, blank=True)
     post_string_gauges = models.CharField(
         max_length=80, null=True, blank=True, help_text=(
             'Provide either the gauge of the set, e.g. 10-52 or each'
-            '  individual string, from first string to last string'
+            ' individual string, from first string to last string'
         ))
     post_scale_length = models.CharField(max_length=80, null=True, blank=True)
     post_fretboard_radius = models.CharField(
@@ -136,6 +139,9 @@ class Job(models.Model):
             ' the last fret fretted'
         )
     )
+    post_notes = models.TextField(null=True, blank=True, help_text=(
+        'Provide any additional notes after job completion'
+    ))
 
     # Transactional information
     PAYMENT_METHOD = ((0, 'Cash'), (1, 'Bank Transfer'),
@@ -146,7 +152,7 @@ class Job(models.Model):
     payment_status = models.IntegerField(
         choices=PAYMENT_STATUS, default=0, null=True, blank=True)
     # Date the instrument was returned to the customer
-    date_out = models.DateField(default=timezone.now, null=True, blank=True)
+    date_out = models.DateField(null=True, blank=True)
 
     class Meta:
         # Newest entries shown first
@@ -160,7 +166,7 @@ class Job(models.Model):
         )
 
     def __str__(self):
-        return f"{self.user}'s {self.instrument} - Booked in on {self.date_in}"
+        return f'Job number {self.pk}'
 
     def get_absolute_url(self):
         # Return to the detail page of the model instance
