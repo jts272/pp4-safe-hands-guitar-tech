@@ -35,7 +35,9 @@ class Job(models.Model):
     # Test if the listing is visible to the public
     PUBLIC_STATUS = ((0, 'Hidden'), (1, 'Visible'))
     public_status = models.IntegerField(
-        choices=PUBLIC_STATUS, default=1)
+        choices=PUBLIC_STATUS, default=1, help_text=(
+            'Select whether this job is visible to the public on the site'
+        ))
 
     # Pre-setup specifications
     pre_string_brand = models.CharField(max_length=80, null=True, blank=True)

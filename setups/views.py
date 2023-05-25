@@ -33,6 +33,8 @@ class JobListView(generic.ListView, PermissionRequiredMixin):
         'setups.can_create_job',
         'setups.can_update_job',
         'setups.can_delete_job')
+    # Get entries that are visible to the public
+    queryset = Job.objects.filter(public_status=1).order_by('-date_in')
 
 
 class JobDetailView(generic.DetailView):
