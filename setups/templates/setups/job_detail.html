@@ -42,7 +42,7 @@
               <a href="{% url 'setups:jobs' %}" class="btn btn-lg btn-primary">Back to list</a>
               {% if perms.setup.can_create_job %}
                 <a href="{% url 'setups:job_update' pk=job.id %}"
-                   class="btn btn-lg btn-success">Update Job</a>
+                   class="btn btn-lg btn-success mx-3">Update Job</a>
                 <a href="{% url 'setups:job_delete' pk=job.id %}"
                    class="btn btn-lg btn-danger">Delete Job</a>
               {% endif %}
