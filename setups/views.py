@@ -10,6 +10,8 @@ from django.views import generic
 
 from .models import Job
 
+from .forms import JobModelForm
+
 # Create your views here.
 
 
@@ -58,9 +60,10 @@ class JobCreateView(
 
     Reference: https://developer.mozilla.org/en-US/docs/Learn/Server-side/Django/Forms#views
     """
-    model = Job
-    # Render all fields of the model in the data input form
-    fields = '__all__'
+    # The form class to use from forms.py
+    form_class = JobModelForm
+    # The template to render from the app's templates folder
+    template_name = 'setups/job_form.html'
 
     # Test for permission to create
     # Reference: https://docs.djangoproject.com/en/3.2/topics/auth/default/#django.contrib.auth.mixins.UserPassesTestMixin
@@ -82,8 +85,10 @@ class JobUpdateView(
 
     Reference: https://docs.djangoproject.com/en/3.2/ref/class-based-views/generic-editing/#updateview
     """
+    # The model to update
     model = Job
-    fields = '__all__'
+    form_class = JobModelForm
+    template_name = 'setups/job_form.html'
 
     # Test for permission to update
     def test_func(self):
