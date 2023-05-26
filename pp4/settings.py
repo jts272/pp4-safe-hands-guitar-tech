@@ -62,7 +62,7 @@ INSTALLED_APPS = [
     'django_summernote',
     'crispy_forms',
     'crispy_bootstrap4',
-    'blog',
+    'blog.apps.BlogConfig',
     'home.apps.HomeConfig',
     'services.apps.ServicesConfig',
     'setups.apps.SetupsConfig',
