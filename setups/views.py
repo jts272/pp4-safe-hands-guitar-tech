@@ -1,4 +1,5 @@
 # Mixins for authentication of class-based views
+# User must not only be logged in, but have the corresponding permission
 # Reference: https://docs.djangoproject.com/en/3.2/topics/auth/default/#limiting-access-to-logged-in-users
 from django.contrib.auth.mixins import (LoginRequiredMixin,
                                         PermissionRequiredMixin,
@@ -67,7 +68,8 @@ class JobCreateView(
         return self.request.user.has_perms('setups.can_create_job')
 
 
-class JobUpdateView(generic.UpdateView):
+class JobUpdateView(
+        LoginRequiredMixin, UserPassesTestMixin, generic.UpdateView):
     """A generic view for updating models. Fields are prepopulated
     appropriately.
 
@@ -83,8 +85,13 @@ class JobUpdateView(generic.UpdateView):
     model = Job
     fields = '__all__'
 
+    # Test for permission to update
+    def test_func(self):
+        return self.request.user.has_perms('setups.can_create_job')
 
-class JobDeleteView(generic.DeleteView):
+
+class JobDeleteView(
+        LoginRequiredMixin, UserPassesTestMixin, generic.DeleteView):
     """This view handles the deletion of the model record and as such,
     it does not require any form fields to be displayed.
 
@@ -97,3 +104,7 @@ class JobDeleteView(generic.DeleteView):
     model = Job
     # Redirect to the list view upon deletion of a record
     success_url = reverse_lazy('setups:jobs')
+
+    # Test for permission to delete
+    def test_func(self):
+        return self.request.user.has_perms('setups.can_delete_job')
