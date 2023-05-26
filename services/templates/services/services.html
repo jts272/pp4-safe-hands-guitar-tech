@@ -85,9 +85,9 @@
                     </div>
                   </div>
                 </div>
-              {% endif %}
-            {% endfor %}
-          </div>
+              </div>
+            {% endif %}
+          {% endfor %}
           <!-- Defensive clause for no access to Service model -->
         {% else %}
           <div class="row">
@@ -96,7 +96,15 @@
             </div>
           </div>
         </div>
+      {% endif %}
+    </div>
+    <!-- Link home -->
+    <div class="row-no-gutters mb-3">
+      <div class="col d-flex justify-content-center">
+        <a href="{% url 'home:index' %}">
+          <button class="btn btn-lg btn-primary">Home</button>
+        </a>
       </div>
     </div>
-  {% endif %}
+  </div>
 {% endblock content %}
