@@ -2,6 +2,8 @@ from django.forms import ModelForm
 
 from .models import Job
 
+from django.forms import widgets
+
 
 class JobModelForm(ModelForm):
     """This model form allows for finer tuning of the characteristics
@@ -15,6 +17,12 @@ class JobModelForm(ModelForm):
     class Meta:
         model = Job
         fields = '__all__'
+        # Render date fields as HTML datepickers
+        # Reference: https://docs.djangoproject.com/en/3.2/ref/forms/widgets/#widget
+        widgets = {
+            'date_in': widgets.DateInput(attrs={'type': 'date'}),
+            'date_out': widgets.DateInput(attrs={'type': 'date'}),
+        }
 
     # Order the dropdown fields for the 'User' field in the frontend
     # Reference: https://stackoverflow.com/questions/6062283/how-to-order-the-results-of-a-foreignkey-relationship-in-a-django-form
