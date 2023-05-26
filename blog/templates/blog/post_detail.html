@@ -5,11 +5,24 @@
   <title>Safe Hands Guitar Tech | Blog - {{ post.title }}</title>
 {% endblock title %}
 {% block content %}
+  <!-- Custom message for post pending approval -->
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-md-8 offset-md-2 mt-3">
+        {% if commented %}
+          <div class="alert alert-success" role="alert">
+            Your comment is pending approval! Check out the other
+            <a href="{% url 'blog:blog' %}">blog posts!</a>
+          </div>
+        {% endif %}
+      </div>
+    </div>
+  </div>
   <!-- Detailed post view with comments section -->
   <!-- Reference: https://github.com/Code-Institute-Solutions/django-blog-starter-files/blob/master/templates/post_detail.html-->
   <div class="container-fluid">
     <div class="row">
-      <div class="col col-lg-10 offset-lg-1 pt-3">
+      <div class="col col-lg-10 offset-lg-1">
         <div class="card">
           <!-- Post heading -->
           <div class="card-body">
@@ -100,30 +113,21 @@
     </div>
     <!-- Comment form -->
     <!-- Reference: https://youtu.be/dm1MToEiXuw?t=264-->
-    <!-- Comment pending approval notification -->
     <div class="row mb-3">
       <div class="col col-lg-10 offset-lg-1">
-        {% if commented %}
-          <div class="alert alert-success" role="alert">
-            Your comment is pending approval! Check out the other
-            <a href="{% url 'blog:blog' %}">blog posts!</a>
-          </div>
-          <!-- Comment form for registered users -->
-        {% else %}
-          {% if user.is_authenticated %}
-            <div class="card">
+        {% if user.is_authenticated %}
+          <div class="card">
+            <div class="card-body">
+              <h4 class="card-title">Post a comment:</h4>
               <div class="card-body">
-                <h4 class="card-title">Post a comment:</h4>
-                <div class="card-body">
-                  <form method="post">
-                    {% csrf_token %}
-                    {{ comment_form|crispy }}
-                    <button type="submit" class="btn btn-success btn-lg">Submit</button>
-                  </form>
-                </div>
+                <form method="post">
+                  {% csrf_token %}
+                  {{ comment_form|crispy }}
+                  <button type="submit" class="btn btn-success btn-lg">Submit</button>
+                </form>
               </div>
             </div>
-          {% endif %}
+          </div>
         {% endif %}
       </div>
     </div>
