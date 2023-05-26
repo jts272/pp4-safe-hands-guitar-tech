@@ -4,7 +4,7 @@ from .models import Job
 
 
 class JobAdmin(admin.ModelAdmin):
-    list_display = ('pk', 'user', 'instrument', 'date_in',
+    list_display = ('__str__', 'user', 'instrument', 'date_in',
                     'job_status', 'public_status')
     list_filter = ('job_status', 'public_status')
 

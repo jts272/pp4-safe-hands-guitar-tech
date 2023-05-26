@@ -176,7 +176,7 @@ class Job(models.Model):
         )
 
     def __str__(self):
-        return f'Job number {self.pk}'
+        return f"{self.user}'s {self.instrument} - booked in on {self.date_in}"
 
     def get_absolute_url(self):
         # Return to the detail page of the model instance
