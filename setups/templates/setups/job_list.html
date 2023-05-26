@@ -42,9 +42,8 @@
                   <div class="card-body">
                     <h3 class="card-title">{{ job.instrument }}</h3>
                     <h4 class="card-title text-muted">
-                      User: {{ job.user }} | Booked
-                      in:
-                      {{ job.date_in }}
+                      User: {{ job.user }} | Booked in: {{ job.date_in }} |
+                      Status: {{ job.get_job_status_display }}
                     </h4>
                     <p class="card-text">{{ job.description }}</p>
                     <a href="{{ job.get_absolute_url }}" class="stretched-link">Full details...</a>
