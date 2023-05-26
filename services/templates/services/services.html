@@ -1,10 +1,10 @@
 {% extends 'base.html' %}
 {% load static %}
+<!-- Template title -->
+{% block title %}
+  <title>Safe Hands Guitar Tech | Services</title>
+{% endblock title %}
 {% block content %}
-  <!-- Template title -->
-  {% block title %}
-    <title>Safe Hands Guitar Tech | Services</title>
-  {% endblock title %}
   <div class="container-fluid">
     <div class="row">
       <div class="col col-lg-10 offset-lg-1 p-3">
@@ -24,12 +24,12 @@
       </div>
       <!-- Service detail loop -->
       <!-- Bootstrap horizontal card: https://getbootstrap.com/docs/4.6/components/card/#horizontal-->
-      {% if services %}
-        {% for service in services reversed %}
-          {% if forloop.first %}
-            <div class="row-no-gutters">
-              <div class="col col-lg-8 offset-lg-2 p-3">
-                <!-- Left-side card image for first iteration -->
+      <div class="row-no-gutters">
+        <div class="col col-lg-8 offset-lg-2">
+          {% if services %}
+            {% for service in services reversed %}
+              <!-- Left-side card image for first iteration -->
+              {% if forloop.first %}
                 <div class="card mb-3">
                   <div class="row no-gutters">
                     <div class="col-md-4 d-flex">
@@ -85,22 +85,23 @@
                     </div>
                   </div>
                 </div>
+                <!-- End alternate card loop -->
+              {% endif %}
+            {% endfor %}
+            <!-- Defensive clause for no access to Service model -->
+          {% else %}
+            <div class="row">
+              <div class="col">
+                <h2>No service information is currently available</h2>
               </div>
-            {% endif %}
-          {% endfor %}
-          <!-- Defensive clause for no access to Service model -->
-        {% else %}
-          <div class="row">
-            <div class="col">
-              <h2>No service information is currently available</h2>
             </div>
-          </div>
+          {% endif %}
         </div>
-      {% endif %}
+      </div>
     </div>
     <!-- Link home -->
-    <div class="row-no-gutters mb-3">
-      <div class="col d-flex justify-content-center">
+    <div class="row-no-gutters">
+      <div class="col d-flex justify-content-center mb-3">
         <a href="{% url 'home:index' %}">
           <button class="btn btn-lg btn-primary">Home</button>
         </a>
