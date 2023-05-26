@@ -48,7 +48,7 @@
                     <span class="card-text text-muted">{{ post.number_of_likes }} Like{{ post.number_of_likes|pluralize }} |</span>
                     <!-- Get comment count from Comment model related name -->
                     <span class="card-text text-muted">{{ post.comments.count }} Comments |</span>
-                    <a href="{% url 'post_detail' post.slug %}" class="stretched-link">Read more...</a>
+                    <a href="{% url 'blog:post_detail' post.slug %}" class="stretched-link">Read more...</a>
                   </div>
                 </div>
               </div>

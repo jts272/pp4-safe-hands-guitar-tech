@@ -23,7 +23,7 @@ class PostList(generic.ListView):
     # Get published posts, newest first
     queryset = Post.objects.filter(status=1).order_by('-created_on')
     # The HTML page that the view will render
-    template_name = 'blog.html'
+    template_name = 'blog/blog.html'
     # Set the maximum number of posts to appear on one page
     # Navigation will be added automatically when the number is exceeded
     paginate_by = 2
@@ -52,7 +52,7 @@ class PostDetail(View):
         # Return request object, template and context object to use
         return render(
             request,
-            'post_detail.html',
+            'blog/post_detail.html',
             {
                 'post': post,
                 'comments': comments,
@@ -94,7 +94,7 @@ class PostDetail(View):
         # Return request object, template and context object to use
         return render(
             request,
-            'post_detail.html',
+            'blog/post_detail.html',
             {
                 'post': post,
                 'comments': comments,
@@ -121,4 +121,4 @@ class PostLike(View):
             post.likes.add(request.user)
 
         # Redirect to the current page
-        return HttpResponseRedirect(reverse('post_detail', args=[slug]))
+        return HttpResponseRedirect(reverse('blog:post_detail', args=[slug]))

@@ -39,7 +39,7 @@
       <div class="col d-flex justify-content-around my-3">
         <!-- Handle like functionality for logged in users with a form -->
         {% if user.is_authenticated %}
-          <form action="{% url 'post_like' post.slug %}" method="post">
+          <form action="{% url 'blog:post_like' post.slug %}" method="post">
             {% csrf_token %}
             {% if liked %}
               <!-- Solid red heart if liked -->
@@ -106,7 +106,7 @@
         {% if commented %}
           <div class="alert alert-success" role="alert">
             Your comment is pending approval! Check out the other
-            <a href="{% url 'blog' %}">blog posts!</a>
+            <a href="{% url 'blog:blog' %}">blog posts!</a>
           </div>
           <!-- Comment form for registered users -->
         {% else %}
@@ -130,7 +130,7 @@
     <!-- Navigation back to post list -->
     <div class="row">
       <div class="col d-flex justify-content-center mb-3">
-        <a href="{% url 'blog' %}" class="btn btn-lg btn-primary">Back to post list</a>
+        <a href="{% url 'blog:blog' %}" class="btn btn-lg btn-primary">Back to post list</a>
       </div>
     </div>
   </div>

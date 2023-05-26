@@ -131,7 +131,7 @@
       </div>
       <!-- Features information -->
       <p class="mt-3">
-        Check out the <a href="{% url 'blog' %}">Blog</a>  for the latest tips
+        Check out the <a href="{% url 'blog:blog' %}">Blog</a>  for the latest tips
         and tricks to keep your instruments playing their best. <a href="{% url 'account_signup' %}">Register</a>
         for an account to join in the conversation! You can discover the <a href="{% url 'services:services' %}">Services</a>
         on offer with their up-to-date prices. Want an even deeper dive? Head
@@ -143,14 +143,14 @@
     <!-- Recent blog post previews -->
     <div class="col col-lg-3 border pt-3">
       <h3>
-        <a href="{% url 'blog' %}">Recent Blog Posts:</a>
+        <a href="{% url 'blog:blog' %}">Recent Blog Posts:</a>
       </h3>
       {% if latest_blog_posts %}
         <ul class="list-unstyled">
           {% for post in latest_blog_posts %}
             <li>
               <p class="text-muted">
-                <a href="{% url 'post_detail' post.slug %}">{{ post.title }}</a>
+                <a href="{% url 'blog:post_detail' post.slug %}">{{ post.title }}</a>
                 - {{ post.updated_on }}
               </p>
               <p>{{ post.excerpt }}</p>
