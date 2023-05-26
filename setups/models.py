@@ -20,7 +20,7 @@ class Job(models.Model):
     instrument = models.CharField(max_length=80)
     # Date the instrument was taken in for service
     date_in = models.DateField(null=True, blank=True, help_text=(
-        'Date format is YYYY-MM-DD'
+        'Select the date that the instrument was taken in for service'
     ), default=timezone.datetime.now)
     # Status of the job
     JOB_STATUS = ((0, 'Todo'), (1, 'In progress'), (2, 'Completed'))
@@ -159,7 +159,7 @@ class Job(models.Model):
         choices=PAYMENT_STATUS, default=0, null=True, blank=True)
     # Date the instrument was returned to the customer
     date_out = models.DateField(null=True, blank=True, help_text=(
-        'Date format is YYYY-MM-DD'
+        'Select the date the instrument was returned to the customer'
     ), default=timezone.datetime.now)
 
     class Meta:
