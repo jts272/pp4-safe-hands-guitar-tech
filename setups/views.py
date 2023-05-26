@@ -1,5 +1,8 @@
-from crispy_forms.helper import FormHelper
-from django.contrib.auth.mixins import PermissionRequiredMixin
+# Mixins for authentication of class-based views
+# Reference: https://docs.djangoproject.com/en/3.2/topics/auth/default/#limiting-access-to-logged-in-users
+from django.contrib.auth.mixins import (LoginRequiredMixin,
+                                        PermissionRequiredMixin,
+                                        UserPassesTestMixin)
 from django.shortcuts import render
 from django.urls import reverse_lazy
 from django.views import generic
@@ -44,7 +47,8 @@ class JobDetailView(generic.DetailView):
     model = Job
 
 
-class JobCreateView(generic.CreateView):
+class JobCreateView(
+        LoginRequiredMixin, UserPassesTestMixin, generic.CreateView):
     """Part of Django's suite of generic editing views. This is designed
     to facilitate the creation of records based on a model via a form.
 
@@ -56,6 +60,11 @@ class JobCreateView(generic.CreateView):
     model = Job
     # Render all fields of the model in the data input form
     fields = '__all__'
+
+    # Test for permission to create
+    # Reference: https://docs.djangoproject.com/en/3.2/topics/auth/default/#django.contrib.auth.mixins.UserPassesTestMixin
+    def test_func(self):
+        return self.request.user.has_perms('setups.can_create_job')
 
 
 class JobUpdateView(generic.UpdateView):
