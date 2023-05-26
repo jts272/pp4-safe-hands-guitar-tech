@@ -84,56 +84,67 @@
             <h4 class="card-title text-center ">
               <strong>Final Specifications:</strong>
             </h4>
-            <table class="table">
-              <tr>
-                <th>Reading</th>
-                <th>Value</th>
-              </tr>
-              <tr>
-                <td>String brand</td>
-                <td>{{ job.post_string_brand }}</td>
-              </tr>
-              <tr>
-                <td>String gauges</td>
-                <td>{{ job.post_string_gauges }}</td>
-              </tr>
-              <tr>
-                <td>Scale length</td>
-                <td>{{ job.post_scale_length }}</td>
-              </tr>
-              <tr>
-                <td>Fretboard radius</td>
-                <td>{{ job.post_fretboard_radius }}</td>
-              </tr>
-              <tr>
-                <td>Neck relief</td>
-                <td>{{ job.post_scale_length }}</td>
-              </tr>
-              <tr>
-                <td>Action</td>
-                <td>{{ job.post_action_1 }}</td>
-              </tr>
-              <tr>
-                <td>Neck pickup height</td>
-                <td>{{ job.post_neck_pickup_height }}</td>
-              </tr>
-              <tr>
-                <td>Middle pickup height</td>
-                <td>{{ job.post_middle_pickup_height }}</td>
-              </tr>
-              <tr>
-                <td>Bridge pickup height</td>
-                <td>{{ job.post_bridge_pickup_height }}</td>
-              </tr>
-              <tr>
-                <td colspan="2">
-                  <strong>Post-setup notes:</strong>
-                </td>
-              </tr>
-              <tr>
-                <td colspan="2">{{ job.post_notes }}</td>
-              </tr>
-            </table>
+            <!-- For completed jobs -->
+            {% if job.job_status == 2 %}
+              <table class="table">
+                <tr>
+                  <th>Reading</th>
+                  <th>Value</th>
+                </tr>
+                <tr>
+                  <td>String brand</td>
+                  <td>{{ job.post_string_brand }}</td>
+                </tr>
+                <tr>
+                  <td>String gauges</td>
+                  <td>{{ job.post_string_gauges }}</td>
+                </tr>
+                <tr>
+                  <td>Scale length</td>
+                  <td>{{ job.post_scale_length }}</td>
+                </tr>
+                <tr>
+                  <td>Fretboard radius</td>
+                  <td>{{ job.post_fretboard_radius }}</td>
+                </tr>
+                <tr>
+                  <td>Neck relief</td>
+                  <td>{{ job.post_scale_length }}</td>
+                </tr>
+                <tr>
+                  <td>Action</td>
+                  <td>{{ job.post_action_1 }}</td>
+                </tr>
+                <tr>
+                  <td>Neck pickup height</td>
+                  <td>{{ job.post_neck_pickup_height }}</td>
+                </tr>
+                <tr>
+                  <td>Middle pickup height</td>
+                  <td>{{ job.post_middle_pickup_height }}</td>
+                </tr>
+                <tr>
+                  <td>Bridge pickup height</td>
+                  <td>{{ job.post_bridge_pickup_height }}</td>
+                </tr>
+                <tr>
+                  <td colspan="2">
+                    <strong>Post-setup notes:</strong>
+                  </td>
+                </tr>
+                <tr>
+                  <td colspan="2">{{ job.post_notes }}</td>
+                </tr>
+              </table>
+              <!-- For jobs in progress -->
+            {% elif job.job_status == 1 %}
+              <p>This setup is in progress! Final specifications will be published soon.</p>
+              <!-- For jobs todo -->
+            {% elif job.job_status == 0 %}
+              <p>
+                This setup has not yet started. Final specifications will be published on completion.
+              </p>
+            {% endif %}
           </div>
         </div>
         <!-- Navigatiopn back to list and CRUD functions for admin -->
