@@ -6,7 +6,7 @@
 {% block content %}
   <div class="container-fluid">
     <div class="row">
-      <div class="col col-lg-10 offset-lg-1 pt-3 post-list">
+      <div class="col col-lg-6 offset-lg-3 pt-3 post-list">
         <!-- Job detailed information -->
         <div class="card">
           <img src="{{ job.image.url }}" class="card-img-top" alt="{{ job }}" />
@@ -98,10 +98,6 @@
                 <td>{{ job.post_string_gauges }}</td>
               </tr>
               <tr>
-                <td>String brand</td>
-                <td>{{ job.post_string_brand }}</td>
-              </tr>
-              <tr>
                 <td>Scale length</td>
                 <td>{{ job.post_scale_length }}</td>
               </tr>
@@ -138,18 +134,17 @@
                 <td colspan="2">{{ job.post_notes }}</td>
               </tr>
             </table>
-            <hr />
-            <!-- Navigatiopn back to list and CRUD functions for admin -->
-            <div class="d-flex justify-content-around">
-              <a href="{% url 'setups:jobs' %}" class="btn btn-lg btn-primary">Back to list</a>
-              {% if perms.setup.can_create_job %}
-                <a href="{% url 'setups:job_update' pk=job.id %}"
-                   class="btn btn-lg btn-success mx-3">Update Job</a>
-                <a href="{% url 'setups:job_delete' pk=job.id %}"
-                   class="btn btn-lg btn-danger">Delete Job</a>
-              {% endif %}
-            </div>
           </div>
+        </div>
+        <!-- Navigatiopn back to list and CRUD functions for admin -->
+        <div class="d-flex justify-content-around my-3">
+          <a href="{% url 'setups:jobs' %}" class="btn btn-lg btn-primary">Back to list</a>
+          {% if perms.setup.can_create_job %}
+            <a href="{% url 'setups:job_update' pk=job.id %}"
+               class="btn btn-lg btn-success mx-3">Update Job</a>
+            <a href="{% url 'setups:job_delete' pk=job.id %}"
+               class="btn btn-lg btn-danger">Delete Job</a>
+          {% endif %}
         </div>
       </div>
     </div>
