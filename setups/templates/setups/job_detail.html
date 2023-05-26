@@ -25,6 +25,7 @@
               {{ job.description }}
             </p>
             <hr />
+            <!-- Pre-setup specifications -->
             <h4 class="card-title text-center ">
               <strong>Initial Specifications:</strong>
             </h4>
@@ -34,10 +35,111 @@
                 <th>Value</th>
               </tr>
               <tr>
-                <td>Strings</td>
-                <td>{{ job.pre_strings }}</td>
+                <td>String brand</td>
+                <td>{{ job.pre_string_brand }}</td>
+              </tr>
+              <tr>
+                <td>String gauges</td>
+                <td>{{ job.pre_string_gauges }}</td>
+              </tr>
+              <tr>
+                <td>Scale length</td>
+                <td>{{ job.pre_scale_length }}</td>
+              </tr>
+              <tr>
+                <td>Fretboard radius</td>
+                <td>{{ job.pre_fretboard_radius }}</td>
+              </tr>
+              <tr>
+                <td>Neck relief</td>
+                <td>{{ job.pre_scale_length }}</td>
+              </tr>
+              <tr>
+                <td>Action</td>
+                <td>{{ job.pre_action_1 }}</td>
+              </tr>
+              <tr>
+                <td>Neck pickup height</td>
+                <td>{{ job.pre_neck_pickup_height }}</td>
+              </tr>
+              <tr>
+                <td>Middle pickup height</td>
+                <td>{{ job.pre_middle_pickup_height }}</td>
+              </tr>
+              <tr>
+                <td>Bridge pickup height</td>
+                <td>{{ job.pre_bridge_pickup_height }}</td>
+              </tr>
+              <tr>
+                <td colspan="2">
+                  <strong>Pre-setup notes:</strong>
+                </td>
+              </tr>
+              <tr>
+                <td colspan="2">{{ job.pre_notes }}</td>
               </tr>
             </table>
+            <hr />
+            <!-- Post-setup specifications -->
+            <h4 class="card-title text-center ">
+              <strong>Final Specifications:</strong>
+            </h4>
+            <table class="table">
+              <tr>
+                <th>Reading</th>
+                <th>Value</th>
+              </tr>
+              <tr>
+                <td>String brand</td>
+                <td>{{ job.post_string_brand }}</td>
+              </tr>
+              <tr>
+                <td>String gauges</td>
+                <td>{{ job.post_string_gauges }}</td>
+              </tr>
+              <tr>
+                <td>String brand</td>
+                <td>{{ job.post_string_brand }}</td>
+              </tr>
+              <tr>
+                <td>Scale length</td>
+                <td>{{ job.post_scale_length }}</td>
+              </tr>
+              <tr>
+                <td>Fretboard radius</td>
+                <td>{{ job.post_fretboard_radius }}</td>
+              </tr>
+              <tr>
+                <td>Neck relief</td>
+                <td>{{ job.post_scale_length }}</td>
+              </tr>
+              <tr>
+                <td>Action</td>
+                <td>{{ job.post_action_1 }}</td>
+              </tr>
+              <tr>
+                <td>Neck pickup height</td>
+                <td>{{ job.post_neck_pickup_height }}</td>
+              </tr>
+              <tr>
+                <td>Middle pickup height</td>
+                <td>{{ job.post_middle_pickup_height }}</td>
+              </tr>
+              <tr>
+                <td>Bridge pickup height</td>
+                <td>{{ job.post_bridge_pickup_height }}</td>
+              </tr>
+              <tr>
+                <td colspan="2">
+                  <strong>Post-setup notes:</strong>
+                </td>
+              </tr>
+              <tr>
+                <td colspan="2">{{ job.post_notes }}</td>
+              </tr>
+            </table>
+            <hr />
+            <!-- Navigatiopn back to list and CRUD functions for admin -->
             <div class="d-flex justify-content-around">
               <a href="{% url 'setups:jobs' %}" class="btn btn-lg btn-primary">Back to list</a>
               {% if perms.setup.can_create_job %}
