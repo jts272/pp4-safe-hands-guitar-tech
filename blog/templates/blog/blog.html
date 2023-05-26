@@ -22,6 +22,7 @@
       <div class="col col-lg-8 offset-lg-2 p-3">
         {% if post_list %}
           {% for post in post_list %}
+            <!-- Individual posts -->
             <div class="card mb-3">
               <div class="row no-gutters">
                 <div class="col-md-4 d-flex">
@@ -54,6 +55,7 @@
               </div>
             </div>
           {% endfor %}
+          <!-- Defensive clause when no posts are available -->
         {% else %}
           <h2>There are no blog posts yet!</h2>
         {% endif %}
@@ -75,6 +77,14 @@
             </div>
           {% endif %}
         {% endblock pagination %}
+        <!-- Link home -->
+        <div class="row my-3">
+          <div class="col d-flex justify-content-center">
+            <a href="{% url 'home:index' %}">
+              <button class="btn btn-lg btn-primary">Home</button>
+            </a>
+          </div>
+        </div>
       </div>
     </div>
   </div>
