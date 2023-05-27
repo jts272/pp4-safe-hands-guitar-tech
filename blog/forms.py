@@ -13,3 +13,6 @@ class CommentForm(forms.ModelForm):
         model = Comment
         # Which fields to display
         fields = ('body',)
+        # Hide unnecessary field label
+        # Reference: https://docs.djangoproject.com/en/3.2/topics/forms/modelforms/#overriding-the-default-fields
+        labels = {'body': ''}
