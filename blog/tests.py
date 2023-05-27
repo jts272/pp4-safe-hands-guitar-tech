@@ -48,3 +48,23 @@ class TestPostModel(TestCase):
         approved_comment.save()
         # There should only be one approved comment out of two
         self.assertEqual(post.number_of_approved_comments(), 1)
+
+
+class TestCommentModel(TestCase):
+    """This tests the Comment model, for which there is a string method."""
+
+    def test_str_method(self):
+        # Create an author, which a post must have
+        author = User(username='John')
+        author.save()
+        # Create a post to be commented on
+        post = Post.objects.create(
+            created_on=timezone.now(), author=author, title='Test post')
+        # Create an reader to make a comment
+        reader = User(username='Jill')
+        reader.save()
+        # Create a comment with some body text
+        comment = Comment.objects.create(
+            post=post, body='Test comment', name=str(reader))
+        comment.save()
+        self.assertEqual(comment.__str__(), 'Comment Test comment by Jill')
