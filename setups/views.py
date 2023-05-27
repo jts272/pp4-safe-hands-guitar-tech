@@ -1,16 +1,16 @@
 # Mixins for authentication of class-based views
 # User must not only be logged in, but have the corresponding permission
 # Reference: https://docs.djangoproject.com/en/3.2/topics/auth/default/#limiting-access-to-logged-in-users
+from django.contrib import messages
 from django.contrib.auth.mixins import (LoginRequiredMixin,
                                         PermissionRequiredMixin,
                                         UserPassesTestMixin)
-from django.shortcuts import render
+from django.contrib.messages.views import SuccessMessageMixin
 from django.urls import reverse_lazy
 from django.views import generic
 
-from .models import Job
-
 from .forms import JobModelForm
+from .models import Job
 
 # Create your views here.
 
@@ -28,7 +28,7 @@ class JobListView(generic.ListView, PermissionRequiredMixin):
     The queryset can be overridden if required my adding a get_queryset
     method, which uses the QuerySet API syntax (dunders) to filter.
 
-    Reference: 
+    Reference:
     https://developer.mozilla.org/en-US/docs/Learn/Server-side/Django/Generic_views#view_class-based
     https://docs.djangoproject.com/en/3.2/topics/db/queries/#field-lookups
     """
@@ -50,8 +50,10 @@ class JobDetailView(generic.DetailView):
     model = Job
 
 
-class JobCreateView(
-        LoginRequiredMixin, UserPassesTestMixin, generic.CreateView):
+class JobCreateView(LoginRequiredMixin,
+                    UserPassesTestMixin,
+                    SuccessMessageMixin,
+                    generic.CreateView):
     """Part of Django's suite of generic editing views. This is designed
     to facilitate the creation of records based on a model via a form.
 
@@ -64,6 +66,8 @@ class JobCreateView(
     form_class = JobModelForm
     # The template to render from the app's templates folder
     template_name = 'setups/job_form.html'
+    # Message to be displayed on job creation
+    success_message = 'New job has been created!'
 
     # Test for permission to create
     # Reference: https://docs.djangoproject.com/en/3.2/topics/auth/default/#django.contrib.auth.mixins.UserPassesTestMixin
@@ -71,8 +75,10 @@ class JobCreateView(
         return self.request.user.has_perms('setups.can_create_job')
 
 
-class JobUpdateView(
-        LoginRequiredMixin, UserPassesTestMixin, generic.UpdateView):
+class JobUpdateView(LoginRequiredMixin,
+                    UserPassesTestMixin,
+                    SuccessMessageMixin,
+                    generic.UpdateView):
     """A generic view for updating models. Fields are prepopulated
     appropriately.
 
@@ -89,14 +95,16 @@ class JobUpdateView(
     model = Job
     form_class = JobModelForm
     template_name = 'setups/job_form.html'
+    success_message = 'Your job has been updated!'
 
     # Test for permission to update
     def test_func(self):
         return self.request.user.has_perms('setups.can_create_job')
 
 
-class JobDeleteView(
-        LoginRequiredMixin, UserPassesTestMixin, generic.DeleteView):
+class JobDeleteView(LoginRequiredMixin,
+                    UserPassesTestMixin,
+                    generic.DeleteView):
     """This view handles the deletion of the model record and as such,
     it does not require any form fields to be displayed.
 
@@ -109,7 +117,14 @@ class JobDeleteView(
     model = Job
     # Redirect to the list view upon deletion of a record
     success_url = reverse_lazy('setups:jobs')
+    success_message = 'Job has been deleted!'
 
     # Test for permission to delete
     def test_func(self):
         return self.request.user.has_perms('setups.can_delete_job')
+
+    # Give message for deletion - cannot use mixin to hook to form_valid
+    # Reference: https://stackoverflow.com/questions/24822509/success-message-in-deleteview-not-shown
+    def delete(self, request, *args, **kwargs):
+        messages.success(self.request, self.success_message)
+        return super(JobDeleteView, self).delete(request, *args, **kwargs)
