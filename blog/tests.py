@@ -1,7 +1,8 @@
-from django.test import TestCase
-from .models import Post, Comment
-from django.utils import timezone
 from django.contrib.auth.models import User
+from django.test import TestCase
+from django.utils import timezone
+
+from .models import Comment, Post
 
 # Create your tests here.
 
