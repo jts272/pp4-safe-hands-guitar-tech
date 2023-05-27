@@ -9,9 +9,7 @@
       "type": "python",
       "request": "launch",
       "program": "${workspaceFolder}/manage.py",
-      "args": [
-        "runserver"
-      ],
+      "args": ["runserver"],
       "django": true,
       "justMyCode": true
     },
@@ -20,10 +18,7 @@
       "type": "python",
       "request": "launch",
       "program": "${workspaceFolder}/manage.py",
-      "args": [
-        "makemigrations",
-        "--dry-run"
-      ],
+      "args": ["makemigrations", "--dry-run"],
       "django": true,
       "justMyCode": true
     },
@@ -32,9 +27,7 @@
       "type": "python",
       "request": "launch",
       "program": "${workspaceFolder}/manage.py",
-      "args": [
-        "makemigrations"
-      ],
+      "args": ["makemigrations"],
       "django": true,
       "justMyCode": true
     },
@@ -43,10 +36,7 @@
       "type": "python",
       "request": "launch",
       "program": "${workspaceFolder}/manage.py",
-      "args": [
-        "migrate",
-        "--plan"
-      ],
+      "args": ["migrate", "--plan"],
       "django": true,
       "justMyCode": true
     },
@@ -55,9 +45,7 @@
       "type": "python",
       "request": "launch",
       "program": "${workspaceFolder}/manage.py",
-      "args": [
-        "migrate"
-      ],
+      "args": ["migrate"],
       "django": true,
       "justMyCode": true
     }
