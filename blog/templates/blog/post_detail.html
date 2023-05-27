@@ -79,7 +79,7 @@
           <span class="text-muted"><i class="far fa-heart" title="Number of likes"></i> {{ post.number_of_likes }}</span>
         {% endif %}
         <!-- Always show comment count regardless of login status -->
-        <span class="text-muted"><i class="far fa-comments" title="Number of comments"></i> {{ post.comments.count }}</span>
+        <span class="text-muted"><i class="far fa-comments" title="Number of comments"></i> {{ post.number_of_approved_comments }}</span>
       </div>
     </div>
     <!-- Comments section -->

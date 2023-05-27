@@ -60,6 +60,11 @@ class Post(models.Model):
     def number_of_likes(self):
         return self.likes.count()
 
+    # Return the number of approved comments on the post
+    def number_of_approved_comments(self):
+        # References the comment by the comment model's related name
+        return self.comments.filter(approved=True).count()
+
 
 class Comment(models.Model):
     """Table for comments, which are associated with blog posts

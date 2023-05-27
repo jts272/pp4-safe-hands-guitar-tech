@@ -48,7 +48,7 @@
                     <!-- Reference: https://docs.djangoproject.com/en/3.2/ref/templates/builtins/#pluralize -->
                     <span class="card-text text-muted">{{ post.number_of_likes }} Like{{ post.number_of_likes|pluralize }} |</span>
                     <!-- Get comment count from Comment model related name -->
-                    <span class="card-text text-muted">{{ post.comments.count }} Comments |</span>
+                    <span class="card-text text-muted">{{ post.number_of_approved_comments }} Comment{{ post.number_of_approved_comments|pluralize }} |</span>
                     <a href="{% url 'blog:post_detail' post.slug %}" class="stretched-link">Read more...</a>
                   </div>
                 </div>
