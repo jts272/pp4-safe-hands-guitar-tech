@@ -22,15 +22,12 @@
         <!-- Reference: https://developer.mozilla.org/en-US/docs/Learn/Server-side/Django/Forms#templates-->
         <!-- Form enctype attribute required for file upload of images -->
         <!-- Reference: https://stackoverflow.com/questions/43579909/image-is-not-uploaded-via-django-form -->
-        <form action="" method="post" enctype="multipart/form-data">
+        <form method="post" enctype="multipart/form-data">
           {% csrf_token %}
           {{ form|crispy }}
           <div class="d-flex justify-content-around">
-            <a href="{% url 'setups:job_detail' pk=job.id %}"
-               class="btn btn-lg btn-primary">Back to Job Details</a>
+            <a href="{% url 'setups:jobs' %}" class="btn btn-lg btn-primary">Back to Job List</a>
             <input type="submit" value="Create/Update Job" />
-            <a href="{% url 'setups:job_delete' pk=job.id %}"
-               class="btn btn-lg btn-danger">Delete Job</a>
           </div>
         </form>
       </div>
