@@ -6,6 +6,7 @@ from blog.models import Post
 
 
 def index(request):
+    # Get the five latest blog posts that are published
     latest_blog_posts = Post.objects.filter(
         status=1).order_by('-created_on')[:5]
     context = {'latest_blog_posts': latest_blog_posts}
