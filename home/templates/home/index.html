@@ -158,6 +158,8 @@
                   <p class="text-muted">
                     <a href="{% url 'blog:post_detail' post.slug %}">{{ post.title }}</a>
                     - {{ post.updated_on }}
+                    | {{ post.number_of_likes }} Like{{ post.number_of_likes|pluralize }}
+                    | {{ post.number_of_approved_comments }} Comment{{ post.number_of_approved_comments|pluralize }}
                   </p>
                   <p>{{ post.excerpt }}</p>
                 </li>
