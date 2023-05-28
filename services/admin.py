@@ -25,7 +25,7 @@ class ServiceAdmin(SummernoteModelAdmin):
             }
         ),
     )
-    # Specify the fields that require the WSYIWYG editor
+    # Specify the fields that require the WYSIWYG editor
     summernote_fields = ('description',)
 
 
