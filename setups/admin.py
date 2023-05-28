@@ -62,7 +62,7 @@ class JobAdmin(admin.ModelAdmin):
         queryset.update(public_status=1)
 
     def set_hidden(self, request, queryset):
-        # Set Job status to visible
+        # Set Job status to hidden
         queryset.update(public_status=0)
 
 
