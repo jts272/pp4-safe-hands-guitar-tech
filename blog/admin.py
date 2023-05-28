@@ -24,6 +24,18 @@ class PostAdmin(SummernoteModelAdmin):
     # Filter posts by status and creation date
     list_filter = ('status', 'created_on')
 
+    # Actions to bulk-update the display status of blog posts
+    actions = (
+        'set_selected_posts_as_draft',
+        'set_selected_posts_as_published'
+    )
+
+    def set_selected_posts_as_draft(self, request, queryset):
+        queryset.update(status=0)
+
+    def set_selected_posts_as_published(self, request, queryset):
+        queryset.update(status=1)
+
 
 @admin.register(Comment)
 class CommentAdmin(admin.ModelAdmin):
