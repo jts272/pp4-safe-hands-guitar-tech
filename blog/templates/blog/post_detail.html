@@ -59,7 +59,8 @@
               <button type="submit"
                       name="blogpost_id"
                       value="{{ post.slug }}"
-                      class="btn-like">
+                      class="btn-like"
+                      aria-label="Liked post">
                 <i class="fas fa-heart"></i>
               </button>
               <span class="text-muted" title="Number of likes">{{ post.number_of_likes }}</span>
@@ -68,7 +69,8 @@
               <button type="submit"
                       name="blogpost_id"
                       value="{{ post.slug }}"
-                      class="btn-like">
+                      class="btn-like"
+                      aria-label="Unliked post">
                 <i class="far fa-heart" title="Number of likes"></i>
               </button>
               <span class="text-muted">{{ post.number_of_likes }}</span>
