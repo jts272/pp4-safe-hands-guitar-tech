@@ -30,8 +30,12 @@ class Post(models.Model):
     updated_on = models.DateTimeField(auto_now=True)
     # The banner image associated with the current blog post
     # Has a default placeholder when none is specified
-    featured_image = CloudinaryField(
-        'image', default='placeholder', blank=True)
+    featured_image = CloudinaryField(default='placeholder', blank=True)
+    featured_image_alt = models.CharField(
+        max_length=80, null=True, blank=True, help_text=(
+            'Provide a text description of the featured image for assistive'
+            ' technologies'
+        ))
     # The text content of the blog post
     content = models.TextField(
         help_text=(
