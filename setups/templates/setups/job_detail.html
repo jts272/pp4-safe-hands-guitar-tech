@@ -147,9 +147,9 @@
             {% endif %}
           </div>
         </div>
-        <!-- Navigatiopn back to list and CRUD functions for admin -->
+        <!-- Navigation back to list and CRUD functions for admin -->
         <div class="d-flex justify-content-around my-3">
-          <a href="{% url 'setups:jobs' %}" class="btn btn-lg btn-primary">Back to list</a>
+          <a href="{% url 'setups:jobs' %}" class="btn btn-lg btn-primary">Back to Job List</a>
           {% if perms.setup.can_create_job %}
             <a href="{% url 'setups:job_update' pk=job.id %}"
                class="btn btn-lg btn-success mx-3">Update Job</a>

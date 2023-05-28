@@ -25,11 +25,14 @@
         <form action="" method="post" enctype="multipart/form-data">
           {% csrf_token %}
           {{ form|crispy }}
-          <input type="submit" value="Create/Update Job" />
+          <div class="d-flex justify-content-around">
+            <a href="{% url 'setups:job_detail' pk=job.id %}"
+               class="btn btn-lg btn-primary">Back to Job Details</a>
+            <input type="submit" value="Create/Update Job" />
+            <a href="{% url 'setups:job_delete' pk=job.id %}"
+               class="btn btn-lg btn-danger">Delete Job</a>
+          </div>
         </form>
-        <a href="{% url 'setups:jobs' %}">
-          <button class="btn btn-lg btn-primary mt-3">Return to Job List</button>
-        </a>
       </div>
     </div>
   </div>
