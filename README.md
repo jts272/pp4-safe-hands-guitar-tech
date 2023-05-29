@@ -344,31 +344,123 @@ One such example is directing the user to points of contact for the business own
 
 ## Features
 
-~
+In this section, the implemented features of the site are explored in more detail.
+Where there are notable differences, both the desktop an mobile version are presented.
 
 ### Navigation
 
-~ Responsive navbar
+#### Desktop navbar and hero image
+
+![Navbar and hero image desktop](docs/images/features/nav-d-hero.png)
+
+The navbar includes the brand. This links home in all pages. Links to the three
+main sections of the site follow. On the far side of the navbar are the authentication
+controls, which always report the login status of the user.
+
+#### Mobile navbar and hero image
+
+![Navbar and hero image mobile expanded](docs/images/features/nav-m-hero-expanded.png)
+
+In the mobile view, the brand text is reduced to avoid a layout shift. In this
+example, the admin user is logged in. The hero image is fully responsive across
+screen sizes
 
 ### Footer
 
-~ Business information
+#### Desktop footer
+
+![Footer desktop](docs/images/features/footer-d.png)
+
+The footer features a tagline, social contact CTA's and a 'copyright' mark. In
+mobile view, these three components are stacked
+
+#### Mobile footer
+
+![Footer mobile](docs/images/features/footer-m.png)
+
+### Homepage
+
+![Homepage desktop](docs/images/features/homepage-d.png)
+
+The homepage displays introductory text to let the visitor know what the site is
+about. A list shows some common services. An accordion is used to solicit some
+interaction with the content to draw the potential customer in. Further below
+are some brief highlights of the different sections of the site, and finally an
+offer showing how to get in contact.
+
+The right sidebar shows the five most recent blog posts. An excerpt invites the
+reader to select a topic to read that they find intriguing.
 
 ### Blog
 
-~ Comments, likes
+#### Desktop blog list
 
-### Service information
+![Blog list desktop](docs/images/features/blog-list-d.png)
 
-~ Pricing (database backed)
+On entry of the blog section, the user is presented with a list view of blog posts.
+These are paginated in groups of two, allowing full navigation across all published
+blog posts. Like and comment counts are shown, as well as a link to read the topic
+in full. A link home is provided for when the user is finished with this section
 
-### Testimonials
+#### Mobile blog detail
 
-~ Data model
+![Blog detail mobile](docs/images/features/blog-detail-m.png)
 
-### Guitar job spec database (admin panel)
+A detailed view of the post includes the title, featured image and body text.
 
-~
+#### Desktop blog comments
+
+![Blog comments desktop](docs/images/features/blog-comments-d.png)
+
+At the end of the post, logged in users have access to the comment box where they
+can leave a comment to be approved by the author. Also shown is the heart icon,
+which users can click to like a post.
+
+### Services
+
+![Services desktop](docs/images/features/services-d.png)
+
+As the name suggests, the services are shown and have corresponding prices. A little
+more detail is given on the nature of the job, with an accompanying image.
+
+### Setups
+
+#### Desktop setups list with permissions
+
+![Setups list with permissions desktop](docs/images/features/setups-list-perms-d.png)
+
+Similar to the blog list view, this pattern is used for the setups section and
+functions in the same manner. If logged in as an admin, the button to create a
+new job is present.
+
+#### Desktop setups detail top
+
+![Setups detail top desktop](docs/images/features/setups-detail-top-d.png)
+
+#### Desktop setups bottom with permissions
+
+![Setups detail bottom with permissions desktop](docs/images/features/setups-detail-bottom-perms-d.png)
+
+The setups detail page is a long list of before and after specifications for the
+guitar that has been worked on. This contains all the setup minutiae that is
+covered in the Models section.
+
+Admin has access to controls to update or delete the setup that is being viewed.
+
+#### Setups form top
+
+![Setups form top desktop](docs/images/features/setups-form-top-d.png)
+
+#### Setups form middle
+
+![Setups form middle desktop](docs/images/features/setups-form-middle-d.png)
+
+#### Setups form bottom
+
+![Setups form bottom desktop](docs/images/features/setups-form-bottom-d.png)
+
+The examples show the top, middle and bottom of the form, with controls to submit
+the form at the bottom.
 
 ---
 
