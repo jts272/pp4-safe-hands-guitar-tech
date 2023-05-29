@@ -60,25 +60,25 @@ component.
 
 - [Milestones](https://github.com/jts272/pp4-safe-hands-guitar-tech/milestones)
   are used as collections of agile items. For example, milestones are created for
-  each iteration which is a timeboxed period where certain stories are planned to
+  each iteration, which is a timeboxed period where certain stories are planned to
   be completed. As a best-practice, timeboxes do not contain more than 60% of their
   items as 'should have' on the [MoSCoW priority level system.](https://en.wikipedia.org/wiki/MoSCoW_method)
   Milestones are also used to hold [Product Backlog Items (PBIs),](https://github.com/jts272/pp4-safe-hands-guitar-tech/milestone/1)
   which is where items are stored before being passed to a given iteration.
 
 - [Projects](https://github.com/jts272/pp4-safe-hands-guitar-tech/projects?query=is%3Aopen)
-  are utilized as information radiators for an instant view on an iterations' progress.
+  are utilized as information radiators for an instant view on an iteration's progress.
   These are best viewed in Board view with the Label field enabled. Here is the
   board for the [first iteration](https://github.com/users/jts272/projects/7/views/1?layout=board&visibleFields=%5B%22Title%22%2C%22Assignees%22%2C%22Status%22%2C%22Labels%22%5D)
-  This follows the kanban style whereby an item is brought in as a Todo item. It
-  then moves to In Progress when it is being worked on, then finally Done once all
-  tasks and acceptance criteria have been met.
+  as an example. This follows the kanban style whereby an item is brought in as
+  a Todo item. It then moves to In Progress when it is being worked on, then
+  finally Done once all tasks and acceptance criteria have been met.
 
 Below is an example index card for an item found on the project board:
 
 ![Index card example](docs/images/index-card-example.png)
 
-We see that it is a designated story and its title. Each story is linked to an
+We see that it is a designated story with a title. Each story is linked to an
 Epic. This example shows a user story from the perspective of the site admin -
 what they want to do and how it will benefit them. We then see the tasks that
 must be completed to bring this story to fruition. The acceptance criteria are
@@ -95,32 +95,83 @@ category. This is the same for completed [iterations](https://github.com/jts272/
 Agile practices help both the developers and product owners. The goals are always
 visible, along with the tasks required to achieve them. By using these tools, the
 needs of the users are always put first, which guides development to its essential
-target.
+target. I invite you to explore each milestone to see what was achieved.
 
 ---
 
 ## Five stages of UX design
 
-~
+The five stages of user experience (UX) design is the pattern that was employed
+to bring this project's vision to life. Starting with high-level business needs,
+it drills down to the specifics of the what, why and how of each required element
+found in the final product
 
-### Strategy (user needs, business objectives)
+### 1. Strategy
 
-~ Appropriate, relevant, content type
-~ Why a user would want this
-~ Stakeholder > Competitors > User research (existing product audit)
-~ B2C model
+This project is built from the perspective of a small business owner who wants a
+website to attract customers to his [Guitar Tech](https://en.wikipedia.org/wiki/Guitar_tech)
+business. The owner will also function as the site's admin for CRUD functions
+relating to blog posts, services and setup jobs. The site operates on B2C model,
+whereby the product owner advertises his services to private customers.
 
-### Scope (functional spec and content requirements)
+To meet its business needs, the site needs to display certain information.
+Visitors would expect to instantly get an impression of what the site is about
+on first glance, with intuitive navigation. Service prices need to be easy to
+find. Furthermore, the site content needs to be engaging enough to retain viewership
+and help to grow the business.
 
-~ MVP, what's in and out
-~ How agile helps
-~ How sprints are structured
-~ Realistic scope without creep
-~ Content requirements
-~ Functional requirements
-~ How usage scenarios map to user stories
+As the key stakeholder, I conducted an existing product audit on the following sites:
 
-### Structure (interaction design, information design)
+- [Northwest Guitars](https://northwestguitajackrs.co.uk/)
+- [Jim's Guitar Workshop](https://jimsguitarworkshop.co.uk/)
+- [Fraser Callum](https://fcstrings.com/)
+
+This informed me of scope expectations, which are explored in the next stage of
+design.
+
+### 2. Scope
+
+The first objective of scope is to work out the [Minimum Viable Product (MVP)](https://www.productplan.com/glossary/minimum-viable-product/) so that there is a clear set of goals to bring a working
+product to market. This is intertwined with the agile methodologies outlined
+previously, which adds varying perspectives to the needs of the project.
+
+A blog was to be included from the beginning. This helps to build trust and
+engagement for users. They can see that the owner knows their trade and maps
+common guitar-related scenarios to jobs he can help with. Users can engage in
+the conversation with comments and likes. For this, relevant content must be
+produced for site visitors.
+
+Naturally, the services on offer must be detailed, with prices included. This
+feature was designed to be easily updated by the owner in the event that prices,
+service details or even available services changes.
+
+The [Unique Selling Point (USP)](https://en.wikipedia.org/wiki/Unique_selling_proposition)
+of this application is the setups section. Here, the owner can proudly display
+their work on past customers' instruments, with a detailed specification breakdown.
+This offers a unique value proposition as an app within the project, which requires
+a highly customized data model.
+
+A testimonials section for registered customers had been considered early on,
+similar to that of [Fraser Callum's.](https://fcstrings.com/testimonials/)
+However, I had decided to focus on the blog, service information and the unique
+setup feature as I believed these features would have the biggest impact.
+
+As a final functional requirement, there must be a way for customers to contact
+the owner to book in their service. This is achieved through the contact buttons
+at the footer of every page. An email contact form had been considered, although
+on inspection, it would have required setup in Django beyond the scope of the
+three iterations allotted to this project.
+
+By examining the [Project Boards](https://github.com/jts272/pp4-safe-hands-guitar-tech/projects?query=is%3Aopen)
+and [Milestones,](https://github.com/jts272/pp4-safe-hands-guitar-tech/milestones?state=closed)
+a clear link between project scope and deliverable items is seen. As an example,
+the first iteration was geared towards achieving MVP blog functionality. The
+second focussed on customer/business features. Agile keeps scope creep at bay,
+with a clear focus on the essentials. The end result of this approach is a product
+that meets the needs of the business, whilst being concise enough for visitors
+to navigate fluently.
+
+### 3. Structure (interaction design, information design)
 
 ~ Organization/functionality of content and features
 ~ Navigation, information architecture (IA).
@@ -128,7 +179,7 @@ target.
 ~ User feedback on actions
 ~ 404 handling
 
-### Skeleton (interface design, navigation design, information design)
+### 4. Skeleton (interface design, navigation design, information design)
 
 ~ Give form to function, UI
 ~ Wireframes
@@ -136,7 +187,7 @@ target.
 ~ User authentication information
 ~ Blog expectations
 
-### Surface
+### 5. Surface
 
 ~ Practical elements
 ~ Colour
