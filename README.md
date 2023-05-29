@@ -345,7 +345,7 @@ One such example is directing the user to points of contact for the business own
 ## Features
 
 In this section, the implemented features of the site are explored in more detail.
-Where there are notable differences, both the desktop an mobile version are presented.
+Where there are notable differences, both the desktop and mobile versions are presented.
 
 ### Navigation
 
@@ -389,7 +389,7 @@ are some brief highlights of the different sections of the site, and finally an
 offer showing how to get in contact.
 
 The right sidebar shows the five most recent blog posts. An excerpt invites the
-reader to select a topic to read that they find intriguing.
+reader to select a topic that they find intriguing.
 
 ### Blog
 
@@ -462,22 +462,115 @@ Admin has access to controls to update or delete the setup that is being viewed.
 The examples show the top, middle and bottom of the form, with controls to submit
 the form at the bottom.
 
+### Error pages
+
+Browsing errors are handled gracefully, with an explanation of the issue and a link back home.
+A status code 500 page has been implemented in the event of server error, which
+follows the same format. The 403 page is shown in the section regarding authentication.
+
+#### 404 error page
+
+![404 desktop](docs/images/features/e-404-d.png)
+
+### Favicon
+
+![Favicon](static/images/favicon.ico)
+
+A favicon was created at [favicon.io.](https://favicon.io/) This consists of the
+initials of the brand, in similar font and colouring.
+
+### Feedback messages
+
+Feedback is delivered at all times to the user. Login status is shown at all times
+in the navbar, but more dynamic feedback is present too. These actions pertain to
+logged-in users, which is covered in detail in the subsequent authentication section.
+The Django messages system is utilized to provide feedback in the following ways:
+
+#### Signed in
+
+![Sign in feedback](docs/images/feedback/fdbk-sign-in.png)
+
+#### Sign out confirmation
+
+![Sign out confirmation](docs/images/feedback/conf-sign-out.png)
+
+#### Signed out
+
+![Sign out feedback](docs/images/feedback/fdbk-sign-out.png)
+
+#### Setup created
+
+![Setup create feedback](docs/images/feedback/fdbk-job-create.png)
+
+#### Setup delete confirmation
+
+![Setup delete confirm](docs/images/feedback/conf-job-delete.png)
+
+#### Setup deleted
+
+![Setup delete feedback](docs/images/feedback/fdbk-job-delete.png)
+
+#### Comment pending
+
+![Comment pending](docs/images/feedback/fdbk-comment-pending.png)
+
+The comment pending message uses custom logic to display its message when the
+user has left a post on a given comment.
+
 ---
 
 ## Authentication
 
-~ Role-based login; content restriction
-~ Login state shown
+The site implements role-based access to functions. This concerns two parties -
+the business owner, or admin and the customers, or regular users. For site interaction
+beyond browsing, an account is required. This is facilitated by the accounts and
+registration system.
 
-### Levels
+### Accounts and registration
 
-~ Admin
-~ User
+These features work as expected. The user selects a unique username, email and
+a password which they must confirm. They are then granted user-level access, allowing
+them to leave likes and comments. Comments go through a pending approval process,
+which allows the admin to filter any objectionable content before showing it on
+the site.
 
-### Abilities
+#### Registration
 
-~ Admin panel; creating blog posts
-~ Commenting, liking
+![Registration](docs/images/auth/auth-register.png)
+
+#### Signing in
+
+![Signing in](docs/images/auth/auth-sign-in.png)
+
+### Authentication in relation to CRUD functions
+
+Authentication is a critical factor in this app. By design, the business owner
+(hereby 'admin'), is in full control of the data shown on the site. This is
+achieved through three means:
+
+1. Having full control of comment approval in the admin panel
+2. Creating, updating and deleting services on offer, including prices, in the admin panel
+3. Creating, updating and deleting setup job records in the front end (or admin panel).
+
+The first two points are, by their nature, password restricted for admin panel access.
+As the third point pertains to the front end, special measures have been taken in
+the Django code to prevent access to CRUD functions for unauthorized users, even
+if the URL to access these functions is known.
+
+Let's take an example of trying to create a job record as a logged out user. Firstly,
+the buttons for CRUD functions are never rendered in the template unless the user
+of the HTTP request has the correct permissions. If the user tries to brute-force
+their way into a create view by way of URL path, they are prompted to log in:
+
+![Create without login](docs/images/auth/auth-create-logged-out.png)
+
+If the user is logged in, but doesn't have permission, they are greeted to a custom 403 page:
+
+![Create without permissions](docs/images/auth/auth-create-no-perms.png)
+
+This creates a clear separation between the admin and regular site users. An
+account is required for regular users to leave likes and comments. However, the
+admin user is in control of all business-related data.
 
 ---
 
