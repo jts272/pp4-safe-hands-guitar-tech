@@ -26,10 +26,12 @@
           {% csrf_token %}
           {{ form|crispy }}
           <div class="d-flex justify-content-around">
-            <a href="{% url 'setups:jobs' %}" class="btn btn-lg btn-primary">Back to Job List</a>
             <input type="submit" value="Create/Update Job" />
           </div>
         </form>
+        <div class="d-flex justify-content-around">
+          <a href="{% url 'setups:jobs' %}" class="btn btn-lg btn-primary mt-3">Back to Job List</a>
+        </div>
       </div>
     </div>
   </div>
