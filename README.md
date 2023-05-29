@@ -171,21 +171,100 @@ with a clear focus on the essentials. The end result of this approach is a produ
 that meets the needs of the business, whilst being concise enough for visitors
 to navigate fluently.
 
-### 3. Structure (interaction design, information design)
+### 3. Structure
 
-~ Organization/functionality of content and features
-~ Navigation, information architecture (IA).
-~ Interaction design (IXD); expectations, consistency (templates), no luck involved
-~ User feedback on actions
-~ 404 handling
+Structure concerns organization of site functions. This is represented in the
+concept of [Information Architecture (IA).](https://www.usability.gov/what-and-why/information-architecture.html)
+This translates to providing the user with key information where they are, what
+they can do and what to expect. This is encapsulated by the implementation of
+strong [Interaction Design (IXD),](<https://www.interaction-design.org/literature/topics/interaction-design#:~:text=Interaction%20Design%20(IxD)%20is%20the,output%20to%20suit%20precise%20demands.>)
+whereby features are implemented with consideration for _how_ they will be used.
 
-### 4. Skeleton (interface design, navigation design, information design)
+Key components of IXD employed are intuitive navigation, that never requires
+guesswork from the user. Feedback is delivered on all actions, from form validation
+to success messages.
 
-~ Give form to function, UI
-~ Wireframes
-~ Correct structure of navigation. Tell the story with nav link order etc.
-~ User authentication information
-~ Blog expectations
+User's expectations are met whilst browsing through the use of templates. In other
+words, elements like navigation and footers stay consistent across pages, with
+relevant page content in the middle. A common pattern Django is great for is that
+of list-view to detail-view. Put simply, a user finds a list of records on a
+given topic, which they can click to access a more detailed view of that record.
+This pattern is utilized to great effect in the blog and setups sections.
+
+In keeping with intuitive navigation, errors are handled gracefully, whether client
+or server-side. Examples include 404 error handling or presence testing a model
+for content and reacting accordingly. Both examples are explored in their relevant
+features section.
+
+### 4. Skeleton
+
+In the skeleton phase, we give form to function by way of the User Interface (UI).
+
+Navigation is the first concern when a user visits the site. The brand name is
+the first feature, which follows convention by serving as a link home. Then follows
+the sections for blog, services and setups.
+
+This tells a story in that the user reads a blog post that catches their interest.
+From there they decide to check out the service prices. Then they can check records
+of past services from satisfied customers.
+
+On the far side of the navbar is authentication information. A first-time user
+can clearly see that account registration is a feature - the gateway to interaction
+with the site's content.
+
+From the moment the visitor first lands on the page, they instantly gain an impression
+of what the site is about. A familiar image of a Fender Stratocaster greets them.
+A bullet-pointed list shows key jobs that are undertaken by the business owner.
+
+An accordion invites user interaction - do they identify with one of the use-cases
+and could they benefit from the services on offer? This is followed by a brief
+text summary of the key points to visit on the site and why the visitor might
+want to go there. Finally an invitation is made to get in contact using the
+social call-to-action (CTA) buttons.
+
+The following section highlights the five most recent blog posts, with counters
+for likes and comments. This lets users know there is room for interaction. A
+brief excerpt is show to capture their attention for reading the specific blog
+post in full.
+
+The following wireframe mock ups were constructed to visualize how this information
+may appear on the screen. One of the design philosophies implemented was that of
+[Mobile First,](https://www.browserstack.com/guide/how-to-implement-mobile-first-design)
+which considers the smaller screen before the larger one. In this approach, the
+elements are displayed in such a way that mobile users do not have to compromise
+on content. From there, the elements can be positioned in such a way that they
+can take advantage of ever-increasing screen sizes.
+
+The mockups here target a desktop view, as this presents the information in a more
+straightforward way. In the mobile view, elements stack vertically with no loss
+of information.
+
+<details>
+  <summary>Homepage</summary>
+  <img src="docs/images/wireframes/wf-home.png" alt="Homepage mock up">
+</details>
+
+<details>
+  <summary>Services</summary>
+  <img src="docs/images/wireframes/wf-services.png" alt="Services mock up">
+</details>
+
+<details>
+  <summary>List view for Blog and Setups</summary>
+  <img src="docs/images/wireframes/wf-blog-and-setup-list.png" alt="Blog and Setups list view mock up">
+</details>
+
+<details>
+  <summary>Blog detail</summary>
+  <img src="docs/images/wireframes/wf-blog-detail.png" alt="Blog detail mock up">
+</details>
+
+<details>
+  <summary>Setups detail</summary>
+  <img src="docs/images/wireframes/wf-setup-detail.png" alt="Setups detail mock up">
+</details>
+
+Wireframe images were produced with [draw.io desktop](https://github.com/jgraph/drawio-desktop/releases/)
 
 ### 5. Surface
 
