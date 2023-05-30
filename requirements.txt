@@ -16,6 +16,7 @@ dj3-cloudinary-storage==0.0.6
 Django==3.2.19
 django-allauth==0.54.0
 django-crispy-forms==1.14.0
+django-extensions==3.2.1
 django-summernote==0.8.20.0
 djlint==1.27.2
 EditorConfig==0.12.3
@@ -29,6 +30,7 @@ oauthlib==3.2.2
 pathspec==0.11.1
 psycopg2-binary==2.9.6
 pycparser==2.21
+pygraphviz==1.10
 PyJWT==2.7.0
 python3-openid==3.2.0
 pytz==2023.3

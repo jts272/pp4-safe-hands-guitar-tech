@@ -337,8 +337,9 @@ before-and-after states of his work.
 
 These elements culminate in a fully responsive, accessible package to present
 all desired information to the user. UX testing has shown a great response to
-the deployed design, with user feedback suggestions implemented where possible.
-One such example is directing the user to points of contact for the business owner.
+the deployed design on different devices, with user feedback suggestions implemented
+where possible. One such example is directing the user to points of contact for
+the business owner.
 
 ---
 

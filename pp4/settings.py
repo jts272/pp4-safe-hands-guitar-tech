@@ -63,6 +63,7 @@ INSTALLED_APPS = [
     'django_summernote',
     'crispy_forms',
     'crispy_bootstrap4',
+    'django_extensions',
     'blog.apps.BlogConfig',
     'home.apps.HomeConfig',
     'services.apps.ServicesConfig',
@@ -108,6 +109,12 @@ MESSAGE_TAGS = {
     messages.SUCCESS: 'alert-success',
     messages.WARNING: 'alert-warning',
     messages.ERROR: 'alert-danger',
+}
+
+# pygraphviz settings
+GRAPH_MODELS = {
+    'all_applications': True,
+    'group_models': True,
 }
 
 
