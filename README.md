@@ -525,7 +525,7 @@ user has left a post on a given comment.
 The site implements role-based access to functions. This concerns two parties -
 the business owner, or admin and the customers, or regular users. For site interaction
 beyond browsing, an account is required. This is facilitated by the accounts and
-registration system.
+registration system, powered by [django-allauth](https://django-allauth.readthedocs.io/en/latest/)
 
 ### Accounts and registration
 
@@ -577,24 +577,103 @@ admin user is in control of all business-related data.
 
 ## Data modelling
 
-~ How Django models create database structure (OOP)
-~ Interaction between tables
-~ Database configuration
+As mentioned at the beginning, Python code is used with the Django framework to
+generate the tables in the provisioned database. This project uses a
+[Postgres](https://www.postgresql.org/) database, hosted on [ElephantSQL.](https://www.elephantsql.com/)
 
-![Initial schema]
-![Production schema]
+### Custom models
 
-### Blog model
+The following graph shows the custom models that were created to facilitate the
+MVT interaction of this application:
 
-~
+![Custom models graph](docs/images/graphs/custom-models-graphviz.png)
 
-### Testimonials model
+This graph was generated with the `graph_models` command, included with
+[django_extensions.](https://django-extensions.readthedocs.io/en/latest/index.html)
 
-~
+Please see these additional [installation instructions](https://github.com/pygraphviz/pygraphviz/blob/main/INSTALL.txt)
+if you would like to generate your own graph visualizations.
 
-### Guitar spec model
+### How to read the graph
 
-~
+Each box with the dark green banner represents a table, or model. They are grouped
+by app with the light green border. Bold text signifies a required field. The arrows
+show the relational direction for foreign keys (FK), otherwise known as a [many-to-one](https://docs.djangoproject.com/en/3.2/topics/db/examples/many_to_one/)
+field in Django parlance. Red coloured arrows outline the deletion cascade effect.
+If the parent is deleted, it takes the child record with it. The fields generated
+in the visualization are listed alphabetically after any primary and foreign keys.
+
+#### User model
+
+This is the standard user model that comes with Django, which forms the basis
+for interactive content. This has been left unmodified
+
+#### Services model
+
+This model stands alone. It's function is to present service data, with corresponding
+prices. The usage pattern is for the admin to enter values for all fields in the
+table, so that they are shown on the services list page.
+
+#### Blog - Post model
+
+A blog post must have an author, which is a member of the User model. The `created_on`
+fields is auto-generated when the author creates their post. The slug is a slugified
+version of the title, so that this can be used for URL matching. Status is used
+to mark a post as 'draft' or 'published', to enable post visibility.
+
+#### Blog - Comment model
+
+The FK here is the post on which the comment was made. Similarly to the `status`
+field of the post, the `approved` field allows admin to determine which comments
+are visible on the site.
+
+#### Blog aside - Likes field
+
+Not displayed on the graph is the `likes` field of a blog post. This is in fact
+a [many-to-many](https://docs.djangoproject.com/en/3.2/topics/db/examples/many_to_many/)
+field, with a relation to a given user. If a user likes the post, they are included
+into this field. Django handles these relationships behind-the-scenes. For more
+information, please see this [blog post](https://www.sankalpjonna.com/learn-django/the-right-way-to-use-a-manytomanyfield-in-django)
+by Sankalp Jonna.
+
+#### Setups - Job model
+
+This model is the application's USP, which was heavily inspired by Dan Erlewine's
+[How to Make Your Electric Guitar Play Great!: Second Edition;](https://www.goodreads.com/book/show/74448907-how-to-make-your-electric-guitar-play-great)
+the author of which is considered to be one of the foremost authorities in
+[Guitar Lutherie.](https://en.wikipedia.org/wiki/Luthier)
+The model takes a before-and-after approach towards the business side and the
+instrument specifics.
+
+An instrument field is required to make the job record unique. This also has an
+FK to a registered user, whom the instrument belongs to. Transactional information
+includes dates in and out, payment method, payment status and job status. The job
+status dynamically alters what information is visible in the template. For example,
+there would be no 'after' information to display for a job that is 'todo'.
+
+The other fields are specialized attributes of the given instrument, the explanation
+of which is far beyond the scope of this model breakdown. The admin/business owner
+would be adept at filling in each of these fields as required. Consider that many
+guitars for example do not have a middle pickup, so these sorts of fields could
+not be mandatory.
+
+Not all fields are represented in the template, but are still present in the form
+for data the owner may be interested in capturing, such as multiple action measurements.
+
+#### Complete schema
+
+Using [OOP](https://en.wikipedia.org/wiki/Object-oriented_programming) methods,
+Django is able to generate a fully configurable relational database through
+Python code. This integrates with authorization, templates and URL routing to
+deliver a seamless experience for users.
+
+For reference, here is the full application schema, including models built-in
+with the `allauth` system for authenticating users:
+
+<details>
+  <summary>Full schema</summary>
+  <img src="docs/images/graphs/all-models-graphviz.png" alt="Full application database schema">
+</details>
 
 ---
 
