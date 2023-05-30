@@ -787,11 +787,20 @@ in the next section on code validation.
 
 ## Validation
 
-~
+There are tools available to further assess the objective state of code standards.
+The goal is to follow best practices in the code. This aids everybody; code collaborators
+have an easier time working with existing code, users with accessibility needs can
+fully interact with site content and SEO impact is maximized.
+
+By following clean coding conventions and a well-configured coding environment,
+we can achieve the best possible standards with our work. The results of each
+language's validation checks are presented below.
 
 ### HTML validation
 
-~
+Tool: [Nu Html Checker](https://validator.w3.org/nu/)
+
+[HTML validation reports](docs/images/validation/html/)
 
 ### CSS validation
 
