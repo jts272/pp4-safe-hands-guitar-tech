@@ -1019,8 +1019,22 @@ Follow these steps when you project is ready for production.
 
 ## Cloning and Forking
 
-~ Cloning
-~ Forking
+The repository can be cloned with the HTTPS method as follows:
+
+1. On the GitHub repository, click the green '<> Code' dropdown button
+2. Copy the HTTPS URL shown to the clipboard
+3. In a new VS Code window, select 'Clone Git Repository'
+4. Enter the copied URL and select your destination folder
+5. Allow the files to be downloaded to your destination folder
+
+Alternatively, you can simply select to download the branch as a ZIP folder
+from the dropdown menu to download the raw code.
+
+To fork this repository and develop away from the upstream branch:
+
+1. Select 'Fork' in the top-right corner of the repository
+2. Select an owner and repository name
+3. Click 'Create fork'
 
 ## Technologies used
 
