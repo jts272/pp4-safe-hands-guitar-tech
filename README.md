@@ -70,7 +70,7 @@ component.
   are utilized as information radiators for an instant view on an iteration's progress.
   These are best viewed in Board view with the Label field enabled. Here is the
   board for the [first iteration](https://github.com/users/jts272/projects/7/views/1?layout=board&visibleFields=%5B%22Title%22%2C%22Assignees%22%2C%22Status%22%2C%22Labels%22%5D)
-  as an example. This follows the kanban style whereby an item is brought in as
+  as an example. This follows the Kanban style whereby an item is brought in as
   a Todo item. It then moves to In Progress when it is being worked on, then
   finally Done once all tasks and acceptance criteria have been met.
 
@@ -879,6 +879,29 @@ development. The code in production is clean, robust and meets all tested standa
 to the highest degree.
 
 ---
+
+## Bugs
+
+[Milestones](https://github.com/jts272/pp4-safe-hands-guitar-tech/milestone/3?closed=1)
+and [Projects](https://github.com/users/jts272/projects/9) have been used in much
+the same manner as the agile stories to document this project's bug history.
+
+Clicking on an item in either view will reveal the bug report. They are read in
+much the same was as the agile index cards. These were processed with a similar
+Kanban method where items were first reported, then moved to in progress, then finally fixed.
+
+![Bug example](docs/images/bugs/bug-example.png)
+
+I created an issue template to help record all pertinent details of each bug.
+From there, information on the nature of the bug, including steps to reproduce
+was noted. This could then be worked on in parallel with the user stories to complete.
+
+I am happy to report that all bugs documented in the process of this project have
+been neutralized. One thing to note is that in the current implementation of the
+comments system, if a user refreshes the page after posting, the message will be re-sent
+in the HTTP post request. This does not affect the end user in any way and only
+manifests in repeat posts for the admin to approve/delete as necessary. Future
+implementations would use a different system that redirects effectively.
 
 ## Version control
 
