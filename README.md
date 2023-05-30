@@ -9,6 +9,11 @@
   <img src="docs/images/qr-code-mobile-link.png" alt="QR code link to deployed site">
 </details>
 
+The table of contents can be accessed at any time by selecting the menu icon at
+the top left of the screen, next to 'README.md'.
+
+Links can be opened in a new tab with a right click or middle click.
+
 ## Introduction
 
 Welcome to the documentation for Safe Hands Guitar Tech! Here we will take an
@@ -1059,15 +1064,42 @@ To fork this repository and develop away from the upstream branch:
 2. Select an owner and repository name
 3. Click 'Create fork'
 
-## Technologies used
-
-~ Hardware: Screens, devices
-~ Software: linters, extensions, WSL2
-
-## Additional credits
-
-~
-
 ## Closing words
 
-~
+This was an ambitious, personal project. I enjoyed working through the
+[official Django tutorial](https://docs.djangoproject.com/en/3.2/intro/tutorial01/)
+and [MDN Django tutorial](https://developer.mozilla.org/en-US/docs/Learn/Server-side/Django)
+alongside development of this project. I learned much about the what and why of Django.
+I decided that the best approach was to let Django do the 'heavy lifting', so that
+I could focus on delivering the best front end experience to end users. Django certainly
+lives up to its tagline.
+
+[DRY](https://en.wikipedia.org/wiki/Don%27t_repeat_yourself) principles were a
+recurring theme, which is part of Django's very nature. I also found that with
+great power, comes great responsibility - if you want Django to do the hard work
+for you, you must be responsible for reading up on how to make it work correctly.
+
+For the amount of work that the project does, there is not an awful lot of actual
+Python code written in the `views.py` modules of each app. By understanding the
+power of [class-based views,](https://docs.djangoproject.com/en/3.2/topics/class-based-views/)
+these 'magic boxes' do a lot of work for you, if only you know how to use them.
+
+This project was built completely locally in [VS Code](https://code.visualstudio.com/)
+for Windows 10, then later Windows 11. I utilized Windows' [WSL2](https://learn.microsoft.com/en-us/windows/wsl/install)
+system for a familiar `bash` terminal. I learned many optimizations in the process,
+some of which I have shared in the code and this readme.
+
+I'd like to give thanks to the creators of the following two repositories, which
+have partly inspired the planning and documentation of this project:
+
+- [The Guilty Grape Wine Shop](https://github.com/useriasminna/the-guilty-grape-wine-shop)
+- [Song Mates](https://github.com/andy-guttridge/song-mates)
+
+These excellent projects by fellow [Code Institute](https://codeinstitute.net/)
+alumni have inspired the standard of my work in this project.
+
+Tutors Ed and Sarah at CI have also contributed to implementation of date pickers
+and proper reverse linking in shared Django editing views, respectively.
+
+I hope you have enjoyed the site and this accompanying deep-dive. I look forward
+to harnessing the power of Django to build an exciting eCommerce project.
