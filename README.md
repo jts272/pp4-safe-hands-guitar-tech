@@ -679,21 +679,109 @@ with the `allauth` system for authenticating users:
 
 ## Testing
 
-~ Automated and manual as appropriate
-~ Coverage
-~ Images of test file ran
+Testing was a key component of development. It ensures the integrity of the project.
+Items to be tested included code, user stories and UI responsiveness.
+
+Django has testing facilities utilizing Python unit tests, which is 'code to test
+the code'. This ensures that the codes does what is expected, without breaking
+if any changes are made in other parts of the codebase. Let's examine these
+automated Python tests first. The code can be found within each app's `tests.py`
+module.
 
 ### Python testing
 
-~
+A tool called [coverage](https://coverage.readthedocs.io/en/7.2.7/) was used to
+assess what portions of the code required testing. As the majority of bigger features
+used Django's built in class-based views, much of the testing of these sections
+were already handled. Custom methods and overrides were the items that the
+coverage report showed as needing additional testing.
+
+Shown first are the results of automated tests, broken down per app. Below each
+test result is the corresponding coverage report for the app.
+
+#### Home app automated tests
+
+![Home automated tests](docs/images/tests/test-home.png)
+
+![Home coverage](docs/images/coverage/coverage-home.png)
+
+#### Services automated tests
+
+![Services automated tests](docs/images/tests/test-services.png)
+
+![Services coverage](docs/images/coverage/coverage-services.png)
+
+#### Blog app automated tests
+
+![Blog automated test](docs/images/tests/test-blog.png)
+
+![Blog coverage](docs/images/coverage/coverage-blog.png)
+
+#### Setups app automated tests
+
+![Setups automated test](docs/images/tests/test-setups.png)
+
+![Setups coverage](docs/images/coverage/coverage-setups.png)
+
+#### Coverage completion
+
+Coverage is able to produce an interactive HTML report to show which tests are
+not accounted for. Following this report, I had conducted manual tests on all
+remaining code that was not covered with automated unit tests.
+
+Please refer to this Google Sheet for [PP4 Manual Testing.](https://docs.google.com/spreadsheets/d/1rEmiXK6gaGRec36PTqSf-xvOvEL9AZAI3CMtfIvxsNw/edit#gid=0)
+Inside you will find a clean breakdown by app, module, class and function or method.
+I am happy to report that all remaining test items passed successfully.
 
 ### JavaScript testing
 
-~
+A small amount of custom JavaScript code was employed in this project, using the
+jQuery library. This was used to do three things in the deployed app:
+
+1. Set a timeout to dismiss Django messages after four seconds
+2. To alter the class of arrow on an open or closed Bootstrap 4 accordion
+3. To style a form submission button
+
+| Test | Expected Result                                                                     | Actual Result                                                              | State |
+| ---- | ----------------------------------------------------------------------------------- | -------------------------------------------------------------------------- | ----- |
+| 1.   | Messages from the Django messages system auto-dismiss after four seconds            | The message box closes after four seconds have passed                      | Pass  |
+| 2.   | Closed accordion arrows point right, then down when open                            | Accordion arrows point right when closed, the down when clicked and opened | Pass  |
+| 3.   | The button should have Bootstrap 4 classes applied to resemble a large green button | btn, btn-lg and btn-success are applied to form a large green button       | Pass  |
 
 ### UX/story testing
 
-~ How this relates to acceptance criteria (stories must pass before being completed)
+To avoid repetition and keep related concerns together, the testing of user stories
+has in fact been documented with each issue's index card. In the Agile methodologies
+section, we see that each story has been given a set of acceptance criteria. These
+are objective tests to assess the passing state of each story. Each acceptance criterion
+must have passed before the issue can be closed to complete the story item.
+
+Please refer to each iteration's [milestone,](https://github.com/jts272/pp4-safe-hands-guitar-tech/milestones?state=closed)
+or [project board](https://github.com/jts272/pp4-safe-hands-guitar-tech/projects?query=is%3Aopen)
+(in board-view with labels enabled) to assess the tests conducted for each user story.
+
+### UI testing
+
+Responsiveness of every element has been tested throughout development. The mobile-first
+nature of the design process and Bootstrap 4 framework have facilitated this. This
+is evidenced in the deployed project, whose clean UI never breaks at any size. There
+is no compromise in detail displayed at any size.
+
+Such key items tested for responsiveness include:
+
+- Navbar and associated dropdown menu
+- Footer item stacking
+- All image cards, which unravel horizontally on desktop view
+- All interactive button elements, which are appropriately spaced and never distort
+- Appropriate use of screen width in list and detail views across resolutions
+
+This was logged as a user story in the second iteration as 'Responsive site experience'
+and was continuously refined throughout development. This should be readily apparent,
+however you choose to view the site.
+
+Through robust testing and supporting evidence, it is clear that the codebase is
+solid and importantly, achieves its purpose. The code will be explored even further
+in the next section on code validation.
 
 ---
 
