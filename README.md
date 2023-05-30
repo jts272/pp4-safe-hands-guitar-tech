@@ -882,8 +882,31 @@ to the highest degree.
 
 ## Version control
 
-~ Git best practices
-~ Clean code
+I follow [conventional commit](https://www.conventionalcommits.org/en/v1.0.0/)
+habits that breaks down commits into small, well-defined chunks to aid the version
+control process. Additional commit messages add extra context to commits where
+necessary.
+
+I had created an `experimental` branch as a scratchpad for trying out new methods,
+however the main concern is the `main` branch.
+
+The production code is free of commented-out or unused code that may have been
+present at certain points of development. No secrets were exposed and all sensitive
+data is stored on an untracked local file.
+
+[Clean Code](https://www.goodreads.com/book/show/3735293-clean-code) by Robert C. Martin
+(a.k.a. Uncle Bob) has been instrumental in how I think about naming all aspects of
+my code in meaningful ways. I have named files, folders and functions semantically,
+without using any cute abbreviations. Docstrings and comments are plentiful, whilst
+also providing credit references inline, where I believe they are most appropriate.
+
+To benefit anybody looking to fork this repository, I have included my
+[djLint configuration file,](./pyproject.toml) if you would like to format `django-html`
+files in the manner found within this project.
+
+I have also included my VS Code [launch commands.](./.vscode/launch.json) I have
+set up some common Django `manage.py` commands that you are free to run with just
+a couple of clicks, with a debugger attached.
 
 ## Deployment
 
