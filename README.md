@@ -910,8 +910,112 @@ a couple of clicks, with a debugger attached.
 
 ## Deployment
 
-~ All steps and services to register
-~ Procfile, requirements.txt
+To follow these deployment steps, free accounts are required at the following sites:
+
+- [GitHub](https://github.com/)
+- [Heroku](https://id.heroku.com/login)
+- [ElephantSQL](https://www.elephantsql.com/)
+
+These steps are correct as of May 2023 and assumes you have active accounts and
+and any relevant authentication systems setup for the above platforms. The IDE
+used in these steps is VS Code for Windows, running WSL2 Ubuntu 20.04 LTS, in a
+Python [virtual environment.](https://developer.mozilla.org/en-US/docs/Learn/Server-side/Django/development_environment#using_django_inside_a_python_virtual_environment)
+The repository is initialized with GitHub's [Python .gitignore template.](./.gitignore)
+
+**Do not push any changes to GitHub whilst secret keys are exposed!** A secret
+key is generated with the `django-admin startproject` command. Take defensive
+action early on and remove this from `settings.py` or add it to an untracked `env.py`
+file. The secret key is required for Django to work, so handle with care.
+
+### Early deployment steps
+
+1. Install the [Heroku CLI](https://devcenter.heroku.com/articles/heroku-cli#other-installation-methods)
+   and login in your IDE.
+2. Install for the database adapter and webserver, then save the requirements:
+
+```py
+pip3 install psycopg2-binary
+pip3 install gunicorn
+pip3 freeze > requirements.txt
+```
+
+3. Create a new app on Heroku. Select a name and region. This can be done through
+   the CLI or on the web.
+4. Create a new database instance on ElephantSQL on the web. Select a name and
+   region.
+5. On the ElephantSQL dashboard, copy the database URL beginning with `postgres://`
+   from the Details page
+6. On Heroku, reveal the `Config Vars` on the settings of your app. Add the following
+   variable with the URL provided by ElephantSQL:
+
+```py
+DATABASE_URL = <YOUR_ELEPHANTSQL_URL>
+```
+
+7. In your IDE, install a package to parse this URL and update your `requirements.txt`
+
+```py
+pip3 install dj-database-url
+pip3 freeze > requirements.txt
+```
+
+8. Create a file called `env.py` in the root directory of your project. This file
+   _must_ be added to the `.gitignore`. Add the following as on Heroku:
+
+```py
+import os
+
+
+os.environ['DATABASE_URL'] = '<YOUR_ELEPHANTSQL_URL>'
+```
+
+9. In the `settings.py` module of the project directory, make sure it contains the following:
+
+```py
+import os
+import env
+import dj_database_url
+
+DATABASES = {
+    'default': dj_database_url.parse(os.environ.get('DATABASE_URL'))
+}
+```
+
+Comment out the original `DATABASES` configuration; this is the local SQLite3 database.
+You may want to keep this or assign it to a new variable for running tests later.
+
+10. Run database migrations with `python3 manage.py migrate`
+11. Create a file called `Procfile` in the project root directory with the following content:
+
+```proc
+web: gunicorn <YOUR_DJANGO_PROJECT_NAME>.wsgi
+```
+
+12. In `settings.py` add `'<YOUR_HEROKU_APP_NAME>.herokuapp.com'` to `ALLOWED_HOSTS`
+13. Get the `SECRET_KEY` value and add it to the `env.py` with the syntax `os.environ['SECRET_KEY'] = '<YOUR_SECRET_KEY>'`
+14. In `settings.py`, assign the `SECRET_KEY` to `os.environ.get('SECRET_KEY')`
+15. Add the `SECRET_KEY` on Heroku as another config var.
+16. Add the config var `DISABLE_COLLECTSTATIC=1` on Heroku, as there are no static files yet.
+17. With databases configured and secrets hidden, the previous changes can safely be pushed to GitHub
+18. On Heroku, in your app's 'Deploy' tab, follow the steps to link your GitHub repository in the 'Deployment method' tab
+19. At the bottom of the page, select 'Deploy Branch' with `main` selected in the Manual deploy section
+20. Refer to `heroku logs --tail` in the CLI to troubleshoot any deployment issues
+
+You can now develop with `DEBUG = True` and manually deploy your most recent
+pushes at any time on Heroku to make a new build. What you decide to code or
+which dependencies you decide to install from here is up to you!
+
+### Final deployment steps
+
+Follow these steps when you project is ready for production.
+
+1. Ensure that `DEBUG = False` in settings
+2. Double check that `DEBUG = False` in settings!
+3. If using an external WYSIWYG editor like Summernote, as this project does,
+   set `X_FRAME_OPTIONS = 'SAMEORIGIN'`
+4. Set `DISABLE_COLLECTSTATIC = 0` (or remove the config var entirely)
+5. Ensure your `requirements.txt` are fully up-to-date by running the `freeze` command
+6. Ensure you have pushed any remaining commits to GitHub and deploy manually on Heroku
 
 ## Cloning and Forking
 
