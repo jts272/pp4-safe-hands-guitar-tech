@@ -738,6 +738,8 @@ Please refer to this Google Sheet for [PP4 Manual Testing.](https://docs.google.
 Inside you will find a clean breakdown by app, module, class and function or method.
 I am happy to report that all remaining test items passed successfully.
 
+A [PDF version](docs/pp4-manual-testing.pdf) of the sheet is available for offline viewing.
+
 ### JavaScript testing
 
 A small amount of custom JavaScript code was employed in this project, using the
