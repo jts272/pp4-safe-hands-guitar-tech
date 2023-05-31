@@ -30,7 +30,6 @@ oauthlib==3.2.2
 pathspec==0.11.1
 psycopg2-binary==2.9.6
 pycparser==2.21
-pygraphviz==1.10
 PyJWT==2.7.0
 python3-openid==3.2.0
 pytz==2023.3
