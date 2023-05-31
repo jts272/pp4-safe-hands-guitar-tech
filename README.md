@@ -148,7 +148,9 @@ produced for site visitors.
 
 Naturally, the services on offer must be detailed, with prices included. This
 feature was designed to be easily updated by the owner in the event that prices,
-service details or even available services changes.
+service details or even available services changes. This is facilitated by configuring
+Django's built-in [admin site](https://docs.djangoproject.com/en/3.2/ref/contrib/admin/)
+in the code.
 
 The [Unique Selling Point (USP)](https://en.wikipedia.org/wiki/Unique_selling_proposition)
 of this application is the setups section. Here, the owner can proudly display
@@ -180,16 +182,16 @@ to navigate fluently.
 
 Structure concerns organization of site functions. This is represented in the
 concept of [Information Architecture (IA).](https://www.usability.gov/what-and-why/information-architecture.html)
-This translates to providing the user with key information where they are, what
+This translates to providing the user with key information of where they are, what
 they can do and what to expect. This is encapsulated by the implementation of
 strong [Interaction Design (IXD),](<https://www.interaction-design.org/literature/topics/interaction-design#:~:text=Interaction%20Design%20(IxD)%20is%20the,output%20to%20suit%20precise%20demands.>)
 whereby features are implemented with consideration for _how_ they will be used.
 
-Key components of IXD employed are intuitive navigation, that never requires
+Key components of IXD employed includes intuitive navigation that never requires
 guesswork from the user. Feedback is delivered on all actions, from form validation
 to success messages.
 
-User's expectations are met whilst browsing through the use of templates. In other
+Users' expectations are met whilst browsing through the use of templates. In other
 words, elements like navigation and footers stay consistent across pages, with
 relevant page content in the middle. A common pattern Django is great for is that
 of list-view to detail-view. Put simply, a user finds a list of records on a
@@ -229,7 +231,7 @@ social call-to-action (CTA) buttons.
 
 The following section highlights the five most recent blog posts, with counters
 for likes and comments. This lets users know there is room for interaction. A
-brief excerpt is show to capture their attention for reading the specific blog
+brief excerpt is shown to capture their attention for reading the specific blog
 post in full.
 
 The following wireframe mock ups were constructed to visualize how this information
@@ -307,7 +309,7 @@ to add depth.
 A serif font, [Amiri,](https://fonts.google.com/specimen/Amiri?query=amiri) was
 used for all other text content. I had originally intended to use
 [Palatino Linotype,](https://learn.microsoft.com/en-us/typography/font-list/palatino-linotype#style--weight-examples)
-however this was not available as a Google Font, which is great for use in web design.
+however this was not available as a Google Font, which is preferred for use in web design.
 The Amiri font exudes an air of experience and knowledge, making for a pleasant,
 book-like reading experience. Of note is that serif fonts aid in [reducing fatigue](https://www.ncbi.nlm.nih.gov/pmc/articles/PMC4612630/#:~:text=%E2%80%9CSerifs%20have%20an%20important%20role,the%20location%20of%20stroke%20ends.)
 when reading large sums of text.
@@ -331,7 +333,7 @@ methods as seen for the images in the setups section.
 #### Text content
 
 All blog content has been written by the owner for display on the site. For a
-similar example, see [Jim's Guitar Workshop Blog](https://jimsguitarworkshop.co.uk/blog/)
+similar example, see [Jim's Guitar Workshop Blog.](https://jimsguitarworkshop.co.uk/blog/)
 
 Service content was drafted by the owner to outline his current services and prices.
 
@@ -377,8 +379,8 @@ screen sizes
 
 ![Footer desktop](docs/images/features/footer-d.png)
 
-The footer features a tagline, social contact CTA's and a 'copyright' mark. In
-mobile view, these three components are stacked
+The footer features a tagline, social contact CTAs and a 'copyright' mark. In
+mobile view, these three components are stacked.
 
 #### Mobile footer
 
@@ -395,7 +397,10 @@ are some brief highlights of the different sections of the site, and finally an
 offer showing how to get in contact.
 
 The right sidebar shows the five most recent blog posts. An excerpt invites the
-reader to select a topic that they find intriguing.
+reader to select a topic that they find intriguing. In keeping with [defensive design](https://en.wikipedia.org/wiki/Defensive_design)
+principles, a contingency message is shown in the event that blog posts are not
+retrievable. This can easily be confirmed by setting all posts to 'draft' on the
+admin site.
 
 ### Blog
 
@@ -406,7 +411,7 @@ reader to select a topic that they find intriguing.
 On entry of the blog section, the user is presented with a list view of blog posts.
 These are paginated in groups of two, allowing full navigation across all published
 blog posts. Like and comment counts are shown, as well as a link to read the topic
-in full. A link home is provided for when the user is finished with this section
+in full. A link home is provided for when the user is finished with this section.
 
 #### Mobile blog detail
 
@@ -487,10 +492,11 @@ initials of the brand, in similar font and colouring.
 
 ### Feedback messages
 
-Feedback is delivered at all times to the user. Login status is shown at all times
-in the navbar, but more dynamic feedback is present too. These actions pertain to
+Feedback is delivered at all times to the user. Login status is always shown in
+the navbar, but more dynamic feedback is present too. These actions pertain to
 logged-in users, which is covered in detail in the subsequent authentication section.
-The Django messages system is utilized to provide feedback in the following ways:
+Allauth templates provide confirmation for sign-out actions. The Django messages
+system is utilized to provide feedback in the following ways:
 
 #### Signed in
 
@@ -528,9 +534,9 @@ user has left a post on a given comment.
 ## Authentication
 
 The site implements role-based access to functions. This concerns two parties -
-the business owner, or admin and the customers, or regular users. For site interaction
+the business owner/admin and the customers/regular users. For site interaction
 beyond browsing, an account is required. This is facilitated by the accounts and
-registration system, powered by [django-allauth](https://django-allauth.readthedocs.io/en/latest/)
+registration system, powered by [django-allauth.](https://django-allauth.readthedocs.io/en/latest/)
 
 ### Accounts and registration
 
@@ -603,7 +609,7 @@ if you would like to generate your own graph visualizations.
 
 Each box with the dark green banner represents a table, or model. They are grouped
 by app with the light green border. Bold text signifies a required field. The arrows
-show the relational direction for foreign keys (FK), otherwise known as a [many-to-one](https://docs.djangoproject.com/en/3.2/topics/db/examples/many_to_one/)
+show the relational direction for foreign keys (FK); otherwise known as a [many-to-one](https://docs.djangoproject.com/en/3.2/topics/db/examples/many_to_one/)
 field in Django parlance. Red coloured arrows outline the deletion cascade effect.
 If the parent is deleted, it takes the child record with it. The fields generated
 in the visualization are listed alphabetically after any primary and foreign keys.
@@ -710,7 +716,7 @@ test result is the corresponding coverage report for the app.
 
 ![Home coverage](docs/images/coverage/coverage-home.png)
 
-#### Services automated tests
+#### Services app automated tests
 
 ![Services automated tests](docs/images/tests/test-services.png)
 
@@ -755,7 +761,7 @@ jQuery library. This was used to do three things in the deployed app:
 | 2.   | Closed accordion arrows point right, then down when open                            | Accordion arrows point right when closed, the down when clicked and opened | Pass  |
 | 3.   | The button should have Bootstrap 4 classes applied to resemble a large green button | btn, btn-lg and btn-success are applied to form a large green button       | Pass  |
 
-### UX/story testing
+### UX/User story testing
 
 To avoid repetition and keep related concerns together, the testing of user stories
 has in fact been documented with each issue's index card. In the Agile methodologies
@@ -799,7 +805,7 @@ The goal is to follow best practices in the code. This aids everybody: code coll
 have an easier time working with existing code; users with accessibility needs can
 fully interact with site content and SEO impact is maximized.
 
-By following clean coding conventions and a well-configured coding environment,
+By following clean coding conventions in a well-configured coding environment,
 we can achieve the best possible standards with our work. The results of each
 language's validation checks are presented below.
 
@@ -877,7 +883,7 @@ Performance could be improved by using different solutions regarding images, but
 the site experience is smooth, without the presence of layout shift.
 
 The reports have been saved in JSON format. To view the results, download and
-drag 'n drop the file, or paste the raw code into the [Lighthouse Report Viewer](https://googlechrome.github.io/lighthouse/viewer/)
+drag 'n drop the file, or alternatively paste the raw code into the [Lighthouse Report Viewer](https://googlechrome.github.io/lighthouse/viewer/)
 
 [Lighthouse JSON reports](docs/lighthouse/)
 
@@ -918,7 +924,7 @@ control process. Additional commit messages add extra context to commits where
 necessary.
 
 I had created an `experimental` branch as a scratchpad for trying out new methods,
-however the main concern is the `main` branch.
+however the primary concern is the `main` branch.
 
 The production code is free of commented-out or unused code that may have been
 present at certain points of development. No secrets were exposed and all sensitive
@@ -952,7 +958,7 @@ used in these steps is VS Code for Windows, running WSL2 Ubuntu 20.04 LTS, in a
 Python [virtual environment.](https://developer.mozilla.org/en-US/docs/Learn/Server-side/Django/development_environment#using_django_inside_a_python_virtual_environment)
 The repository is initialized with GitHub's [Python .gitignore template.](./.gitignore)
 
-**Do not push any changes to GitHub whilst secret keys are exposed!** A secret
+_Do not push any changes to GitHub whilst secret keys are exposed!_ A secret
 key is generated with the `django-admin startproject` command. Take defensive
 action early on and remove this from `settings.py` or add it to an untracked `env.py`
 file. The secret key is required for Django to work, so handle with care.
@@ -974,7 +980,7 @@ pip3 freeze > requirements.txt
 4. Create a new database instance on ElephantSQL on the web. Select a name and
    region.
 5. On the ElephantSQL dashboard, copy the database URL beginning with `postgres://`
-   from the Details page
+   from the Details page.
 6. On Heroku, reveal the `Config Vars` on the settings of your app. Add the following
    variable with the URL provided by ElephantSQL:
 
@@ -1026,10 +1032,10 @@ web: gunicorn <YOUR_DJANGO_PROJECT_NAME>.wsgi
 14. In `settings.py`, assign the `SECRET_KEY` to `os.environ.get('SECRET_KEY')`
 15. Add the `SECRET_KEY` on Heroku as another config var.
 16. Add the config var `DISABLE_COLLECTSTATIC=1` on Heroku, as there are no static files yet.
-17. With databases configured and secrets hidden, the previous changes can safely be pushed to GitHub
-18. On Heroku, in your app's 'Deploy' tab, follow the steps to link your GitHub repository in the 'Deployment method' tab
-19. At the bottom of the page, select 'Deploy Branch' with `main` selected in the Manual deploy section
-20. Refer to `heroku logs --tail` in the CLI to troubleshoot any deployment issues
+17. With databases configured and secrets hidden, the previous changes can safely be pushed to GitHub.
+18. On Heroku, in your app's 'Deploy' tab, follow the steps to link your GitHub repository in the 'Deployment method' tab.
+19. At the bottom of the page, select 'Deploy Branch' with `main` selected in the Manual deploy section.
+20. Refer to `heroku logs --tail` in the CLI to troubleshoot any deployment issues.
 
 You can now develop with `DEBUG = True` and manually deploy your most recent
 pushes at any time on Heroku to make a new build. What you decide to code or
@@ -1039,32 +1045,32 @@ which dependencies you decide to install from here is up to you!
 
 Follow these steps when you project is ready for production.
 
-1. Ensure that `DEBUG = False` in settings
+1. Ensure that `DEBUG = False` in settings.
 2. Double check that `DEBUG = False` in settings!
 3. If using an external WYSIWYG editor like Summernote, as this project does,
    set `X_FRAME_OPTIONS = 'SAMEORIGIN'`
-4. Set `DISABLE_COLLECTSTATIC = 0` (or remove the config var entirely)
-5. Ensure your `requirements.txt` are fully up-to-date by running the `freeze` command
-6. Ensure you have pushed any remaining commits to GitHub and deploy manually on Heroku
+4. Set `DISABLE_COLLECTSTATIC = 0` (or remove the config var entirely).
+5. Ensure your `requirements.txt` are fully up-to-date by running the `freeze` command.
+6. Ensure you have pushed any remaining commits to GitHub and deploy manually on Heroku.
 
 ## Cloning and Forking
 
 The repository can be cloned with the HTTPS method as follows:
 
-1. On the GitHub repository, click the green '<> Code' dropdown button
-2. Copy the HTTPS URL shown to the clipboard
-3. In a new VS Code window, select 'Clone Git Repository'
-4. Enter the copied URL and select your destination folder
-5. Allow the files to be downloaded to your destination folder
+1. On the GitHub repository, click the green '<> Code' dropdown button.
+2. Copy the HTTPS URL shown to the clipboard.
+3. In a new VS Code window, select 'Clone Git Repository'.
+4. Enter the copied URL and select your destination folder.
+5. Allow the files to be downloaded to your destination folder.
 
 Alternatively, you can simply select to download the branch as a ZIP folder
 from the dropdown menu to download the raw code.
 
 To fork this repository and develop away from the upstream branch:
 
-1. Select 'Fork' in the top-right corner of the repository
-2. Select an owner and repository name
-3. Click 'Create fork'
+1. Select 'Fork' in the top-right corner of the repository.
+2. Select an owner and repository name.
+3. Click 'Create fork'.
 
 ## Closing words
 
@@ -1098,10 +1104,10 @@ have partly inspired the planning and documentation of this project:
 - [Song Mates](https://github.com/andy-guttridge/song-mates)
 
 These excellent projects by fellow [Code Institute](https://codeinstitute.net/)
-alumni have inspired the standard of my work in this project.
+alumni have inspired the standard of work found in this project.
 
 Tutors Ed and Sarah at CI have also contributed to implementation of date pickers
 and proper reverse linking in shared Django editing views, respectively.
 
 I hope you have enjoyed the site and this accompanying deep-dive. I look forward
-to harnessing the power of Django to build an exciting eCommerce project.
+to harnessing the power of Django to build an exciting eCommerce project in the future.
